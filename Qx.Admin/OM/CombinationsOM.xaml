@@ -1,0 +1,18 @@
+﻿<Window x:Class="Qx.Admin.CombinationsOM"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:GUI="clr-namespace:Qx.Admin"
+        xmlns:Controls="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit"
+        Title="CombinationsOM" Height="300" Width="648">
+    <Grid>
+        <GUI:CombinationOM AutoGenerateColumns="False" CanCreate="True" CanDelete="True" CanEdit="True" x:Name="CombinationsGridControl">
+            <GUI:CombinationOM.Columns>
+                <Controls:DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="*" />
+                <Controls:DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*" />
+                <Controls:DataGridTextColumn Header="ResultMaleHebText" Binding="{Binding ResultMaleHebText}" Width="*" />
+                <Controls:DataGridTextColumn Header="ResultFemaleHebText" Binding="{Binding ResultFemaleHebText}" Width="*" />
+                <Controls:DataGridTextColumn Header="Order" Binding="{Binding Order}" Width="*" />
+            </GUI:CombinationOM.Columns>
+        </GUI:CombinationOM>
+    </Grid>
+</Window>

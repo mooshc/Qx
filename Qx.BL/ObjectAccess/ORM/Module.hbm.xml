@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="Qx.Common" assembly="Qx.Common">
+  <class name="Module" table="Module">
+
+    <id name="ID">
+      <generator class="identity" />
+    </id>
+
+    <property name="Name" />
+    <property name="GroupName" />
+    <property name="SeverityLevel" />
+    <property name="Tags" />
+    <property name="IsMale" />
+    <property name="IsDeleted" />
+
+    <bag name="Questions" table="Relation_Module_Question" lazy="false">
+      <key column="ModuleID" />
+      <composite-element class="QuestionInModule">
+        <many-to-one name="Question" column="QuestionID" lazy="false" />
+        <property name="IsPageBreak" />
+        <property name="Ordering" />
+      </composite-element>
+    </bag>
+
+    <many-to-one name="ModuleType" column="ModuleTypeID" lazy="false" />
+
+    <bag name="PhysicalExaminations" table="Relation_Module_Module" lazy="false">
+      <key column="ModuleID" />
+      <composite-element class="PhysicalExaminationInAnamnesis">
+        <many-to-one name="PhysicalExaminationModule" column="PhysicalExaminationModuleID" lazy="false" />
+        <property name="Ordering" />
+      </composite-element>
+    </bag>
+
+    <bag name="Combinations" table="Combination" lazy="false" cascade="all-delete-orphan">
+      <key column="ModuleID" />
+      <one-to-many class="Combination" />
+    </bag>
+    
+  </class>
+</hibernate-mapping>

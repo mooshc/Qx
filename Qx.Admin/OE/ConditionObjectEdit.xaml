@@ -1,0 +1,41 @@
+﻿<Window x:Class="Qx.Admin.ConditionObjectEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ConditionObjectEdit" Height="300" Width="351" FlowDirection="RightToLeft">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*" />
+            <ColumnDefinition Width="178*" />
+        </Grid.ColumnDefinitions>
+        
+        <Label Content="מזהה תנאי" />
+        <TextBox Grid.Column="1" Text="{Binding Name}"/>
+
+        <Label Content="אזהרה בעברית" Grid.Row="1" />
+        <TextBox Name="ConditionTextBox" Grid.Column="1" Text="{Binding ConditionHebText}" Grid.Row="1"/>
+
+        <Label Content="סוג תנאי" Grid.Row="2"/>
+        <TextBox Name="ConditionTypeTextBox" Grid.Column="1" Grid.Row="2" Text="{Binding ConditionType}" TextChanged="ConditionTypeTextBox_TextChanged"/>
+        
+        <Label Content="ערך" Grid.Row="3"/>
+        <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Value}"/>
+        
+        <Label Content="ערך שני" Grid.Row="4"/>
+        <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding SecondValue}"/>
+        
+        <Label Content="צבע" Grid.Row="5"/>
+        <ComboBox Name="ColorComboBox" DisplayMemberPath="Name" SelectedItem="{Binding Color}" Grid.Column="1" Grid.Row="5"/>
+
+        <Button Name="OKButton" Content="אישור" Grid.Column="1" Grid.Row="6" Click="OKButton_Click" Margin="8" />
+        <Button Name="CancelButton" Content="ביטול" Grid.Row="6" Click="CancelButton_Click" Margin="8" />
+    </Grid>
+</Window>

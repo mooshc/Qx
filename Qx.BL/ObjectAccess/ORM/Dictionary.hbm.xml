@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="Qx.Common" assembly="Qx.Common">
+  <class name="Dictionary" table="Dictionary">
+
+    <id name="ID">
+      <generator class="identity" />
+    </id>
+
+    <property name="ObjectName" />
+    <property name="Text" />
+
+    <many-to-one name="Language" column="LanguageID" lazy="false" />
+
+
+  </class>
+</hibernate-mapping>

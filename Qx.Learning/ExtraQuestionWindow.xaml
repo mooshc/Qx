@@ -1,0 +1,25 @@
+﻿<Window x:Class="Qx.Learning.ExtraQuestionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ExtraQuestionWindow" WindowStyle="None" Topmost="True" 
+        ResizeMode="NoResize" ShowInTaskbar="False" Background="Transparent"
+        SizeToContent="WidthAndHeight" AllowsTransparency="True" MinHeight="100" MinWidth="100">
+    <StackPanel Orientation="Horizontal">
+        <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White" Margin="0,0,15,15" BorderThickness="1" BorderBrush="Black" CornerRadius="8,8,8,8">
+        <Border.Effect>
+            <DropShadowEffect Color="Black" BlurRadius="10" Opacity="0.5" ShadowDepth="15" />
+        </Border.Effect>
+            <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="26" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+            <ContentControl Name="ExtraQuestionPlace" Grid.Row="1" Margin="0,-20,30,-5"/>
+            <Image Source="Grphics/SmallNext.png" MouseDown="Button_Click" Grid.Row="2" Name="ContinueButton" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="22" Margin="15,0,0,6"/>
+            <Image Source="Grphics/Close.png" MouseDown="Button_Click_1" Name="CancelButton" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="6" Height="16"/>
+        </Grid>
+    </Border>
+        <Image Source="Grphics\Triangle.png" Margin="-18,0,0,0" Height="29" Width="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+    </StackPanel>
+</Window>

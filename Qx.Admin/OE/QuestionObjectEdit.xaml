@@ -1,0 +1,51 @@
+﻿<Window x:Class="Qx.Admin.QuestionObjectEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="QuestionObjectEdit" Height="334" Width="421" FlowDirection="RightToLeft">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="1.25*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*" />
+            <ColumnDefinition Width="178*" />
+        </Grid.ColumnDefinitions>
+        
+        <Label Content="מזהה שאלה"/>
+        <TextBox Name="NameTextBox" Grid.Column="1" Text="{Binding Name}" TextChanged="NameTextBox_TextChanged"/>
+
+        <Label Content="שאלה בעברית" Grid.Row="1"/>
+        <TextBox Name="HebQuestionTextBox"  Grid.Column="1" Grid.Row="1" Text="{Binding QuestionHebText, Mode=OneTime}"/>
+
+        <Label Content="סוג שאלה" Grid.Row="2"/>
+        <ComboBox Name="QuestionTypeComboBox" Grid.Column="1" Grid.Row="2" DisplayMemberPath="Name" SelectedItem="{Binding QuestionType}"/>
+
+        <Label Content="טקסט מקדים זכר" Grid.Row="3"/>
+        <TextBox Name="HebPreQuestionTextBox"  Grid.Column="1" Grid.Row="3" Text="{Binding PreQuestionHebText, Mode=OneTime}"/>
+        
+        <Label Content="טקסט מקדים נקבה" Grid.Row="4"/>
+        <TextBox Name="HebPreQuestionFemaleTextBox"  Grid.Column="1" Grid.Row="4" Text="{Binding PreQuestionHebTextFemale, Mode=OneTime}"/>
+
+        <Label Content="מחרוזת סיום" Grid.Row="5"/>
+        <CheckBox Name="NoCharCheckBox" Content="ללא" Grid.Row="5" HorizontalAlignment="Right" Margin="0,0,20,0" Click="CheckBox_Checked" IsChecked="{Binding IsWithoutEndingChar}" />
+        <TextBox Name="CharTextBox" Grid.Column="1" Grid.Row="5" Text="{Binding EndingChar}"/>
+        
+        <CheckBox Grid.Row="6" IsChecked="{Binding IsEnter}" Content="אנטר בסוף שאלה?"/>
+
+        <Button Name="AnswersButton" Content="תשובות" Grid.Row="7" Click="AnswersButton_Click" VerticalAlignment="Top" />
+        <Button Name="CombinationButton" Content="קומבינציות" Grid.Row="7" VerticalAlignment="Bottom" Click="CombinationButton_Click"/>
+        
+        <Button Name="OKButton" Content="אישור" Grid.Column="1" Grid.Row="7" Click="OKButton_Click" HorizontalAlignment="Right" Width="70" VerticalAlignment="Top" />
+        <Button Name="CancelButton" Content="ביטול" Grid.Column="1" Grid.Row="7" Click="CancelButton_Click" HorizontalAlignment="Left" Width="70" VerticalAlignment="Top" />
+        
+        <Button Name="PreviewQuestionButton" Content="תצוגה מקדימה" Grid.Column="1" Grid.Row="7" VerticalAlignment="Bottom" Click="PreviewQuestionButton_Click" HorizontalAlignment="Center" />
+
+    </Grid>
+</Window>

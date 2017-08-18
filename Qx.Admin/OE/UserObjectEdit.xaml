@@ -1,0 +1,64 @@
+﻿<Window x:Class="Qx.Admin.UserObjectEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="UserObjectEdit" Height="497" Width="341" FlowDirection="RightToLeft">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="3*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*" />
+            <ColumnDefinition Width="178*" />
+        </Grid.ColumnDefinitions>
+        
+        <Label Content="שם משתמש"/>
+        <TextBox Name="UserNameTextBox" Grid.Column="1" Text="{Binding UserName, Mode=TwoWay}"/>
+
+        <Label Content="שם פרטי" Grid.Row="1"/>
+        <TextBox Name="FirstNameTextBox" Grid.Column="1" Grid.Row="1" Text="{Binding FirstName, Mode=TwoWay}"/>
+
+        <Label Content="שם משפחה" Grid.Row="2"/>
+        <TextBox Name="LastNameTextBox" Grid.Column="1" Grid.Row="2" Text="{Binding LastName, Mode=TwoWay}"/>
+
+        <Label Content="סיסמה" Grid.Row="3"/>
+        <TextBox Name="PasswordTextBox" Grid.Column="1" Grid.Row="3" Text="{Binding Password, Mode=TwoWay}"/>
+        
+        <Label Content="חברה" Grid.Row="4"/>
+        <ComboBox Name="CompanyComboBox" Grid.Row="4" Grid.Column="1" SelectedItem="{Binding Company}" DisplayMemberPath="Name"/>
+
+        <Label Content="שפה" Grid.Row="5"/>
+        <ComboBox Name="LanguageComboBox" Grid.Row="5" Grid.Column="1" SelectedItem="{Binding Language}" DisplayMemberPath="Name"/>
+
+        <CheckBox Content="מנהל?" IsChecked="{Binding IsAdmin}" Grid.Row="6"/>
+
+        <CheckBox Content="נעול?" IsChecked="{Binding IsLocked}" Grid.Row="7"/>
+
+        <ListBox Name="ModulesListBox" Grid.Row="8" Grid.ColumnSpan="2" Padding="10" BorderThickness="1" ItemsSource="{Binding Modules, Mode=TwoWay}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{Binding IsAuthorized}" Margin="15,0"/>
+                        <Label Content="{Binding Path=Module.Name}" TextElement.FontWeight="Bold"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ComboBox Name="ModulesCombobox" Grid.Row="9" Grid.Column="1" Width="180"/>
+        <Button Name="AddModuleButton" Grid.Row="9" HorizontalAlignment="Right" Content="הוסף" Margin="0,8,0,10" TextBlock.FontSize="11" Click="AddModuleButton_Click" />
+        <Button Name="RemoveModuleButton" Grid.Row="9" HorizontalAlignment="Left" Content="הסר" Margin="0,8,0,10" TextBlock.FontSize="11" Click="RemoveModuleButton_Click" />
+        <Button Name="PermitModuleButton" Grid.Row="9" HorizontalAlignment="Center" Content="הרשאה" Margin="0,8,0,10" TextBlock.FontSize="11" Click="PermitModuleButton_Click" />
+        
+        <Button Name="OKButton" Content="אישור" Grid.Column="1" Grid.Row="10" Click="OKButton_Click" Margin="5" />
+        <Button Name="CancelButton" Content="ביטול" Grid.Row="10" Click="CancelButton_Click" Margin="5" />
+    </Grid>
+</Window>

@@ -1,0 +1,10 @@
+﻿<Window x:Class="Qx.Learning.QxMessageBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="QxMessageBox" Height="137" Width="300" FlowDirection="RightToLeft" Topmost="True" WindowStyle="None" WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Label Name="ContentLabel" Content="here" HorizontalAlignment="Center"/>
+        <Button Name="YesButton" Content="yes" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="100,0,0,10" Width="30" Click="YesButton_Click" />
+        <Button Name="NoButton" Content="no" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,100,10" Width="30" Click="NoButton_Click" />
+    </Grid>
+</Window>

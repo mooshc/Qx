@@ -1,0 +1,35 @@
+﻿<Window x:Class="Qx.Admin.CombinationObjectEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CombinationObjectEdit" Height="300" Width="366" FlowDirection="RightToLeft">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Name="OrderRow"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*" />
+            <ColumnDefinition Width="178*" />
+        </Grid.ColumnDefinitions>
+
+        <Label Content="מזהה קומבינציה"/>
+        <TextBox Name="NameTextBox" Grid.Column="1" Text="{Binding Name}"/>
+
+        <Label Content="תוצאת זכר בעברית" Grid.Row="1"/>
+        <TextBox Name="HebMaleOutputTextBox"  Grid.Column="1" Grid.Row="1" Text="{Binding ResultMaleHebText, Mode=OneTime}"/>
+
+        <Label Content="תוצאת נקבה בעברית" Grid.Row="2"/>
+        <TextBox Name="HebFemaleOutputTextBox"  Grid.Column="1" Grid.Row="2" Text="{Binding ResultFemaleHebText, Mode=OneTime}"/>
+
+        <Label Content="סדר (עשרוני)" Grid.Row="3"/>
+        <TextBox Grid.Column="1" Text="{Binding Order}" Grid.Row="3"/>
+        
+        <Button Name="Answers" Grid.Row="4" Content="תשובות" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Answers_Click"/>
+        
+        <Button Name="OKButton" Content="אישור" Grid.Column="1" Grid.Row="4" Click="OKButton_Click" Margin="15" HorizontalAlignment="Right" Width="70" />
+        <Button Name="CancelButton" Content="ביטול" Grid.Column="1" Grid.Row="4" Click="CancelButton_Click" Margin="15" HorizontalAlignment="Left" Width="70" />
+    </Grid>
+</Window>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="Qx.Common" assembly="Qx.Common">
+  <class name="Combination" table="Combination">
+
+    <id name="ID">
+      <generator class="identity" />
+    </id>
+
+    <property name="Name" />
+    <property name="Order" column="`Order`" />
+    <property name="IsDeleted" />
+    
+    <many-to-one name="Module" column="ModuleID" lazy="false" />
+    <many-to-one name="Question" column="QuestionID" lazy="false" />
+
+    <bag name="CombinatedAnswers" table="CombinatedAnswers" cascade="all-delete-orphan" lazy="false">
+      <key column="CombinationID" />
+      <one-to-many class="CombinatedAnswer" />
+    </bag>
+    
+  </class>
+</hibernate-mapping>

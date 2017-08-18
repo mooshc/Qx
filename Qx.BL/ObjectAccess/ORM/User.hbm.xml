@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="Qx.Common" assembly="Qx.Common">
+  <class name="User" table="User">
+
+    <id name="ID">
+      <generator class="identity" />
+    </id>
+
+    <property name="Guid" />
+    <property name="UserName" />
+    <property name="FirstName" />
+    <property name="LastName" />
+    <property name="Password" />
+    <property name="IsLocked" />
+    <property name="IsAdmin" />
+    <property name="IsDeleted" />
+
+    <property name="License" />
+    <property name="PID" />
+    <property name="Field1" />
+    <property name="Field2" />
+    <property name="Field3" />
+    <property name="Field4" />
+    
+    <many-to-one name="Company" column="CompanyID" lazy="false" />
+    <many-to-one name="Language" column="LanguageID" lazy="false" />
+
+    <bag name="Modules" table="Relation_User_Module" lazy="false">
+      <key column="UserID" />
+      <composite-element class="ModuleInUser">
+        <many-to-one name="Module" column="ModuleID" lazy="false" />
+        <property name="IsAuthorized" />
+      </composite-element>
+    </bag>
+
+    <bag name="Scenarios" table="Relation_User_Scenario" lazy="false">
+      <key column="UserID" />
+      <composite-element class="ScenarioInUser">
+        <property name="ScenarioID" />
+        <property name="Mistakes" />
+      </composite-element>
+    </bag>
+    
+  </class>
+</hibernate-mapping>

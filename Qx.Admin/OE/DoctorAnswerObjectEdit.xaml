@@ -1,0 +1,30 @@
+﻿<Window x:Class="Qx.Admin.DoctorAnswerObjectEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="DoctorAnswerObjectEdit" Height="240" Width="349" FlowDirection="RightToLeft">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*" />
+            <ColumnDefinition Width="178*" />
+        </Grid.ColumnDefinitions>
+
+        <Label Content="שם תשובה" Grid.Row="0"/>
+        <ComboBox Name="AnswerNameComboBox" Grid.Column="1" Grid.Row="0" IsEditable="True"/>
+
+        <Label Content="טקסט" Grid.Row="1"/>
+        <TextBox Name="NameTextBox" Grid.Column="1" Grid.Row="1" Text="{Binding Text}"/>
+
+        <Label Content="שם תשובה מקשרת" Grid.Row="2"/>
+        <ComboBox Name="RelatedAnswerNameComboBox" Grid.Column="1" Grid.Row="2" IsEditable="True"/>
+
+        <Button Name="OKButton" Content="אישור" Grid.Column="1" Grid.Row="4" Click="OKButton_Click" HorizontalAlignment="Right" Width="70" VerticalAlignment="Center" Margin="10" />
+        <Button Name="CancelButton" Content="ביטול" Grid.Column="1" Grid.Row="4" Click="CancelButton_Click" HorizontalAlignment="Left" Width="70" VerticalAlignment="Center" Margin="10" />
+
+    </Grid>
+</Window>

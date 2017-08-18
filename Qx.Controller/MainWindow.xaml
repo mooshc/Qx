@@ -1,0 +1,79 @@
+﻿<Window x:Class="Qx.Controller.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:my="http://schemas.microsoft.com/wpf/2008/toolkit"
+        Title="MainWindow" Height="408" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem Header="General Reports">
+                <Grid>
+                    <Label Content="Choose report" Margin="13,18,664,291" Width="91" Height="28" />
+                    <ComboBox Name="ReportsCombobox" VerticalAlignment="Top" HorizontalAlignment="Center" Width="150" Margin="143,67,475,0" />
+                    <Button Name="GetReportButton" Content="Get Data" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,88,356,0"/>
+                    <Label Content="General Report" Height="28" HorizontalAlignment="Left" Margin="38,61,0,0" Name="label1" VerticalAlignment="Top" />
+                    <Label Content="Custom Report" Height="28" HorizontalAlignment="Left" Margin="38,98,0,0" Name="label2" VerticalAlignment="Top" />
+                    <ComboBox HorizontalAlignment="Center" Margin="143,104,475,0" Name="comboBox1" VerticalAlignment="Top" Width="150" />
+                    <Image Height="28" HorizontalAlignment="Left" Margin="632,6,0,0" Name="image4" Source="/Qx.Controller;component/ControllerLogo.png" Stretch="Fill" VerticalAlignment="Top" Width="130" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Reports By User">
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Label Content="Modules" Height="133" Margin="10,134,-10,70" />
+                    <Grid Margin="14,158,6,80">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <CheckBox Content="לוע" />
+                        <CheckBox Content="לב ריאות" Grid.Row="1" />
+                        <CheckBox Content="בטן" Grid.Row="2" />
+                        <CheckBox Content="אשכים" Grid.Row="3" />
+                        <CheckBox Content="עיניים" Grid.Row="4" />
+                    </Grid>
+                    <ComboBox HorizontalAlignment="Center" Margin="89,18,529,0" Name="UsersComboBox" VerticalAlignment="Top" Width="150" />
+                    <Label Content="User" Height="28" HorizontalAlignment="Left" Margin="14,18,0,0" Name="label5" VerticalAlignment="Top" />
+                    <Label Content="From Date" Height="28" HorizontalAlignment="Left" Margin="14,46,0,0" Name="label6" VerticalAlignment="Top" />
+                    <DatePicker Height="25" HorizontalAlignment="Left" Margin="89,49,0,0" Name="datePicker1" VerticalAlignment="Top" Width="115" />
+                    <Label Content="To Date" Height="28" HorizontalAlignment="Left" Margin="210,49,0,0" Name="label7" VerticalAlignment="Top" />
+                    <DatePicker Height="25" HorizontalAlignment="Left" Margin="267,50,0,0" Name="datePicker2" VerticalAlignment="Top" Width="115" />
+                    <Button Content="Get Data" HorizontalAlignment="Right" Margin="0,300,701,0" Name="button4" VerticalAlignment="Top" />
+                    <Label Content="Report Type" Height="28" HorizontalAlignment="Left" Margin="14,80,0,0" Name="label8" VerticalAlignment="Top" />
+                    <ComboBox HorizontalAlignment="Center" Margin="89,86,529,0" Name="comboBox4" VerticalAlignment="Top" Width="150" />
+                    <Image Height="28" HorizontalAlignment="Left" Margin="632,6,0,0" Name="image3" Source="/Qx.Controller;component/ControllerLogo.png" Stretch="Fill" VerticalAlignment="Top" Width="130" />
+                </Grid>
+                    
+            </TabItem>
+            <TabItem Header="Real Time Monitoring">
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Label Content="Monitored Objects" Height="29" HorizontalAlignment="Left" Margin="10,44,0,0" Name="label9" VerticalAlignment="Top" Width="121" />
+                    <ComboBox Height="23" HorizontalAlignment="Left" Margin="137,50,0,0" Name="AlertsComboBox" VerticalAlignment="Top" Width="120" />
+                    <Button Content="+" FontSize="15" FontWeight="ExtraBold" Height="23" HorizontalAlignment="Left" Margin="263,50,0,0" Name="button5" VerticalAlignment="Top" Width="26" Click="button5_Click" />
+                    <ListBox Height="137" HorizontalAlignment="Left" Margin="306,50,0,0" Name="AlertsListBox" VerticalAlignment="Top" Width="161" />
+                    <Button Content="-" FontSize="15" FontWeight="ExtraBold" Height="23" HorizontalAlignment="Left" Margin="263,79,0,0" Name="button6" VerticalAlignment="Top" Width="26" />
+                    <ComboBox HorizontalAlignment="Center" Margin="137,22,481,0" Name="AlertsUserComboBox" VerticalAlignment="Top" Width="150" />
+                    <Label Content="User" Height="28" HorizontalAlignment="Left" Margin="12,22,0,0" Name="label10" VerticalAlignment="Top" />
+                    <ListBox Height="80" HorizontalAlignment="Left" Margin="6,251,0,0" Name="MonitoredAlertsListBox" VerticalAlignment="Top" Width="744" />
+                    <Button Content="Start Monitoring" Height="23" HorizontalAlignment="Left" Margin="20,185,0,0" Name="button7" VerticalAlignment="Top" Width="111" Click="button7_Click" />
+                    <Label Content="Alerts:" Height="28" HorizontalAlignment="Left" Margin="6,217,0,0" Name="label11" VerticalAlignment="Top" />
+                    <Image Height="28" HorizontalAlignment="Left" Margin="632,6,0,0" Name="image2" Source="/Qx.Controller;component/ControllerLogo.png" Stretch="Fill" VerticalAlignment="Top" Width="130" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Create Custom Reports">
+                <Grid>
+                    <Label Content="Monitored Objects" Height="29" Name="label3" Width="121" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                    <ComboBox Height="23" HorizontalAlignment="Left" Margin="127,6,0,0" Name="MonitoredObjectsComboBox" VerticalAlignment="Top" Width="120" />
+                    <Button Content="+" Height="23" HorizontalAlignment="Left" Margin="253,6,0,0" Name="button1" VerticalAlignment="Top" Width="26" FontWeight="ExtraBold" FontSize="15" Click="button1_Click" />
+                    <ListBox Height="137" HorizontalAlignment="Left" Margin="297,6,0,0" Name="MonitoredListBox" VerticalAlignment="Top" Width="232" />
+                    <Button Content="-" FontSize="15" FontWeight="ExtraBold" Height="23" HorizontalAlignment="Left" Margin="253,35,0,0" Name="button2" VerticalAlignment="Top" Width="26" />
+                    <Button Content="Create Report" Height="23" HorizontalAlignment="Left" Margin="29,212,0,0" Name="button3" VerticalAlignment="Top" Width="92" />
+                    <Label Content="Report Name" Height="28" HorizontalAlignment="Left" Margin="29,169,0,0" Name="label4" VerticalAlignment="Top" />
+                    <TextBox Height="23" HorizontalAlignment="Left" Margin="127,169,0,0" Name="textBox1" VerticalAlignment="Top" Width="149" />
+                    <Image Height="28" HorizontalAlignment="Left" Margin="632,6,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="130" Source="/Qx.Controller;component/ControllerLogo.png" />
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

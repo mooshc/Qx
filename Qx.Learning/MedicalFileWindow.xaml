@@ -1,0 +1,35 @@
+﻿<Window x:Class="Qx.Learning.MedicalFileWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        FlowDirection="RightToLeft" WindowStyle="None" AllowsTransparency="True" MouseLeftButtonDown="Window_MouseLeftButtonDown" WindowStartupLocation="CenterScreen"
+        Topmost="True" ShowInTaskbar="False" ResizeMode="NoResize" Height="770px" Width="1060px" Left="100px" Background="Transparent">
+    <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent" Margin="15,15,15,15" CornerRadius="8,8,8,8">
+        <Border.Effect>
+            <DropShadowEffect Color="Black" BlurRadius="10" Opacity="0.5" ShadowDepth="10" Direction="-130" />
+        </Border.Effect>
+        <Grid Height="701px" Width="1001px">
+            <Grid.Background>
+                <ImageBrush ImageSource="Grphics/LearningMainWindow.png" />
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="265"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1" Height="538" Width="711">
+                <Grid.Background>
+                    <ImageBrush ImageSource="Grphics/MedicalFile.jpg"/>
+                </Grid.Background>
+                <TextBox Name="EnamnesisTextBlock" KeyDown="EnamnesisTextBlock_KeyDown" Margin="90,102,31,374" TextWrapping="Wrap" />
+                <TextBox Name="PhysicalExTextBlock" KeyDown="PhysicalExTextBlock_KeyDown" Margin="90,203,31,261" TextWrapping="Wrap" />
+            </Grid>
+            <Border Width="245" Height="537" HorizontalAlignment="Left" Margin="10,8,10,10" BorderBrush="#cfcfcf" BorderThickness="2">
+                <ScrollViewer FlowDirection="LeftToRight">
+                    <Image Name="ChatPic"/>
+                </ScrollViewer>
+            </Border>
+            <Image Grid.Column="1" Name="FinishButton" HorizontalAlignment="Right" VerticalAlignment="Bottom" MouseDown="FinishButton_Click" Margin="0,0,26,46" Width="44" Source="Grphics/FinishButton.png" />
+            <Image Source="Grphics/Close.png" Name="CloseButton" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="15,12,0,0" MouseDown="CloseButton_MouseDown" Height="16" />
+            <Label Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,35,0,0" Content="תרגול מפגש רפואי" FontSize="26" FontWeight="Bold" Visibility="Hidden" />
+        </Grid>
+    </Border>
+</Window>

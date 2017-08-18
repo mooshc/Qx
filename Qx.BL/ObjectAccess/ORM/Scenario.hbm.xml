@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="Qx.Common" assembly="Qx.Common">
+  <class name="Scenario" table="Scenario">
+
+    <id name="ID">
+      <generator class="identity" />
+    </id>
+
+    <property name="Name" />
+    <property name="IsTest" />
+    <property name="FileName" />
+    <property name="ModuleName" />
+    <property name="IsDeleted" />
+
+    <bag name="AnamnesisAnswers" table="Relation_Scenario_DoctorAnswer_Anamnesis" lazy="false" cascade="none">
+      <key column="ScenarioID" />
+      <many-to-many class="DoctorAnswer" column="DoctorAnswerID" />
+    </bag>
+
+    <bag name="PhysicalExAnswers" table="Relation_Scenario_DoctorAnswer_PhysicalEx" lazy="false" cascade="none">
+      <key column="ScenarioID" />
+      <many-to-many class="DoctorAnswer" column="DoctorAnswerID" />
+    </bag>
+
+  </class>
+</hibernate-mapping>
