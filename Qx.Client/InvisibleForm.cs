@@ -28,14 +28,14 @@ namespace Qx.Client
             Hide();
         }
 
-        private void Anamnesis()
+        private void Anamnesis(string caseId)
         {
             try
             {
                 if (!isAnamnesisOpen && !isPhysicalExOpen)
                 {
                     isAnamnesisOpen = true;
-                    var wpfwindow = new ModuleSelectWindow('Q');
+                    var wpfwindow = new ModuleSelectWindow('Q', caseId);
                     ElementHost.EnableModelessKeyboardInterop(wpfwindow);
                     wpfwindow.ShowDialog();
                     isAnamnesisOpen = false;
@@ -56,7 +56,7 @@ namespace Qx.Client
             }
         }
 
-        private void PhysicalEx()
+        private void PhysicalEx(string caseId)
         {
             try
             {
@@ -64,7 +64,7 @@ namespace Qx.Client
                 {
                     isPhysicalExOpen = true;
                     //if (Session.LastModule == null)
-                    new ModuleSelectWindow('E').ShowDialog();
+                    new ModuleSelectWindow('E', caseId).ShowDialog();
                     //else
                     //    new LastModuleWindow().ShowDialog();
                     isPhysicalExOpen = false;
@@ -89,10 +89,11 @@ namespace Qx.Client
         {
             if (m.Msg == Hotkeys.Constants.WM_HOTKEY_MSG_ID)
             {
+                string caseId = Clipboard.GetText();
                 if (m.LParam == new IntPtr(5308418))
-                    Anamnesis();
+                    Anamnesis(caseId);
                 else
-                    PhysicalEx();
+                    PhysicalEx(caseId);
             }
             base.WndProc(ref m);
         }

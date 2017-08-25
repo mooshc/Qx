@@ -103,7 +103,7 @@ namespace Qx.Client
             try
             {
                 //if (Session.LastModule == null)
-                new ModuleSelectWindow('E').ShowDialog();
+                new ModuleSelectWindow('E', string.Empty).ShowDialog();
                 //else
                 //    new LastModuleWindow().ShowDialog();
             }
@@ -126,7 +126,7 @@ namespace Qx.Client
         {
             try
             {
-                new ModuleSelectWindow('Q').ShowDialog();
+                new ModuleSelectWindow('Q', string.Empty).ShowDialog();
             }
             catch (Exception ex)
             {

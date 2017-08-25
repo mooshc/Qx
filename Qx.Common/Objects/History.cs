@@ -17,6 +17,8 @@ namespace Qx.Common
 
         public virtual char PatientGender { set; get; }
 
+        public virtual string MedicalCaseId { set; get; }
+
         public virtual DateTime SaveTime { set; get; }
 
         public virtual Module Module { set; get; }

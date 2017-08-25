@@ -27,8 +27,9 @@ namespace Qx.Client
         private int currentSelectedIndex = -1;
         private List<List<Module>> pages;
         private int currentPage;
+        private string caseId;
 
-        public ModuleSelectWindow(char modulesType)
+        public ModuleSelectWindow(char modulesType, string caseId)
         {
             InitializeComponent();
             Left = Session.windowPosition.X;
@@ -69,6 +70,8 @@ namespace Qx.Client
             }
             Loaded += new RoutedEventHandler(ModuleSelectWindow_Loaded);
             ModulesArea.KeyDown += new KeyEventHandler(ModulesArea_KeyDown);
+
+            this.caseId = caseId;
         }
 
         void ModulesArea_KeyDown(object sender, KeyEventArgs e)
@@ -247,7 +250,7 @@ namespace Qx.Client
                           Session.LastModule = modules[0];
                           Hide();
                           Session.RecomendedPhysicalEx.Clear();
-                          new ModuleWindow(modules).ShowDialog();
+                          new ModuleWindow(modules, caseId).ShowDialog();
                           Close();
                         break;
 
@@ -260,7 +263,7 @@ namespace Qx.Client
                           //    new ModuleWindow(mods[0]).ShowDialog();
                           //else
                           Hide();
-                          new ModuleWindow(mods).ShowDialog();
+                          new ModuleWindow(mods, caseId).ShowDialog();
                               
                           Close();
                         break;

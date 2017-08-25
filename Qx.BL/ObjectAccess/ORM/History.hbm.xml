@@ -8,6 +8,7 @@
 
     <property name="PatientAge" />
     <property name="PatientGender" />
+    <property name="MedicalCaseId" />
     <property name="SaveTime" />
     <property name="IsDeleted" />
 

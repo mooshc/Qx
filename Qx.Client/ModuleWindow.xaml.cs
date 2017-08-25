@@ -34,13 +34,14 @@ namespace Qx.Client
         int currentPage = 0;
         public bool ShowErrors = false;
         public int mainOrder = 0;
+        private string caseId;
 
         private BitmapImage next = new BitmapImage(new Uri(CommonFunctions.GraphicsNativePath + "Next.png"));
         private BitmapImage nextHover = new BitmapImage(new Uri(CommonFunctions.GraphicsNativePath + "NextHover.png")); 
         private BitmapImage back = new BitmapImage(new Uri(CommonFunctions.GraphicsNativePath + "Back.png"));
         private BitmapImage backHover = new BitmapImage(new Uri(CommonFunctions.GraphicsNativePath + "BackHover.png"));
 
-        public ModuleWindow(Module module)
+        public ModuleWindow(Module module, string caseId)
         {
             InitializeComponent();
             Left = Session.windowPosition.X;
@@ -56,6 +57,8 @@ namespace Qx.Client
             SetPages(Questions);
             this.KeyDown += new System.Windows.Input.KeyEventHandler(ModuleWindow_KeyDown);
             Loaded += new RoutedEventHandler(ModuleWindow_Loaded);
+
+            this.caseId = caseId;
         }
 
         void ModuleWindow_Loaded(object sender, RoutedEventArgs e)
@@ -114,7 +117,7 @@ namespace Qx.Client
             }
         }
 
-        public ModuleWindow(List<Module> PhysicalEx)
+        public ModuleWindow(List<Module> PhysicalEx, string caseId)
         {
             InitializeComponent();
             Left = Session.windowPosition.X;
@@ -154,6 +157,8 @@ namespace Qx.Client
             SetPages(Questions);
             this.KeyDown += new System.Windows.Input.KeyEventHandler(ModuleWindow_KeyDown);
             Loaded += new RoutedEventHandler(ModuleWindow_Loaded);
+
+            this.caseId = caseId;
         }
 
         private void SetPages(List<QuestionInModule> Questions)
@@ -364,7 +369,7 @@ namespace Qx.Client
 
             #region TAKE ALL MODULE ANSWERS
             var answers = new List<AnswerControl>();
-            history = new History() { Module = Module, User = new User() { ID = Session.User.ID } };
+            history = new History() { Module = Module, User = new User() { ID = Session.User.ID }, MedicalCaseId =  caseId};
             foreach (var question in questionControls)
             {
                 answers.AddRange(question.AnswersStackPanel.Children.OfType<AnswerControl>().Where(ac => ac.tb.IsChecked.Value));
