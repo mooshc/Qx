@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" MouseDown="UserControl_MouseDown" KeyDown="UserControl_KeyDown"
-             d:DesignHeight="27" MinHeight="22" FlowDirection="RightToLeft" MinWidth="110">
+             d:DesignHeight="27" MinHeight="22" FlowDirection="LeftToRight" MinWidth="110">
     <Grid Name="Grid">
         <StackPanel Orientation="Horizontal" Name="AnswerPanel" GotFocus="AnswerPanel_GotFocus" Mouse.PreviewMouseDown="AnswerPanel_PreviewMouseDown" MinWidth="110" />
     </Grid>

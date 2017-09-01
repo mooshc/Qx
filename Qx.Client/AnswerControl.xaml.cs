@@ -395,7 +395,7 @@ namespace Qx.Client
                     var point = this.TranslatePoint(new Point(), win);
                     var qc2 = new QuestionControl(Answer.ExtraQuestion, true, Answer.Name, Answer.ID);
                     win.extraQuestionControls.Add(qc2);
-                    var newWin = new ExtraQuestionWindow(qc2, new Point(win.Left, win.Top + point.Y + this.ActualHeight/2),win.Module.ModuleType.Name.Contains("בדיקה גופנית"));
+                    var newWin = new ExtraQuestionWindow(qc2, new Point(win.Left + win.ActualWidth, win.Top + point.Y + this.ActualHeight/2),win.Module.ModuleType.Name.Contains("בדיקה גופנית"));
                     var result = newWin.ShowDialog();
                     if (!result.Value)
                     {
@@ -498,7 +498,7 @@ namespace Qx.Client
             var originalQuestionControl = (((this.Parent as Grid).Parent as Grid).Parent as QuestionControl);
             var point = originalQuestionControl.TranslatePoint(new Point(), win);
             //var qc = new QuestionControl(Answer.ExtraQuestion, true);
-            var newWin = new ExtraQuestionWindow(win.extraQuestionControls.Where(qc => qc.Question == Answer.ExtraQuestion).ToList().FirstOrDefault(), new Point(win.Left, win.Top + point.Y + originalQuestionControl.ActualHeight / 2),win.Module.ModuleType.Name.Contains("בדיקה גופנית"));
+            var newWin = new ExtraQuestionWindow(win.extraQuestionControls.Where(qc => qc.Question == Answer.ExtraQuestion).ToList().FirstOrDefault(), new Point(win.Left + win.ActualWidth, win.Top + point.Y + originalQuestionControl.ActualHeight / 2),win.Module.ModuleType.Name.Contains("בדיקה גופנית"));
             var result = newWin.ShowDialog();
             Background = new SolidColorBrush(Colors.Transparent);
         }

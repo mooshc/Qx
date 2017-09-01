@@ -28,7 +28,7 @@ namespace Qx.Client
             Text.Text = text;
             Text.Focus();
             Text.CaretIndex = Text.Text.Length;
-            Left = p.X-220;
+            Left = p.X;
             Top = p.Y + 0;
         }
 

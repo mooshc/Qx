@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d"
              Height="Auto" Background="#ebebeb" Margin="0,5,0,0" BorderBrush="Transparent" BorderThickness="1">
-    <Grid FlowDirection="RightToLeft">
+    <Grid FlowDirection="LeftToRight">
         <Grid.RowDefinitions>
             <RowDefinition Name="firstRow" Height="25px"/>
             <RowDefinition/>
