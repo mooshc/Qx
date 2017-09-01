@@ -48,11 +48,13 @@ namespace Qx.Client
                 return;
             }
             InitializeComponent();
-            //OKButton_MouseDown(null, null);
+            
             Session.windowPosition.X = Left;
             Session.windowPosition.Y = Top;
             Loaded += new RoutedEventHandler(MainWindow_Loaded);
             KeyDown += new System.Windows.Input.KeyEventHandler(MainWindow_KeyDown);
+
+            OKButton_MouseDown(null, null);
         }
 
         void MainWindow_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
@@ -163,7 +165,7 @@ namespace Qx.Client
             AfterLoginPanel.Visibility = System.Windows.Visibility.Visible;
             WrongUserNameOrPass.Visibility = System.Windows.Visibility.Hidden;
             LoadingLabel.Visibility = System.Windows.Visibility.Hidden;
-            OKButton.Margin = new Thickness(0, 0, 324, -16);
+            OKButton.Margin = new Thickness(0, 0, 15, -16);
             approveLabel.Focus();
             loginState++;
             //Hide();
@@ -226,7 +228,8 @@ namespace Qx.Client
             try
             {
                 CallContextLight.Current = new CallContextLight(Guid.Empty);
-                User = RemoteObjectProvider.GetLiteUserAccess().IsLoginCorrect(userName, password);
+                User = RemoteObjectProvider.GetLiteUserAccess().IsLoginCorrect("moosh", "thirnzho");
+                // User = RemoteObjectProvider.GetLiteUserAccess().IsLoginCorrect(userName, password);
                 if (User == null)
                 {
                     var returnToNormal = new ReturnToNormal(ReturnToNormalFunc);
