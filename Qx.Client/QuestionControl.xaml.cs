@@ -104,6 +104,9 @@ namespace Qx.Client
                 //MouseLeftButtonDown += UserControl_GotFocus;
             }
             Question = question;
+
+            QuestionLabel.ToolTip = question.ID;
+
             switch (Question.QuestionType.ID)
             {
                 case 1:
