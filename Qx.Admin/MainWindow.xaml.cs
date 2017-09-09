@@ -46,7 +46,7 @@ namespace Qx.Admin
 
                 RemoteObjectProvider.UserGuid = User.Guid;
                 Hide();
-                new UsersManager().ShowDialog();
+                new ManageWindow().ShowDialog();
                 Close();
             }
             catch (Exception ex)
