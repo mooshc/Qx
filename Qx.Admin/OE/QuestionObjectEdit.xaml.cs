@@ -68,7 +68,7 @@ namespace Qx.Admin
                 var male = ans.ResultMaleHebText;
                 var female = ans.ResultFemaleHebText;
                 var split = ans.Name.Split('.');
-                ans.Name = question.Name + "." + (split.Length == 1 ? split[0] : split[1]);
+                ans.Name = question.Name + "." + (split.Length == 1 ? split[0] : split.Last());
                 ans.ResultFemaleHebText = female;
                 ans.ResultMaleHebText = male;
                 ans.AnswerHebText = text;
@@ -104,7 +104,7 @@ namespace Qx.Admin
                 var male = ans.ResultMaleHebText;
                 var female = ans.ResultFemaleHebText;
                 var split = ans.Name.Split('.');
-                ans.Name = question.Name + "." + (split.Length == 1 ? split[0] : split[1]);
+                ans.Name = question.Name + "." + (split.Length == 1 ? split[0] : split.Last());
                 ans.ResultFemaleHebText = female;
                 ans.ResultMaleHebText = male;
                 ans.AnswerHebText = text;
