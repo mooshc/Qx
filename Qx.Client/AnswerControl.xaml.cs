@@ -199,12 +199,12 @@ namespace Qx.Client
 
         void textBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            System.Windows.Forms.InputLanguage.CurrentInputLanguage = GetInputLanguageByName("he");
+            // System.Windows.Forms.InputLanguage.CurrentInputLanguage = GetInputLanguageByName("he");
         }
 
         void textBox_GotMouseCapture(object sender, MouseEventArgs e)
         {
-            System.Windows.Forms.InputLanguage.CurrentInputLanguage = GetInputLanguageByName("he");
+            // System.Windows.Forms.InputLanguage.CurrentInputLanguage = GetInputLanguageByName("he");
         }
 
         public static System.Windows.Forms.InputLanguage GetInputLanguageByName(string inputName)
