@@ -500,7 +500,7 @@ namespace Qx.Client
                                 {
                                     if (a.Answer.RecomendedPhysicalEx != null) Session.RecomendedPhysicalEx.Add(a.Answer.RecomendedPhysicalEx);
                                     if (checkedExtraAnswers.Count >= 2 && checkedExtraAnswers[checkedExtraAnswers.Count - 2] == a)
-                                        output += " " + GetText(IsMale, a) + ((a.Answer.Question.QuestionType.ID ==1 || a.Answer.Question.QuestionType.ID ==5) ? " ו" : "");
+                                        output += " " + GetText(IsMale, a) + ((a.Answer.Question.QuestionType.ID ==1 || a.Answer.Question.QuestionType.ID ==5) ? " e" : "");
                                     else
                                         output += " " + GetText(IsMale, a) + ((a.Answer.Question.QuestionType.ID == 1 || a.Answer.Question.QuestionType.ID == 5) ? "," : "");
                                 }
@@ -520,7 +520,7 @@ namespace Qx.Client
                             }
 
                             if (questionAnswers.Count >= 2 && questionAnswers[questionAnswers.Count - 2] == ans && (ans.Answer.Question.QuestionType.ID == 1 || ans.Answer.Question.QuestionType.ID == 5))
-                                output += " ו";
+                                output += " e";
                             else
                                 output += ", ";
                         }
@@ -528,7 +528,7 @@ namespace Qx.Client
                         else //if (GetText(IsMale, ans) != "")
                         {
                             if (questionAnswers.Count >= 2 && questionAnswers[questionAnswers.Count - 2] == ans)
-                                output += " " + GetText(IsMale, ans) + ((ans.Answer.Question.QuestionType.ID == 1 || ans.Answer.Question.QuestionType.ID == 5) ? " ו" : "");
+                                output += " " + GetText(IsMale, ans) + ((ans.Answer.Question.QuestionType.ID == 1 || ans.Answer.Question.QuestionType.ID == 5) ? " e" : "");
                             else
                                 output += " " + GetText(IsMale, ans) + ((ans.Answer.Question.QuestionType.ID ==1 || ans.Answer.Question.QuestionType.ID ==5) ? "," : "");
 
@@ -555,9 +555,9 @@ namespace Qx.Client
                 Session.LastModule = null;
             for (int i = 0; i < 3; i++)
             {
-                output = output.Trim().Replace(" ו  ", " ו").Replace(" ו ", " ו").Replace(" ב  ", " ב").Replace("\r\n,", "\r\n").Replace("\r\n.", ".").Replace("\r\n,", "\r\n").
+                output = output.Trim().Replace("\r\n,", "\r\n").Replace("\r\n.", ".").Replace("\r\n,", "\r\n").
                     Replace("..", ".").Replace(",.", ".").Replace(". .", ".").Replace("  ", " ").Replace(" ,", ",").Replace(" .", ".").Replace(".,", ".").
-                    Replace(",  ", ", ").Replace("\r\n ", "\r\n").Replace(",,",",").Replace("'","").Replace(" ל "," ל");
+                    Replace(",  ", ", ").Replace("\r\n ", "\r\n").Replace(",,",",").Replace("'","");
             }
             return output;
         }
