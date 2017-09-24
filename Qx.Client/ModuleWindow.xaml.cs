@@ -104,6 +104,11 @@ namespace Qx.Client
                 System.Windows.MessageBox.Show(this.GenerateText(true));
                 return;
             }
+            if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.K))
+            {
+                System.Windows.MessageBox.Show(this.GenerateText(false));
+                return;
+            }
             if (Keyboard.IsKeyDown(Key.Return) || Keyboard.IsKeyDown(Key.Next))
             {
                 if(currentPage < Pages.Count -1)
