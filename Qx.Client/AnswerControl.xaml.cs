@@ -60,7 +60,7 @@ namespace Qx.Client
             qc = qc1;
             Answer = answer;
             InitializeComponent();
-            tb = (answer.Question.QuestionType.ID == 1 || (answer.Question.QuestionType.ID == 5 && !answer.Name.Contains("#")) ) ? (ToggleButton)new CheckBox() : new RadioButton();
+            tb = ((answer.Question.QuestionType.ID == 1 && !answer.Name.Contains("#single")) || (answer.Question.QuestionType.ID == 5 && !answer.Name.Contains("#")) ) ? (ToggleButton)new CheckBox() : new RadioButton();
             tb.KeyDown += new KeyEventHandler(tb_PreviewKeyDown);
             tb.FocusVisualStyle = null;
             if (!qc.IsExtraQuestion)
@@ -149,7 +149,7 @@ namespace Qx.Client
                 AnswerPanel.Children.Add(tb);
             }
 
-            if (answer.Question.QuestionType.ID == 2)
+            if (answer.Question.QuestionType.ID == 2 || (answer.Question.QuestionType.ID == 1 && answer.Name.Contains("#single")))
                 (tb as RadioButton).GroupName = answer.Question.Name;
             if (answer.Question.QuestionType.ID == 5 && answer.Name.Contains("#"))
                 (tb as RadioButton).GroupName = answer.Name.Substring(0, answer.Name.IndexOf("#"));
