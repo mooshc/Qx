@@ -62,6 +62,22 @@ namespace Qx.Client
                     }
                     return valid1;
                 }
+                if(Question.Answers.Count(a => a.Name.Contains("#single")) > 0)
+                {
+                    foreach (AnswerControl a in AnswersStackPanel.Children.OfType<AnswerControl>())
+                    {
+                        if ((a.tb.IsChecked ?? false) && a.Answer.IsSingular && a.IsValid)
+                            return true;
+                    }
+                    bool valid2 = true;
+                    bool isChecked2 = false;
+                    foreach (AnswerControl a in AnswersStackPanel.Children.OfType<AnswerControl>().Where(a => a.Answer.Name.Contains("#single")))
+                    {
+                        valid2 = valid2 && a.IsValid;
+                        isChecked2 = isChecked2 || a.tb.IsChecked.Value;
+                    }
+                    return valid2 && isChecked2;
+                }
                 bool valid = true;
                 bool isChecked = false;
                 foreach (AnswerControl a in AnswersStackPanel.Children)
