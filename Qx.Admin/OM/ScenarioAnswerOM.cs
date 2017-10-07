@@ -32,7 +32,7 @@ namespace Qx.Admin
             mw.ShowDialog();
 
             var s = (DataContext as Scenario);
-            mw.ModuleAnswers = RemoteObjectProvider.GetDoctorAnswerAccess().Save(mw.ModuleAnswers).ToList();
+            mw.ModuleAnswers = RemoteObjectProvider.GetDoctorAnswerAccess().SaveOrUpdate(mw.ModuleAnswers).ToList();
             if (IsAnamnesis)
                 foreach(var ma in mw.ModuleAnswers)
                     s.AnamnesisAnswers.Add(ma);

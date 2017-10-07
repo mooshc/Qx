@@ -35,8 +35,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Nachshon.Core.Common">
-      <HintPath>..\3rdPartyDLLs\Nachshon.Core.Common.dll</HintPath>
+    <Reference Include="Castle.DynamicProxy2">
+      <HintPath>..\3rdPartyDLLs\Castle.DynamicProxy2.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.ByteCode.Castle">
+      <HintPath>..\3rdPartyDLLs\NHibernate.ByteCode.Castle.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

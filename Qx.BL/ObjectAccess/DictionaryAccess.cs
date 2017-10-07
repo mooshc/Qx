@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Qx.Common;
-using Nachshon.ObjectAccess;
 using NHibernate.Context;
 using NHibernate.Linq;
 namespace Qx.BL
@@ -17,7 +15,7 @@ namespace Qx.BL
 
         public List<Dictionary> LoadByLang(Language lang, int? iteration = null)
         {
-            var s = _sessionContext.CurrentSession();
+            var s = sessionContext.CurrentSession();
             if (ServerStatics.Dictionary != null)
                 return ServerStatics.Dictionary;
             if (iteration.HasValue)
@@ -28,7 +26,7 @@ namespace Qx.BL
 
         public bool LoadByLangToServer(Language lang, int iteration)
         {
-            var s = _sessionContext.CurrentSession();
+            var s = sessionContext.CurrentSession();
             if (ServerStatics.Dictionary == null)
                 ServerStatics.Dictionary = new List<Dictionary>();
             var data = s.Linq<Dictionary>().Where(d => d.Language == lang && d.ID >= iteration * 1000 && d.ID < (iteration + 1) * 1000);
@@ -38,7 +36,7 @@ namespace Qx.BL
 
         public void SaveOrUpdateByName(string Name, string Text, Language Lang)
         {
-            var s = _sessionContext.CurrentSession();
+            var s = sessionContext.CurrentSession();
 
             var obj = s.Linq<Dictionary>().Where(d => d.ObjectName == Name).FirstOrDefault();
             if (obj == null)
@@ -52,7 +50,7 @@ namespace Qx.BL
 
         public int GetTotalCount()
         {
-            var s = _sessionContext.CurrentSession();
+            var s = sessionContext.CurrentSession();
             return s.Linq<Dictionary>().Count();
         }
     }

@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Nachshon.Validation;
 
 namespace Qx.Common
 {
     [Serializable]
-    public class LiteModule : ValidObjectWithIdentity
+    public class LiteModule 
     {
         public virtual int ID { private set; get; }
 
@@ -37,11 +33,6 @@ namespace Qx.Common
 
         public LiteModule()
         {
-        }
-
-        protected override object GetObjectId()
-        {
-            return ID;
         }
     }
 }

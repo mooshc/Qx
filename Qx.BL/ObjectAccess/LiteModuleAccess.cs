@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Qx.Common;
-using Nachshon.ObjectAccess;
+﻿using Qx.Common;
 using NHibernate.Context;
-using NHibernate.Linq;
 
 namespace Qx.BL
 {

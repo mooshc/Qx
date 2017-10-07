@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Nachshon.Validation;
 
 namespace Qx.Common
 {
     [Serializable]
-    public class Scenario : ValidObjectWithIdentity
+    public class Scenario 
     {
         public virtual int ID { private set; get; }
 
@@ -26,10 +23,5 @@ namespace Qx.Common
         public virtual IList<DoctorAnswer> PhysicalExAnswers { set; get; }
 
         public virtual string ModuleHebName { get { return ContentDictionary.GetContent(ModuleName, null); } }
-
-        protected override object GetObjectId()
-        {
-            return ID;
-        }
     }
 }

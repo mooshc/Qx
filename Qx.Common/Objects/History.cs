@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Nachshon.Validation;
 
 namespace Qx.Common
 {
     [Serializable]
-    public class History : ValidObjectWithIdentity
+    public class History
     {
         public virtual int ID { private set; get; }
 
@@ -31,11 +28,6 @@ namespace Qx.Common
         {
             DoctorAnswers = new List<DoctorAnswer>();
             SaveTime = DateTime.Now;
-        }
-
-        protected override object GetObjectId()
-        {
-            return ID;
         }
     }
 }

@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Nachshon.Validation;
 
 namespace Qx.Common
 {
     [Serializable]
-    public class Module : ValidObjectWithIdentity
+    public class Module 
     {
         public virtual int ID { private set; get; }
 
@@ -58,11 +55,6 @@ namespace Qx.Common
             Questions = new List<QuestionInModule>();
             PhysicalExaminations = new List<PhysicalExaminationInAnamnesis>();
             Combinations = new List<Combination>();
-        }
-
-        protected override object GetObjectId()
-        {
-            return ID;
         }
 
         public virtual IList<Answer> GetAllAnswers()

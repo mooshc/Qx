@@ -61,13 +61,6 @@
     <Reference Include="MySql.Data">
       <HintPath>..\3rdPartyDLLs\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Nachshon.Core.Client">
-      <HintPath>..\3rdPartyDLLs\Nachshon.Core.Client.dll</HintPath>
-    </Reference>
-    <Reference Include="Nachshon.Core.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=3118cdaa369a35dd, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\3rdPartyDLLs\Nachshon.Core.Common.dll</HintPath>
-    </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\3rdPartyDLLs\NHibernate.dll</HintPath>
     </Reference>

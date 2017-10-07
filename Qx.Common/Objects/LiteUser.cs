@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Nachshon.Validation;
-using Nachshon.ObjectAccess;
-using System.Collections.ObjectModel;
 
 namespace Qx.Common
 {
     [Serializable]
-    public class LiteUser : ValidObjectWithIdentity
+    public class LiteUser
     {
         public virtual int ID { private set; get; }
 
@@ -51,11 +46,6 @@ namespace Qx.Common
         public override bool Equals(object obj)
         {
             return obj is User && (obj as User).ID == ID;
-        }
-
-        protected override object GetObjectId()
-        {
-            return ID;
         }
     }
 }

@@ -90,6 +90,8 @@ namespace Qx.Client
             if (m.Msg == Hotkeys.Constants.WM_HOTKEY_MSG_ID)
             {
                 string caseId = Clipboard.GetText();
+                if (caseId.Length > 44)
+                    caseId = caseId.Substring(0, 44);
                 if (m.LParam == new IntPtr(5308418))
                     Anamnesis(caseId);
                 else

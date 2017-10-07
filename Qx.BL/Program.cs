@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.ServiceProcess;
 using log4net;
 using System.Reflection;
 using System.IO;
 using System.Runtime.Remoting;
-using Nachshon.Proxy;
 using Castle.DynamicProxy;
 using Qx.Common;
+using Castle.Core.Interceptor;
 
 namespace Qx.BL
 {
@@ -48,27 +45,43 @@ namespace Qx.BL
             var transI = new TransactionInterceptor();
             var authI = new AuthorizationInterceptor();
 
-            Helper.ProxyAndMarshalService(gen, ServiceLocator.AnswerAccess, "AnswerAccess.rem", typeof(IAnswerAccess), transI, opI, authI);
-            Helper.ProxyAndMarshalService(gen, ServiceLocator.ColorAccess, "ColorAccess.rem", typeof(IColorAccess), transI, opI, authI);
-            Helper.ProxyAndMarshalService(gen, ServiceLocator.CombinatedAnswerAccess, "CombinatedAnswerAccess.rem", typeof(ICombinatedAnswerAccess), transI, opI, authI);
-            Helper.ProxyAndMarshalService(gen, ServiceLocator.CombinationAccess, "CombinationAccess.rem", typeof(ICombinationAccess), transI, opI, authI);
-            Helper.ProxyAndMarshalService(gen, ServiceLocator.CompanyAccess, "CompanyAccess.rem", typeof(ICompanyAccess), transI, opI, authI);
-            Helper.ProxyAndMarshalService(gen, ServiceLocator.ConditionAccess, "ConditionAccess.rem", typeof(IConditionAccess), transI, opI, authI);
-            Helper.ProxyAndMarshalService(gen, ServiceLocator.DictionaryAccess, "DictionaryAccess.rem", typeof(IDictionaryAccess), transI, opI, authI);
-            Helper.ProxyAndMarshalService(gen, ServiceLocator.DoctorAnswerAccess, "DoctorAnswerAccess.rem", typeof(IDoctorAnswerAccess), transI, opI, authI);
-            Helper.ProxyAndMarshalService(gen, ServiceLocator.HistoryAccess, "HistoryAccess.rem", typeof(IHistoryAccess), transI, opI, authI);
-            Helper.ProxyAndMarshalService(gen, ServiceLocator.LanguageAccess, "LanguageAccess.rem", typeof(ILanguageAccess), transI, opI, authI);
-            Helper.ProxyAndMarshalService(gen, ServiceLocator.ModuleAccess, "ModuleAccess.rem", typeof(IModuleAccess), transI, opI, authI);
-            Helper.ProxyAndMarshalService(gen, ServiceLocator.LiteModuleAccess, "LiteModuleAccess.rem", typeof(ILiteModuleAccess), transI, opI, authI);
-            Helper.ProxyAndMarshalService(gen, ServiceLocator.ModuleTypeAccess, "ModuleTypeAccess.rem", typeof(IModuleTypeAccess), transI, opI, authI);
-            Helper.ProxyAndMarshalService(gen, ServiceLocator.QuestionAccess, "QuestionAccess.rem", typeof(IQuestionAccess), transI, opI, authI);
-            Helper.ProxyAndMarshalService(gen, ServiceLocator.LiteQuestionAccess, "LiteQuestionAccess.rem", typeof(ILiteQuestionAccess), transI, opI, authI);
-            Helper.ProxyAndMarshalService(gen, ServiceLocator.QuestionTypeAccess, "QuestionTypeAccess.rem", typeof(IQuestionTypeAccess), transI, opI, authI);
-            Helper.ProxyAndMarshalService(gen, ServiceLocator.UserAccess, "UserAccess.rem", typeof(IUserAccess), transI, opI, authI);
-            Helper.ProxyAndMarshalService(gen, ServiceLocator.LiteUserAccess, "LiteUserAccess.rem", typeof(ILiteUserAccess), transI, opI, authI);
-            Helper.ProxyAndMarshalService(gen, ServiceLocator.ScenarioAccess, "ScenarioAccess.rem", typeof(IScenarioAccess), transI, opI, authI);
+            ProxyAndMarshalService(gen, ServiceLocator.AnswerAccess, "AnswerAccess.rem", typeof(IAnswerAccess), transI, opI, authI);
+            ProxyAndMarshalService(gen, ServiceLocator.ColorAccess, "ColorAccess.rem", typeof(IColorAccess), transI, opI, authI);
+            ProxyAndMarshalService(gen, ServiceLocator.CombinatedAnswerAccess, "CombinatedAnswerAccess.rem", typeof(ICombinatedAnswerAccess), transI, opI, authI);
+            ProxyAndMarshalService(gen, ServiceLocator.CombinationAccess, "CombinationAccess.rem", typeof(ICombinationAccess), transI, opI, authI);
+            ProxyAndMarshalService(gen, ServiceLocator.CompanyAccess, "CompanyAccess.rem", typeof(ICompanyAccess), transI, opI, authI);
+            ProxyAndMarshalService(gen, ServiceLocator.ConditionAccess, "ConditionAccess.rem", typeof(IConditionAccess), transI, opI, authI);
+            ProxyAndMarshalService(gen, ServiceLocator.DictionaryAccess, "DictionaryAccess.rem", typeof(IDictionaryAccess), transI, opI, authI);
+            ProxyAndMarshalService(gen, ServiceLocator.DoctorAnswerAccess, "DoctorAnswerAccess.rem", typeof(IDoctorAnswerAccess), transI, opI, authI);
+            ProxyAndMarshalService(gen, ServiceLocator.HistoryAccess, "HistoryAccess.rem", typeof(IHistoryAccess), transI, opI, authI);
+            ProxyAndMarshalService(gen, ServiceLocator.LanguageAccess, "LanguageAccess.rem", typeof(ILanguageAccess), transI, opI, authI);
+            ProxyAndMarshalService(gen, ServiceLocator.ModuleAccess, "ModuleAccess.rem", typeof(IModuleAccess), transI, opI, authI);
+            ProxyAndMarshalService(gen, ServiceLocator.LiteModuleAccess, "LiteModuleAccess.rem", typeof(ILiteModuleAccess), transI, opI, authI);
+            ProxyAndMarshalService(gen, ServiceLocator.ModuleTypeAccess, "ModuleTypeAccess.rem", typeof(IModuleTypeAccess), transI, opI, authI);
+            ProxyAndMarshalService(gen, ServiceLocator.QuestionAccess, "QuestionAccess.rem", typeof(IQuestionAccess), transI, opI, authI);
+            ProxyAndMarshalService(gen, ServiceLocator.LiteQuestionAccess, "LiteQuestionAccess.rem", typeof(ILiteQuestionAccess), transI, opI, authI);
+            ProxyAndMarshalService(gen, ServiceLocator.QuestionTypeAccess, "QuestionTypeAccess.rem", typeof(IQuestionTypeAccess), transI, opI, authI);
+            ProxyAndMarshalService(gen, ServiceLocator.UserAccess, "UserAccess.rem", typeof(IUserAccess), transI, opI, authI);
+            ProxyAndMarshalService(gen, ServiceLocator.LiteUserAccess, "LiteUserAccess.rem", typeof(ILiteUserAccess), transI, opI, authI);
+            ProxyAndMarshalService(gen, ServiceLocator.ScenarioAccess, "ScenarioAccess.rem", typeof(IScenarioAccess), transI, opI, authI);
             
             log.Info("Service Started ...");
+        }
+
+        public static object ProxyAndMarshalService(ProxyGenerator gen, object obj, string uri, Type interfaceType, params IInterceptor[] interceptors)
+        {
+            MarshalByRefObject marshalByRefObject = (MarshalByRefObject)ProxyService(gen, obj, interfaceType, interceptors);
+            RemotingServices.Marshal(marshalByRefObject, uri, interfaceType);
+            return (object)marshalByRefObject;
+        }
+
+        public static object ProxyService(ProxyGenerator gen, object obj, Type interfaceType, params IInterceptor[] interceptors)
+        {
+            ProxyGenerationOptions options = new ProxyGenerationOptions()
+            {
+                BaseTypeForInterfaceProxy = typeof(MarshalByRefSingleton)
+            };
+            return gen.CreateInterfaceProxyWithTarget(interfaceType, obj, options, interceptors);
         }
     }
 }

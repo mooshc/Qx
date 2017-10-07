@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Nachshon.Validation;
 
 namespace Qx.Common
 {
     [Serializable]
-    public class Condition : ValidObjectWithIdentity
+    public class Condition
     {
         public virtual int ID { private set; get; }
 
@@ -35,11 +31,6 @@ namespace Qx.Common
             {
                 return ContentDictionary.GetContent(Name, CommonFunctions.HebLang);
             }
-        }
-
-        protected override object GetObjectId()
-        {
-            return ID;
         }
     }
 }

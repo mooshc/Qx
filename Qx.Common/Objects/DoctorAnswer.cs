@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Nachshon.Validation;
 
 namespace Qx.Common
 {
     [Serializable]
-    public class DoctorAnswer : ValidObjectWithIdentity
+    public class DoctorAnswer
     {
         public virtual int ID { private set; get; }
 
@@ -34,11 +30,6 @@ namespace Qx.Common
         public virtual string Text { set; get; }
         
         public virtual DateTime TimeStamp { set; get; }
-
-        protected override object GetObjectId()
-        {
-            return ID;
-        }
 
         public DoctorAnswer()
         {

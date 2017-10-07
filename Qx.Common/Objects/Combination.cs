@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Nachshon.Validation;
 
 namespace Qx.Common
 {
     [Serializable]
-    public class Combination : ValidObjectWithIdentity
+    public class Combination
     {
         public virtual int ID { private set; get; }
 
@@ -71,11 +68,6 @@ namespace Qx.Common
         {
             CombinatedAnswers = new List<CombinatedAnswer>();
             IsExisting = false;
-        }
-
-        protected override object GetObjectId()
-        {
-            return ID;
         }
 
         public override bool Equals(object obj)
