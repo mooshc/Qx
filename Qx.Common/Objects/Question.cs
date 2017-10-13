@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Qx.Common.Objects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Qx.Common
 {
     [Serializable]
-    public class Question 
+    public class Question : TranslatedObject
     {
         public virtual int ID { private set; get; }
 
@@ -30,8 +31,7 @@ namespace Qx.Common
             set
             {
                 var lang = CommonFunctions.HebLang;
-                RemoteObjectProvider.GetDictionaryAccess().SaveOrUpdateByName(Name, value, lang);
-                ContentDictionary.SaveOrUpdateValue(Name, value, lang);
+                SaveOrUpdateByName(Name, value, lang);
             }
             get
             {
@@ -44,8 +44,7 @@ namespace Qx.Common
             set
             {
                 var lang = CommonFunctions.HebLang;
-                RemoteObjectProvider.GetDictionaryAccess().SaveOrUpdateByName("Pre_" + Name, value, lang);
-                ContentDictionary.SaveOrUpdateValue("Pre_" + Name, value, lang);
+                SaveOrUpdateByName("Pre_" + Name, value, lang);
             }
             get
             {
@@ -58,8 +57,7 @@ namespace Qx.Common
             set
             {
                 var lang = CommonFunctions.HebLang;
-                RemoteObjectProvider.GetDictionaryAccess().SaveOrUpdateByName("Pre_" + Name + "-Female", value, lang);
-                ContentDictionary.SaveOrUpdateValue("Pre_" + Name + "-Female", value, lang);
+                SaveOrUpdateByName("Pre_" + Name + "-Female", value, lang);
             }
             get
             {

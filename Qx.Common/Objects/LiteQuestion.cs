@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Qx.Common.Objects;
+using System;
 
 namespace Qx.Common
 {
     [Serializable]
-    public class LiteQuestion
+    public class LiteQuestion : TranslatedObject
     {
         public virtual int ID { private set; get; }
 
@@ -18,8 +19,7 @@ namespace Qx.Common
             set
             {
                 var lang = CommonFunctions.HebLang;
-                RemoteObjectProvider.GetDictionaryAccess().SaveOrUpdateByName(Name, value, lang);
-                ContentDictionary.SaveOrUpdateValue(Name, value, lang);
+                SaveOrUpdateByName(Name, value, lang);
             }
             get
             {
