@@ -94,7 +94,7 @@ namespace Qx.Client
         public string SendingAnswerName = null;
         public int SendingAnswerID;
 
-        public QuestionControl(Question question, bool IsExtraQuestion = false, string questenTitle = "", int sendingID = 0)
+        public QuestionControl(Question question, bool IsExtraQuestion = false, string questenTitle = "", int sendingID = 0, string answerHebText = null)
         {
             InitializeComponent();
             if (IsExtraQuestion)
@@ -103,7 +103,7 @@ namespace Qx.Client
                 SendingAnswerID = sendingID;
                 SendingAnswerName = questenTitle == "" ? null : questenTitle;
                 if (question.QuestionHebText == "" || question.QuestionHebText == "לא נמצא במילון")
-                    QuestionLabel.Content = ContentDictionary.GetContent(questenTitle, Session.Lang);
+                    QuestionLabel.Content = answerHebText;
                 else
                     QuestionLabel.Content = question.QuestionHebText;
                 Background = new SolidColorBrush(Colors.White);
@@ -114,7 +114,7 @@ namespace Qx.Client
             {
                 MinHeight = 50;
                 MinWidth = 380;
-                QuestionLabel.Content = ContentDictionary.GetContent(question.Name, Session.Lang);
+                QuestionLabel.Content = question.QuestionHebText;
                 GotFocus += UserControl_GotFocus;
                 LostFocus += UserControl_LostFocus;
                 //MouseLeftButtonDown += UserControl_GotFocus;

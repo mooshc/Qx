@@ -70,7 +70,7 @@ namespace Qx.Client
             }
             if(answer.IsSingular && (answer.Question.QuestionType.ID == 1 || answer.Question.QuestionType.ID == 5))
                 tb.BorderBrush = new SolidColorBrush(Colors.Black);
-            var content = ContentDictionary.GetContent(answer.Name, Session.Lang);
+            var content = answer.AnswerHebText;
             Image pic = null;
             Label l = null;
             if (answer.Question.QuestionType.ID == 5)
@@ -393,7 +393,7 @@ namespace Qx.Client
 
                     var originalQuestionControl = (((this.Parent as Grid).Parent as Grid).Parent as QuestionControl);
                     var point = this.TranslatePoint(new Point(), win);
-                    var qc2 = new QuestionControl(Answer.ExtraQuestion, true, Answer.Name, Answer.ID);
+                    var qc2 = new QuestionControl(Answer.ExtraQuestion, true, Answer.Name, Answer.ID, Answer.AnswerHebText);
                     win.extraQuestionControls.Add(qc2);
                     var newWin = new ExtraQuestionWindow(qc2, new Point(win.Left, win.Top + point.Y + this.ActualHeight/2),win.Module.ModuleType.Name.Contains("בדיקה גופנית"));
                     var result = newWin.ShowDialog();
@@ -439,7 +439,7 @@ namespace Qx.Client
                 if (con != null)
                 {
                     Background = new SolidColorBrush(con.Color.GetColor()) { Opacity = 0.2 };
-                    WarningLabel.Content = ContentDictionary.GetContent(con.Name, Session.Lang);
+                    WarningLabel.Content = con.ConditionHebText;
                 }
             }
             else

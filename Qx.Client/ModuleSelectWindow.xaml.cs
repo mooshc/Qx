@@ -120,7 +120,7 @@ namespace Qx.Client
                 };
                 int d = module.ID;
                 b.Name = string.Concat("Label", d.ToString());
-                b.Content = ContentDictionary.GetContent(module.Name, Session.Lang);
+                b.Content = module.ModuleHebText;
                 b.BorderThickness = new Thickness(1);
                 b.BorderBrush = new SolidColorBrush(Colors.Transparent);
                 b.Margin = new Thickness(10, 0, 10, 0);

@@ -47,7 +47,7 @@ namespace Qx.Client
             Left = Session.windowPosition.X;
             Top = Session.windowPosition.Y;
             Module = module;
-            HeaderLabelEnmnesia.Content = HeaderLabelPhysicalEx.Content = module.ModuleType.Name + " | " + ContentDictionary.GetContent(module.Name, Session.Lang);
+            HeaderLabelEnmnesia.Content = HeaderLabelPhysicalEx.Content = module.ModuleType.Name + " | " + module.ModuleHebText;
             if(module.ModuleType.Name.Contains("אנמנזה"))
                 EnmnesiaHeader.Visibility = System.Windows.Visibility.Visible;
             else
