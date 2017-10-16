@@ -73,6 +73,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
@@ -207,7 +208,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -218,6 +221,10 @@
     <ProjectReference Include="..\Qx.Common\Qx.Common.csproj">
       <Project>{E7678C3E-EE91-4217-9C50-1256F2B3A105}</Project>
       <Name>Qx.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Qx.EntitySerializer\Qx.EntitySerialization.csproj">
+      <Project>{5dac458b-dd0c-4509-b741-73a797f7eb9e}</Project>
+      <Name>Qx.EntitySerialization</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

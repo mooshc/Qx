@@ -7,7 +7,7 @@ namespace Qx.Common
     [Serializable]
     public class Answer : TranslatedObject
     {
-        public virtual int ID { private set; get; }
+        public virtual int ID { set; get; }
 
         public virtual string Name { set; get; }
 

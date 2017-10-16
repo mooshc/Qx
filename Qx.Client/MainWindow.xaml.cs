@@ -19,6 +19,9 @@ using System.Windows.Forms;
 using System.Windows.Threading;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Configuration;
+using Qx.EntitySerialization;
+using Qx.Common.Objects;
 
 namespace Qx.Client
 {
@@ -33,6 +36,7 @@ namespace Qx.Client
         private string userName;
         private string password;
         private int loginState = 1;
+        private bool shouldWorkLocally;
 
         private BitmapImage next = new BitmapImage(new Uri(CommonFunctions.GraphicsNativePath + "Next.png"));
         private BitmapImage nextHover = new BitmapImage(new Uri(CommonFunctions.GraphicsNativePath + "NextHover.png"));
@@ -53,6 +57,16 @@ namespace Qx.Client
             Session.windowPosition.Y = Top;
             Loaded += new RoutedEventHandler(MainWindow_Loaded);
             KeyDown += new System.Windows.Input.KeyEventHandler(MainWindow_KeyDown);
+
+            shouldWorkLocally = ConfigurationManager.AppSettings["WorkLocally"].Equals(true.ToString(), StringComparison.InvariantCultureIgnoreCase);
+            if(shouldWorkLocally)
+            {
+                CommonFunctions.HebLang = new Language() { Name = "עברית", IsDeleted = false };
+                var liteSession = EntitySerializer.DeserializeFromFile<LiteSession>(ConfigurationManager.AppSettings["DbFileType"], ConfigurationManager.AppSettings["DbFileFolder"]);
+                Session.User = liteSession.User;
+                Session.permanentQuestions = liteSession.PermanentQuestions;
+                MoveToInVisibleFunc();
+            }
         }
 
         void MainWindow_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
@@ -145,9 +159,12 @@ namespace Qx.Client
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            DragMove();
-            Session.windowPosition.X = Left;
-            Session.windowPosition.Y = Top;
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+                Session.windowPosition.X = Left;
+                Session.windowPosition.Y = Top;
+            }
         }
 
         private void CloseButton_MouseDown(object sender, MouseButtonEventArgs e)
@@ -158,7 +175,7 @@ namespace Qx.Client
 
         private void MoveToInVisibleFunc()
         {
-            HelloLabel.Content = "ד\"ר " + Session.User.LastName + " התחברת בהצלחה,";
+            HelloLabel.Content = "התחברת בהצלחה";
             LoginGrid.Visibility = System.Windows.Visibility.Hidden;
             AfterLoginPanel.Visibility = System.Windows.Visibility.Visible;
             WrongUserNameOrPass.Visibility = System.Windows.Visibility.Hidden;
@@ -225,6 +242,7 @@ namespace Qx.Client
         {
             try
             {
+                TranslatedObject.UseOnlineContentDictionary = true;
                 CallContextLight.Current = new CallContextLight(Guid.Empty);
                 User = RemoteObjectProvider.GetLiteUserAccess().IsLoginCorrect(userName, password);
                 if (User == null)

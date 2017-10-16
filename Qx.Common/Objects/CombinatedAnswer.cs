@@ -5,7 +5,7 @@ namespace Qx.Common
     [Serializable]
     public class CombinatedAnswer
     {
-        public virtual int ID { private set; get; }
+        public virtual int ID { set; get; }
 
         public virtual Combination Combination { set; get; }
 

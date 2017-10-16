@@ -37,18 +37,18 @@ namespace Qx.Client
             ModulesType = modulesType;
             switch (modulesType)
             {
-                case 'Q': HeaderLabelEnmnesia.Content = "ד\"ר " + Session.User.LastName + "  |  בחירת תלונה עיקרית";
+                case 'Q': HeaderLabelEnmnesia.Content = "בחירת תלונה עיקרית";
                           EnmnesiaHeader.Visibility = System.Windows.Visibility.Visible;
                           SetModulesInPages(Session.User.Modules/*.Where(m => m.IsAuthorized).Select(m => m.Module)*/.Where(m => m.ModuleType.ID == 1 && m.ID != 1).ToList());
                           break;
 
-                case 'E': HeaderLabelPhysicalEx.Content = "ד\"ר " + Session.User.LastName + "  |  בחירת בדיקת גופנית";
+                case 'E': HeaderLabelPhysicalEx.Content = "בחירת בדיקת גופנית";
                           PhysicalExHeader.Visibility = System.Windows.Visibility.Visible;
                           //var physicalEx = new List<Module>();
                           foreach (var mod in Session.User.Modules/*.Where(m => m.IsAuthorized).Select(m => m.Module)*/)
                               if (mod.PhysicalExaminations != null)
                                   foreach (Module PhEx in mod.PhysicalExaminations.Select(p => p.PhysicalExaminationModule))
-                                      if(!physicalEx.Contains(PhEx))
+                                      if(!physicalEx.Select(m => m.ID).Contains(PhEx.ID))
                                         physicalEx.Add(PhEx);
                           /*var tmp = Session.User.Modules.Select(m => m.Questions.Select(qim => qim.Question).Select(q => q.Answers));
 

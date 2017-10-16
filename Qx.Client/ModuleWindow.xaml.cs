@@ -358,7 +358,7 @@ namespace Qx.Client
         {
             try
             {
-                RemoteObjectProvider.GetHistoryAccess().SaveHistory(history);
+                // RemoteObjectProvider.GetHistoryAccess().SaveHistory(history);
             }
             catch (Exception ex)
             {

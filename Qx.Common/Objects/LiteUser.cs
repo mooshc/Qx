@@ -6,7 +6,7 @@ namespace Qx.Common
     [Serializable]
     public class LiteUser
     {
-        public virtual int ID { private set; get; }
+        public virtual int ID { set; get; }
 
         public virtual Guid Guid { set; get; }
 

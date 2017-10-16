@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Qx.Common
 {
+    [Serializable]
     public class LocalContentDictionary : IContentDictionary
     {
         static Dictionary<Language, Dictionary<string, Dictionary>> Dictionary = new Dictionary<Language, Dictionary<string, Dictionary>>();
