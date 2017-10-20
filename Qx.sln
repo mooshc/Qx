@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Qx.VitalCheck", "Qx.VitalCh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Qx.EntitySerialization", "Qx.EntitySerializer\Qx.EntitySerialization.csproj", "{5DAC458B-DD0C-4509-B741-73A797F7EB9E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Qx.QxdbGenerator", "Qx.QxdbGenerator\Qx.QxdbGenerator.csproj", "{83CC797D-B9EA-4F2F-B5A2-50172FC11A4A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -135,6 +137,18 @@ Global
 		{5DAC458B-DD0C-4509-B741-73A797F7EB9E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{5DAC458B-DD0C-4509-B741-73A797F7EB9E}.Release|x86.ActiveCfg = Release|Any CPU
 		{5DAC458B-DD0C-4509-B741-73A797F7EB9E}.Release|x86.Build.0 = Release|Any CPU
+		{83CC797D-B9EA-4F2F-B5A2-50172FC11A4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83CC797D-B9EA-4F2F-B5A2-50172FC11A4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83CC797D-B9EA-4F2F-B5A2-50172FC11A4A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{83CC797D-B9EA-4F2F-B5A2-50172FC11A4A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{83CC797D-B9EA-4F2F-B5A2-50172FC11A4A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{83CC797D-B9EA-4F2F-B5A2-50172FC11A4A}.Debug|x86.Build.0 = Debug|Any CPU
+		{83CC797D-B9EA-4F2F-B5A2-50172FC11A4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83CC797D-B9EA-4F2F-B5A2-50172FC11A4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83CC797D-B9EA-4F2F-B5A2-50172FC11A4A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{83CC797D-B9EA-4F2F-B5A2-50172FC11A4A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{83CC797D-B9EA-4F2F-B5A2-50172FC11A4A}.Release|x86.ActiveCfg = Release|Any CPU
+		{83CC797D-B9EA-4F2F-B5A2-50172FC11A4A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

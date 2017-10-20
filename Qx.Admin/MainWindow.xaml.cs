@@ -15,6 +15,7 @@ using Qx.Common;
 using Frameworks;
 using System.Diagnostics;
 using System.IO;
+using Qx.Common.Objects;
 
 namespace Qx.Admin
 {
@@ -32,6 +33,7 @@ namespace Qx.Admin
                 return;
             }
             InitializeComponent();
+            TranslatedObject.UseOnlineContentDictionary = true;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
