@@ -3,6 +3,7 @@ using Qx.Common.Objects;
 using Qx.EntitySerialization;
 using System;
 using System.Configuration;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows;
 
@@ -21,32 +22,42 @@ namespace Qx.QxdbGenerator
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if(string.IsNullOrWhiteSpace(TypeTextBox.Text))
+            try
             {
-                MessageBox.Show("Type can't be empty");
-                return;
+                if (string.IsNullOrWhiteSpace(TypeTextBox.Text))
+                {
+                    MessageBox.Show("Type can't be empty");
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(DescriptionTextBox.Text) || DescriptionTextBox.Text.Length > 25 || !Regex.IsMatch(DescriptionTextBox.Text, "^[a-zA-Z0-9_]+$"))
+                {
+                    MessageBox.Show("Description can't be empty, must be under 25 charcters long and can contain letters and numbers only");
+                    return;
+                }
+
+                TranslatedObject.UseOnlineContentDictionary = true;
+                var check = RemoteObjectProvider.GetLiteUserAccess().IsLoginCorrect("moosh", "thirnzho");
+                if (check == null)
+                    throw new Exception("User returned empty!");
+                RemoteObjectProvider.UserGuid = check.Guid;
+                LiteSession session = new LiteSession()
+                {
+                    User = check,
+                    PermanentQuestions = RemoteObjectProvider.GetQuestionAccess().LoadPermanentQuestions()
+                };
+
+                ContentDictionary.PopulateDictionary(check.Language);
+
+                EntitySerializer.SerializeToFile(session, TypeTextBox.Text, DescriptionTextBox.Text, ConfigurationManager.AppSettings["DbFilesFolder"]);
+
+                MessageBox.Show("Succeeded!");
             }
-
-            if (string.IsNullOrWhiteSpace(DescriptionTextBox.Text) || DescriptionTextBox.Text.Length > 25 || !Regex.IsMatch(DescriptionTextBox.Text, "^[a-zA-Z0-9_]+$"))
+            catch(Exception ex)
             {
-                MessageBox.Show("Description can't be empty, must be under 25 charcters long and can contain letters and numbers only");
-                return;
+                MessageBox.Show("Failed!");
+                File.AppendAllLines("Log.txt", new[] { ex.Message });
             }
-
-            TranslatedObject.UseOnlineContentDictionary = true;
-            var check = RemoteObjectProvider.GetLiteUserAccess().IsLoginCorrect("moosh", "thirnzho");
-            if (check == null)
-                throw new Exception("User returned empty!");
-            RemoteObjectProvider.UserGuid = check.Guid;
-            LiteSession session = new LiteSession()
-            {
-                User = check,
-                PermanentQuestions = RemoteObjectProvider.GetQuestionAccess().LoadPermanentQuestions()
-            };
-
-            ContentDictionary.PopulateDictionary(check.Language);
-
-            EntitySerializer.SerializeToFile(session, TypeTextBox.Text, DescriptionTextBox.Text, ConfigurationManager.AppSettings["DbFilesFolder"]);
         }
     }
 }
