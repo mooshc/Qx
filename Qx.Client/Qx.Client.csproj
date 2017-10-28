@@ -61,6 +61,10 @@
     <Reference Include="MySql.Data">
       <HintPath>..\3rdPartyDLLs\MySql.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3rdPartyDLLs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\3rdPartyDLLs\NHibernate.dll</HintPath>
     </Reference>
@@ -115,6 +119,8 @@
     <Compile Include="InvisibleForm.Designer.cs">
       <DependentUpon>InvisibleForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="LocalEntities\LocalDoctorAnswer.cs" />
+    <Compile Include="LocalEntities\LocalHistory.cs" />
     <Compile Include="ModuleSelectWindow.xaml.cs">
       <DependentUpon>ModuleSelectWindow.xaml</DependentUpon>
     </Compile>
