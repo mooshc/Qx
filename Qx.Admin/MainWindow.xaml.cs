@@ -41,8 +41,8 @@ namespace Qx.Admin
             try
             {
                 CallContextLight.Current = new CallContextLight(Guid.Empty);
-                //var User = RemoteObjectProvider.GetUserAccess().IsLoginCorrect(usernameTextBox.Text, passwordTextBox.Password);
-                var User = RemoteObjectProvider.GetUserAccess().IsLoginCorrect("admin", "thirnzho");
+                var User = RemoteObjectProvider.GetUserAccess().IsLoginCorrect(usernameTextBox.Text, passwordTextBox.Password);
+                // var User = RemoteObjectProvider.GetUserAccess().IsLoginCorrect("admin", "thirnzho");
                 if (User == null)
                     return;
 

@@ -5,6 +5,8 @@ namespace Qx.Client.LocalEntities
 {
     public class LocalHistory
     {
+        public virtual string FileName { set; get; }
+
         public virtual int PatientAge { set; get; }
 
         public virtual char PatientGender { set; get; }
