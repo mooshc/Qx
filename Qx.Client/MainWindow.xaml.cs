@@ -62,9 +62,11 @@ namespace Qx.Client
             if(shouldWorkLocally)
             {
                 CommonFunctions.HebLang = new Language() { Name = "עברית", IsDeleted = false };
-                var liteSession = EntitySerializer.DeserializeFromFile<LiteSession>(ConfigurationManager.AppSettings["DbFileType"], ConfigurationManager.AppSettings["DbFileFolder"]);
+                string fileName;
+                var liteSession = EntitySerializer.DeserializeFromFile<LiteSession>(ConfigurationManager.AppSettings["DbFileType"], ConfigurationManager.AppSettings["DbFileFolder"], out fileName);
                 Session.User = liteSession.User;
                 Session.permanentQuestions = liteSession.PermanentQuestions;
+                Session.fileName = fileName;
                 MoveToInVisibleFunc();
             }
         }

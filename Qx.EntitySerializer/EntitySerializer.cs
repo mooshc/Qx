@@ -34,7 +34,7 @@ namespace Qx.EntitySerialization
             CompressAndEncrypt(json, fullFilePath);
         }
 
-        public static T DeserializeFromFile<T>(string type, string location)
+        public static T DeserializeFromFile<T>(string type, string location, out string fileName)
         {
             if (!Directory.Exists(location))
             {
@@ -46,6 +46,7 @@ namespace Qx.EntitySerialization
                 throw new EntitySerializerException($"Could not find any DB files of type '{type}'");
             }
             var selectedFilePath = GetLatestVersionFile(filePaths);
+            fileName = Path.GetFileName(selectedFilePath);
             string json = DecryptAndDecompress(selectedFilePath);
             return JsonConvert.DeserializeObject<T>(json, jsonSerializerSettings);
         }

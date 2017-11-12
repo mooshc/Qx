@@ -24,5 +24,7 @@ namespace Qx.Client
         public static List<QuestionInModule> permanentQuestions;// = RemoteObjectProvider.GetQuestionAccess().LoadPermanentQuestions();
 
         public static Point windowPosition;
+
+        public static string fileName;
     }
 }

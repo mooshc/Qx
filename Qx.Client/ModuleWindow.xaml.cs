@@ -132,7 +132,7 @@ namespace Qx.Client
             Top = Session.windowPosition.Y;
             var Questions = new List<QuestionInModule>();
             var specialPhysEx = new List<int>() {34,35,40};
-            history = new LocalHistory() { ModuleId = PhysicalEx.Select(m => m.ID).ToList(), MedicalCaseId = caseId };
+            history = new LocalHistory() { ModuleId = PhysicalEx.Select(m => m.ID).ToList(), MedicalCaseId = caseId, FileName = Session.fileName };
             if (PhysicalEx[0].ModuleType.ID == 2 && PhysicalEx.Exists(m => !specialPhysEx.Contains(m.ID)))
                 Questions.AddRange(Session.permanentQuestions.Where(p => p.Ordering == 0));
             Module = new Module(PhysicalEx[0].ModuleType.ID) { ModuleType = PhysicalEx[0].ModuleType, Name = "" };
@@ -360,32 +360,36 @@ namespace Qx.Client
 
         private void SaveHistory()
         {
-            try
+            for (int i = 0; i < 3; i++)
             {
-                bool shouldWorkLocally = ConfigurationManager.AppSettings["WorkLocally"].Equals(true.ToString(), StringComparison.InvariantCultureIgnoreCase);
-                string filePath = ConfigurationManager.AppSettings["HistoryFilePath"];
-                string fileName = Environment.MachineName + "_" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
-                string fileAddress = System.IO.Path.Combine(filePath, fileName);
-                if (shouldWorkLocally)
+                try
                 {
-                    string historyJson = JsonConvert.SerializeObject(history, Formatting.None, 
-                        new JsonSerializerSettings
+                    bool shouldWorkLocally = ConfigurationManager.AppSettings["WorkLocally"].Equals(true.ToString(), StringComparison.InvariantCultureIgnoreCase);
+                    string filePath = ConfigurationManager.AppSettings["HistoryFilePath"];
+                    string fileName = Environment.MachineName + "_" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+                    string fileAddress = System.IO.Path.Combine(filePath, fileName);
+                    if (shouldWorkLocally)
+                    {
+                        string historyJson = JsonConvert.SerializeObject(history, Formatting.None,
+                            new JsonSerializerSettings
                             {
                                 NullValueHandling = NullValueHandling.Ignore,
                                 DefaultValueHandling = DefaultValueHandling.Ignore,
                                 DateFormatHandling = DateFormatHandling.MicrosoftDateFormat
                             });
-                    historyJson = historyJson.Replace(")\\/", "").Replace("\\/Date(", "");
+                        historyJson = historyJson.Replace(")\\/", "").Replace("\\/Date(", "");
 
-                    File.AppendAllLines(fileAddress, new[] { historyJson });
+                        File.AppendAllLines(fileAddress, new[] { historyJson });
+                        return;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    var stream = new StreamWriter("Log.txt", true);
+                    stream.WriteLine(Environment.UserName + " -> " + Session.User.UserName + " -> " + DateTime.Now + ":>" + ex.Message + "\n" + (ex.InnerException == null ? "" : ex.InnerException.Message) + "\n\n");
+                    stream.Close();
                 }
             }
-            catch (Exception ex)
-            {
-                var stream = new StreamWriter("Log.txt", true);
-                stream.WriteLine(Environment.UserName + " -> " + Session.User.UserName + " -> " + DateTime.Now + ":>" + ex.Message + "\n" + (ex.InnerException == null ? "" : ex.InnerException.Message) + "\n\n");
-                stream.Close();
-            }       
         }
 
         private string GenerateText(bool IsMale)

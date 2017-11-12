@@ -10,7 +10,7 @@ namespace Qx.Client.LocalEntities
 
         public virtual string Text { set; get; }
 
-        public virtual DateTime TimeStamp { set; get; }
+        // public virtual DateTime TimeStamp { set; get; }
 
         public LocalDoctorAnswer()
         {
@@ -19,7 +19,7 @@ namespace Qx.Client.LocalEntities
 
         public LocalDoctorAnswer(DateTime timeStamp, int answerID, string text, int relatedID = 0)
         {
-            TimeStamp = timeStamp;
+            // TimeStamp = timeStamp;
             AnswerID = answerID;
             RelatedAnswerID = relatedID;
             Text = text;
