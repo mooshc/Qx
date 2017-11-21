@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Qx.Common;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Qx.Admin
 {
@@ -18,6 +19,8 @@ namespace Qx.Admin
             var btn1 = new Button { Content = "הזז למעלה" };
             btn1.Click += new System.Windows.RoutedEventHandler(btn1_Click);
             toolBar.Items.Add(btn1);
+
+            toolBar.Background = new SolidColorBrush(Colors.Yellow) { Opacity = 0.7 };
         }
 
         void btn1_Click(object sender, System.Windows.RoutedEventArgs e)
