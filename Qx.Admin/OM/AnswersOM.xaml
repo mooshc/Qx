@@ -4,6 +4,9 @@
         xmlns:GUI="clr-namespace:Qx.Admin"
         xmlns:Controls="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit"
         Title="AnswersOM" Height="330" Width="961">
+    <Window.Background>
+        <SolidColorBrush Color="LightYellow" Opacity="0.7" />
+    </Window.Background>
     <Grid>
         <GUI:AnswerOM AutoGenerateColumns="False" CanCreate="True" CanDelete="True" CanEdit="True" x:Name="AnswersGridControl">
             <GUI:AnswerOM.Columns>

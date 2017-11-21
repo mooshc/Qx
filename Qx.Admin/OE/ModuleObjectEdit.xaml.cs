@@ -36,6 +36,7 @@ namespace Qx.Admin
         {
             DataContext = Module;
             Initialize();
+            ModuleTypeComboBox.SelectedIndex = Module.ModuleType.ID - 1;
             if (Module.IsMale == null)
                 Bisexual.IsChecked = true;
             else if ((bool)Module.IsMale)

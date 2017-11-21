@@ -33,9 +33,9 @@ namespace Qx.BL
             if (ServerStatics.PermanentQuestions == null)
             {
                 var s = sessionContext.CurrentSession();
-                var list = s.Linq<Question>().Where(q => q.Name == "GeneralImpression" || /*q.Name == "h_SkinColor" || q.Name == "e_OtherFindings" ||*/ q.Name == "h_OtherRemarks").ToList();
+                var list = s.Linq<Question>().Where(q => /*q.Name == "GeneralImpression" || q.Name == "h_SkinColor" || q.Name == "e_OtherFindings" ||*/ q.Name == "h_OtherRemarks").ToList();
                 return new List<QuestionInModule>() { 
-                new QuestionInModule(list.Where(q => q.Name == "GeneralImpression").First() , 0, false), 
+                //new QuestionInModule(list.Where(q => q.Name == "GeneralImpression").First() , 0, false), 
                 //new QuestionInModule(list.Where(q => q.Name == "h_SkinColor").First(), 0, false), 
                 //new QuestionInModule(list.Where(q => q.Name == "e_OtherFindings").First(), 1000, false), 
                 new QuestionInModule(list.Where(q => q.Name == "h_OtherRemarks").First(), 1000, false) };
@@ -46,9 +46,9 @@ namespace Qx.BL
         public void LoadPermanentQuestionsToServer()
         {
             var s = sessionContext.CurrentSession();
-            var list = s.Linq<Question>().Where(q => q.Name == "GeneralImpression" || /*q.Name == "SkinColor" || q.Name == "e_OtherFindings" ||*/ q.Name == "h_OtherRemarks").ToList();
+            var list = s.Linq<Question>().Where(q => /*q.Name == "GeneralImpression" || q.Name == "SkinColor" || q.Name == "e_OtherFindings" ||*/ q.Name == "h_OtherRemarks").ToList();
             ServerStatics.PermanentQuestions = new List<QuestionInModule>() { 
-                new QuestionInModule(list.Where(q => q.Name == "GeneralImpression").First() , 0, false), 
+                //new QuestionInModule(list.Where(q => q.Name == "GeneralImpression").First() , 0, false), 
                 //new QuestionInModule(list.Where(q => q.Name == "SkinColor").First(), 0, false), 
                 //new QuestionInModule(list.Where(q => q.Name == "e_OtherFindings").First(), 1000, false), 
                 new QuestionInModule(list.Where(q => q.Name == "h_OtherRemarks").First(), 1000, false) };
