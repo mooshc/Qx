@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using NHibernate;
 using NHibernate.Context;
 using System.Reflection;
 using NHibernate.Cfg;
 using System.IO;
-using Nachshon.SessionProviders;
-using Nachshon.NHibernateExtra;
 using NHibernate.Engine;
 using Qx.Common;
 

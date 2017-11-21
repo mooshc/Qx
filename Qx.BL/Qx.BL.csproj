@@ -58,14 +58,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\3rdPartyDLLs\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Nachshon.Core, Version=0.0.0.0, Culture=neutral, PublicKeyToken=3118cdaa369a35dd, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\3rdPartyDLLs\Nachshon.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Nachshon.Core.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=3118cdaa369a35dd, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\3rdPartyDLLs\Nachshon.Core.Common.dll</HintPath>
-    </Reference>
     <Reference Include="NHibernate, Version=2.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\3rdPartyDLLs\NHibernate.dll</HintPath>
@@ -89,6 +81,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -97,6 +90,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthorizationInterceptor.cs" />
+    <Compile Include="MarshalByRefSingleton.cs" />
+    <Compile Include="NoTransactionAttribute.cs" />
     <Compile Include="ObjectAccess\AnswerAccess.cs" />
     <Compile Include="ObjectAccess\ColorAccess.cs" />
     <Compile Include="ObjectAccess\CombinatedAnswerAccess.cs" />
@@ -112,16 +107,24 @@
     <Compile Include="ObjectAccess\LiteUserAccess.cs" />
     <Compile Include="ObjectAccess\ModuleAccess.cs" />
     <Compile Include="ObjectAccess\ModuleTypeAccess.cs" />
+    <Compile Include="ObjectAccess\ObjectAccessNHibernate.cs" />
     <Compile Include="ObjectAccess\QuestionAccess.cs" />
     <Compile Include="ObjectAccess\QuestionTypeAccess.cs" />
     <Compile Include="ObjectAccess\ScenarioAccess.cs" />
     <Compile Include="ObjectAccess\UserAccess.cs" />
+    <Compile Include="Operation.cs" />
+    <Compile Include="OperationCompletedEventArgs.cs" />
+    <Compile Include="OperationInterceptor.cs" />
+    <Compile Include="OperationSessionProvider.cs" />
     <Compile Include="Program.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerStatics.cs" />
     <Compile Include="ServiceLocator.cs" />
+    <Compile Include="TransactionalAttribute.cs" />
+    <Compile Include="TransactionInterceptor.cs" />
+    <Compile Include="TypedStateInterceptor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

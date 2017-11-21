@@ -31,6 +31,7 @@ namespace Qx.Admin
         {
             DataContext = Question;
             Initialize();
+            QuestionTypeComboBox.SelectedIndex = Question.QuestionType.ID - 1;
             CheckBox_Checked(NoCharCheckBox, null);
             if (isCopy)
             {

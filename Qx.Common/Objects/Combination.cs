@@ -1,15 +1,13 @@
-﻿using System;
+﻿using Qx.Common.Objects;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Nachshon.Validation;
 
 namespace Qx.Common
 {
     [Serializable]
-    public class Combination : ValidObjectWithIdentity
+    public class Combination : TranslatedObject
     {
-        public virtual int ID { private set; get; }
+        public virtual int ID { set; get; }
 
         public virtual Module Module { set; get; }
 
@@ -44,8 +42,7 @@ namespace Qx.Common
             set
             {
                 var lang = CommonFunctions.HebLang;
-                RemoteObjectProvider.GetDictionaryAccess().SaveOrUpdateByName(Name + "_Male", value, lang);
-                ContentDictionary.SaveOrUpdateValue(Name + "_Male", value, lang);
+                SaveOrUpdateByName(Name + "_Male", value, lang);
             }
             get
             {
@@ -58,8 +55,7 @@ namespace Qx.Common
             set
             {
                 var lang = CommonFunctions.HebLang;
-                RemoteObjectProvider.GetDictionaryAccess().SaveOrUpdateByName(Name + "_Female", value, lang);
-                ContentDictionary.SaveOrUpdateValue(Name + "_Female", value, lang);
+                SaveOrUpdateByName(Name + "_Female", value, lang);
             }
             get
             {
@@ -71,11 +67,6 @@ namespace Qx.Common
         {
             CombinatedAnswers = new List<CombinatedAnswer>();
             IsExisting = false;
-        }
-
-        protected override object GetObjectId()
-        {
-            return ID;
         }
 
         public override bool Equals(object obj)

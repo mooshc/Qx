@@ -1,15 +1,14 @@
-﻿using System;
+﻿using Qx.Common.Objects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Nachshon.Validation;
 
 namespace Qx.Common
 {
     [Serializable]
-    public class Question : ValidObjectWithIdentity
+    public class Question : TranslatedObject
     {
-        public virtual int ID { private set; get; }
+        public virtual int ID { set; get; }
 
         public virtual string Name { set; get; }
 
@@ -32,8 +31,7 @@ namespace Qx.Common
             set
             {
                 var lang = CommonFunctions.HebLang;
-                RemoteObjectProvider.GetDictionaryAccess().SaveOrUpdateByName(Name, value, lang);
-                ContentDictionary.SaveOrUpdateValue(Name, value, lang);
+                SaveOrUpdateByName(Name, value, lang);
             }
             get
             {
@@ -46,8 +44,7 @@ namespace Qx.Common
             set
             {
                 var lang = CommonFunctions.HebLang;
-                RemoteObjectProvider.GetDictionaryAccess().SaveOrUpdateByName("Pre_" + Name, value, lang);
-                ContentDictionary.SaveOrUpdateValue("Pre_" + Name, value, lang);
+                SaveOrUpdateByName("Pre_" + Name, value, lang);
             }
             get
             {
@@ -60,8 +57,7 @@ namespace Qx.Common
             set
             {
                 var lang = CommonFunctions.HebLang;
-                RemoteObjectProvider.GetDictionaryAccess().SaveOrUpdateByName("Pre_" + Name + "-Female", value, lang);
-                ContentDictionary.SaveOrUpdateValue("Pre_" + Name + "-Female", value, lang);
+                SaveOrUpdateByName("Pre_" + Name + "-Female", value, lang);
             }
             get
             {
@@ -79,11 +75,6 @@ namespace Qx.Common
         {
             Answers = new List<Answer>();
             Combinations = new List<Combination>();
-        }
-
-        protected override object GetObjectId()
-        {
-            return ID;
         }
 
         public virtual void ZeroID()

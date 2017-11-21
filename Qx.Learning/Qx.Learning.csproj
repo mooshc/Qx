@@ -43,12 +43,6 @@
     <Reference Include="MySql.Data">
       <HintPath>..\3rdPartyDLLs\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Nachshon.Core.Client">
-      <HintPath>..\3rdPartyDLLs\Nachshon.Core.Client.dll</HintPath>
-    </Reference>
-    <Reference Include="Nachshon.Core.Common">
-      <HintPath>..\3rdPartyDLLs\Nachshon.Core.Common.dll</HintPath>
-    </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\3rdPartyDLLs\NHibernate.dll</HintPath>
     </Reference>

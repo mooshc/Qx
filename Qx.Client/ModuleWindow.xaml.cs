@@ -15,6 +15,9 @@ using System.Windows.Forms;
 using Frameworks;
 using System.Threading;
 using System.IO;
+using Qx.Client.LocalEntities;
+using System.Configuration;
+using Newtonsoft.Json;
 
 namespace Qx.Client
 {
@@ -30,7 +33,7 @@ namespace Qx.Client
         public List<Combination> Combinations = new List<Combination>();
         List<List<QuestionInModule>> Pages = new List<List<QuestionInModule>>();
         private FinishUserControl finsihControl;
-        History history;
+        LocalHistory history;
         int currentPage = 0;
         public bool ShowErrors = false;
         public int mainOrder = 0;
@@ -47,7 +50,7 @@ namespace Qx.Client
             Left = Session.windowPosition.X;
             Top = Session.windowPosition.Y;
             Module = module;
-            HeaderLabelEnmnesia.Content = HeaderLabelPhysicalEx.Content = module.ModuleType.Name + " | " + ContentDictionary.GetContent(module.Name, Session.Lang);
+            HeaderLabelEnmnesia.Content = HeaderLabelPhysicalEx.Content = module.ModuleType.Name + " | " + module.ModuleHebText;
             if(module.ModuleType.Name.Contains("אנמנזה"))
                 EnmnesiaHeader.Visibility = System.Windows.Visibility.Visible;
             else
@@ -129,6 +132,7 @@ namespace Qx.Client
             Top = Session.windowPosition.Y;
             var Questions = new List<QuestionInModule>();
             var specialPhysEx = new List<int>() {34,35,40};
+            history = new LocalHistory() { ModuleId = PhysicalEx.Select(m => m.ID).ToList(), MedicalCaseId = caseId, FileName = Session.fileName };
             if (PhysicalEx[0].ModuleType.ID == 2 && PhysicalEx.Exists(m => !specialPhysEx.Contains(m.ID)))
                 Questions.AddRange(Session.permanentQuestions.Where(p => p.Ordering == 0));
             Module = new Module(PhysicalEx[0].ModuleType.ID) { ModuleType = PhysicalEx[0].ModuleType, Name = "" };
@@ -356,35 +360,56 @@ namespace Qx.Client
 
         private void SaveHistory()
         {
-            try
+            for (int i = 0; i < 3; i++)
             {
-                RemoteObjectProvider.GetHistoryAccess().SaveHistory(history);
+                try
+                {
+                    bool shouldWorkLocally = ConfigurationManager.AppSettings["WorkLocally"].Equals(true.ToString(), StringComparison.InvariantCultureIgnoreCase);
+                    string filePath = ConfigurationManager.AppSettings["HistoryFilePath"];
+                    string fileName = Environment.MachineName + "_" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+                    string fileAddress = System.IO.Path.Combine(filePath, fileName);
+                    if (shouldWorkLocally)
+                    {
+                        string historyJson = JsonConvert.SerializeObject(history, Formatting.None,
+                            new JsonSerializerSettings
+                            {
+                                NullValueHandling = NullValueHandling.Ignore,
+                                DefaultValueHandling = DefaultValueHandling.Ignore,
+                                DateFormatHandling = DateFormatHandling.MicrosoftDateFormat
+                            });
+                        historyJson = historyJson.Replace(")\\/", "").Replace("\\/Date(", "");
+
+                        File.AppendAllLines(fileAddress, new[] { historyJson });
+                        return;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    var stream = new StreamWriter("Log.txt", true);
+                    stream.WriteLine(Environment.UserName + " -> " + Session.User.UserName + " -> " + DateTime.Now + ":>" + ex.Message + "\n" + (ex.InnerException == null ? "" : ex.InnerException.Message) + "\n\n");
+                    stream.Close();
+                }
             }
-            catch (Exception ex)
-            {
-                var stream = new StreamWriter("Log.txt", true);
-                stream.WriteLine(Environment.UserName + " -> " + Session.User.UserName + " -> " + DateTime.Now + ":>" + ex.Message + "\n" + (ex.InnerException == null ? "" : ex.InnerException.Message) + "\n\n");
-                stream.Close();
-            }       
         }
 
         private string GenerateText(bool IsMale)
         {
             var output = "";
 
+            history.PatientGender = IsMale ? 'M' : 'F';
+
             #region TAKE ALL MODULE ANSWERS
             var answers = new List<AnswerControl>();
-            history = new History() { Module = Module, User = new User() { ID = Session.User.ID }, MedicalCaseId =  caseId};
             foreach (var question in questionControls)
             {
                 answers.AddRange(question.AnswersStackPanel.Children.OfType<AnswerControl>().Where(ac => ac.tb.IsChecked.Value));
                 foreach (var a in question.AnswersStackPanel.Children.OfType<AnswerControl>().Where(ac => ac.tb.IsChecked.Value))
-                    history.DoctorAnswers.Add(new DoctorAnswer(a.Answer.TimeStamp, a.Answer.ID, (a.textBox ?? new System.Windows.Controls.TextBox()).Text));
+                    history.DoctorAnswers.Add(new LocalDoctorAnswer(a.Answer.TimeStamp, a.Answer.ID, a.textBox == null ? null : a.textBox.Text.Replace("'", "").Replace("`", "")));
             }
             foreach (var question in extraQuestionControls)
             {
                 foreach (var a in question.AnswersStackPanel.Children.OfType<AnswerControl>().Where(ac => ac.tb.IsChecked.Value))
-                    history.DoctorAnswers.Add(new DoctorAnswer(a.Answer.TimeStamp, a.Answer.ID, (a.textBox ?? new System.Windows.Controls.TextBox()).Text.Replace("'", "").Replace("`", ""), question.SendingAnswerID));
+                    history.DoctorAnswers.Add(new LocalDoctorAnswer(a.Answer.TimeStamp, a.Answer.ID, a.textBox == null ? null : a.textBox.Text.Replace("'", "").Replace("`", ""), question.SendingAnswerID));
             }
             new Thread(SaveHistory).Start();
             #endregion

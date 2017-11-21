@@ -24,21 +24,6 @@
                 <Label Name="HelloLabel" FontWeight="Bold"/>
                 <Label/>
 
-                <Label Content="הותקנה גרסה חדשה של ©Qx" FontWeight="Bold"/>
-                <Label Content="להלן העדכונים:"/>
-                
-                <Label Content="• רפואת ילדים - ©Qx הותאמה לשימוש בתינוקות וילדים. יש לבחור"/>
-                <Label Content="  את שאלון האנמנזה המתאים על פי הגיל הרשום בשורת הכותרת."/>
-                <Label Margin="8,0,0,0">
-                    <TextBlock Style="{StaticResource Underlined}">
-                          חשוב לציין כי תינוקות עד גיל חודשיים יופנו למיון ללא
-                    </TextBlock>
-                </Label>
-                <Label Margin="8,0,0,0">
-                    <TextBlock Style="{StaticResource Underlined}">
-                          קשר לממצאים באנמנזה או בבדיקה הגופנית.
-                    </TextBlock>
-                </Label>                 
                 <Label Content="• ניתן לבחור שאלון אנמנזה על ידי לחיצה כפולה עליו עם העכבר."/>
                 
                 <Label Content="• ניתן כעת להשתמש במקלדת ב ©Qx. הסבר על תפעול"/>

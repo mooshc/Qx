@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using Qx.Common;
-using Nachshon.ObjectAccess;
 using NHibernate.Context;
 using NHibernate.Linq;
 
@@ -18,7 +14,7 @@ namespace Qx.BL
 
         public LiteUser IsLoginCorrect(string username, string password)
         {
-            var s = _sessionContext.CurrentSession();
+            var s = sessionContext.CurrentSession();
             var lu = s.Linq<LiteUser>().Where(u => u.UserName == username && u.Password == password && !u.IsDeleted && !u.IsLocked).ToList().FirstOrDefault();
             if (lu != null)
             {

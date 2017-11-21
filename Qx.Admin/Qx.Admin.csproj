@@ -37,6 +37,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.DynamicProxy2">
+      <HintPath>..\3rdPartyDLLs\Castle.DynamicProxy2.dll</HintPath>
+    </Reference>
     <Reference Include="DataGridFilterLibrary">
       <HintPath>..\3rdPartyDLLs\DataGridFilterLibrary.dll</HintPath>
     </Reference>
@@ -47,11 +50,11 @@
     <Reference Include="MySql.Data">
       <HintPath>..\3rdPartyDLLs\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Nachshon.Core.Common">
-      <HintPath>..\3rdPartyDLLs\Nachshon.Core.Common.dll</HintPath>
-    </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\3rdPartyDLLs\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.ByteCode.Castle">
+      <HintPath>..\3rdPartyDLLs\NHibernate.ByteCode.Castle.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate.Linq">
       <HintPath>..\3rdPartyDLLs\NHibernate.Linq.dll</HintPath>

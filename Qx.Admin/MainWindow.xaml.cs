@@ -15,6 +15,7 @@ using Qx.Common;
 using Frameworks;
 using System.Diagnostics;
 using System.IO;
+using Qx.Common.Objects;
 
 namespace Qx.Admin
 {
@@ -32,6 +33,7 @@ namespace Qx.Admin
                 return;
             }
             InitializeComponent();
+            TranslatedObject.UseOnlineContentDictionary = true;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -39,8 +41,8 @@ namespace Qx.Admin
             try
             {
                 CallContextLight.Current = new CallContextLight(Guid.Empty);
-                //var User = RemoteObjectProvider.GetUserAccess().IsLoginCorrect(usernameTextBox.Text, passwordTextBox.Password);
-                var User = RemoteObjectProvider.GetUserAccess().IsLoginCorrect("admin", "thirnzho");
+                var User = RemoteObjectProvider.GetUserAccess().IsLoginCorrect(usernameTextBox.Text, passwordTextBox.Password);
+                // var User = RemoteObjectProvider.GetUserAccess().IsLoginCorrect("admin", "thirnzho");
                 if (User == null)
                     return;
 

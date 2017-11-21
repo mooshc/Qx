@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Qx.Common;
-using Nachshon.ObjectAccess;
 using NHibernate.Context;
 using NHibernate.Linq;
 using System.Data;
-using System.Data.SqlClient;
 
 namespace Qx.BL
 {
@@ -20,14 +16,14 @@ namespace Qx.BL
 
         public List<string> GetAllQuestionsNames()
         {
-            var s = _sessionContext.CurrentSession();
+            var s = sessionContext.CurrentSession();
             var result = s.CreateSQLQuery("call `GetAllQuestionsNames`();");
             return result.List<string>().ToList();
         }
 
         public Question LoadByName(string name)
         {
-            var s = _sessionContext.CurrentSession();
+            var s = sessionContext.CurrentSession();
 
             return s.Linq<Question>().Where(q => q.Name == name).ToList().FirstOrDefault();
         }
@@ -36,7 +32,7 @@ namespace Qx.BL
         {
             if (ServerStatics.PermanentQuestions == null)
             {
-                var s = _sessionContext.CurrentSession();
+                var s = sessionContext.CurrentSession();
                 var list = s.Linq<Question>().Where(q => q.Name == "GeneralImpression" || /*q.Name == "h_SkinColor" || q.Name == "e_OtherFindings" ||*/ q.Name == "h_OtherRemarks").ToList();
                 return new List<QuestionInModule>() { 
                 new QuestionInModule(list.Where(q => q.Name == "GeneralImpression").First() , 0, false), 
@@ -49,7 +45,7 @@ namespace Qx.BL
 
         public void LoadPermanentQuestionsToServer()
         {
-            var s = _sessionContext.CurrentSession();
+            var s = sessionContext.CurrentSession();
             var list = s.Linq<Question>().Where(q => q.Name == "GeneralImpression" || /*q.Name == "SkinColor" || q.Name == "e_OtherFindings" ||*/ q.Name == "h_OtherRemarks").ToList();
             ServerStatics.PermanentQuestions = new List<QuestionInModule>() { 
                 new QuestionInModule(list.Where(q => q.Name == "GeneralImpression").First() , 0, false), 
@@ -60,7 +56,7 @@ namespace Qx.BL
 
         public List<Question> GetQuestionWorkpool()
         {
-            var s = _sessionContext.CurrentSession();
+            var s = sessionContext.CurrentSession();
             var result = s.CreateSQLQuery("call `LiteQuestions`();");
             
             var x = result.List();

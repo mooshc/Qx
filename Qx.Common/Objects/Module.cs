@@ -1,15 +1,14 @@
-﻿using System;
+﻿using Qx.Common.Objects;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Nachshon.Validation;
+using System.Runtime.Serialization;
 
 namespace Qx.Common
 {
     [Serializable]
-    public class Module : ValidObjectWithIdentity
+    public class Module : TranslatedObject
     {
-        public virtual int ID { private set; get; }
+        public virtual int ID { set; get; }
 
         public virtual string Name { set; get; }
 
@@ -36,15 +35,14 @@ namespace Qx.Common
             set
             {
                 var lang = CommonFunctions.HebLang;
-                RemoteObjectProvider.GetDictionaryAccess().SaveOrUpdateByName(Name, value, lang);
-                ContentDictionary.SaveOrUpdateValue(Name, value, lang);
+                SaveOrUpdateByName(Name, value, lang);
             }
             get
             {
                 return ContentDictionary.GetContent(Name, CommonFunctions.HebLang);
             }
         }
-
+        
         public Module()
         {
             Questions = new List<QuestionInModule>();
@@ -52,17 +50,9 @@ namespace Qx.Common
             Combinations = new List<Combination>();
         }
 
-        public Module(int id)
+        public Module(int id) : this()
         {
             ID = id;
-            Questions = new List<QuestionInModule>();
-            PhysicalExaminations = new List<PhysicalExaminationInAnamnesis>();
-            Combinations = new List<Combination>();
-        }
-
-        protected override object GetObjectId()
-        {
-            return ID;
         }
 
         public virtual IList<Answer> GetAllAnswers()

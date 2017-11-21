@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Nachshon.Validation;
+﻿using Qx.Common.Objects;
+using System;
 
 namespace Qx.Common
 {
     [Serializable]
-    public class Condition : ValidObjectWithIdentity
+    public class Condition : TranslatedObject
     {
-        public virtual int ID { private set; get; }
+        public virtual int ID { set; get; }
 
         public virtual string Name { set; get; }
 
@@ -28,18 +25,12 @@ namespace Qx.Common
             set
             {
                 var lang = CommonFunctions.HebLang;
-                RemoteObjectProvider.GetDictionaryAccess().SaveOrUpdateByName(Name, value, lang);
-                ContentDictionary.SaveOrUpdateValue(Name, value, lang);
+                SaveOrUpdateByName(Name, value, lang);
             }
             get
             {
                 return ContentDictionary.GetContent(Name, CommonFunctions.HebLang);
             }
-        }
-
-        protected override object GetObjectId()
-        {
-            return ID;
         }
     }
 }
