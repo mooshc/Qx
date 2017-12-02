@@ -30,7 +30,7 @@ namespace Qx.Client
         public FinishUserControl(bool isPhysicalEx, RoutedEventHandler finishFunc, bool? isMale)
         {
             InitializeComponent();
-            FinishLabel.Content += isPhysicalEx ? "בדיקה הגופנית" : "אנמנזה";
+            FinishLabel.Content += isPhysicalEx ? "do exame físico" : "da anamnese";
             func = finishFunc;
             if (isMale.HasValue)
             {

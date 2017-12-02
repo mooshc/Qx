@@ -58,31 +58,31 @@ namespace Qx.Client
 
         private void PhysicalEx(string caseId)
         {
-            try
-            {
-                if (!isAnamnesisOpen && !isPhysicalExOpen)
-                {
-                    isPhysicalExOpen = true;
-                    //if (Session.LastModule == null)
-                    new ModuleSelectWindow('E', caseId).ShowDialog();
-                    //else
-                    //    new LastModuleWindow().ShowDialog();
-                    isPhysicalExOpen = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                //System.Windows.MessageBox.Show("DocQx נתקל בבעיה, נא פנה לתמיכה" + "\n\n" + Environment.UserName + "--" + DateTime.Now + ":>" + ex.Message + "\n" + (ex.InnerException == null ? "" : ex.InnerException.Message));
-                var stream = new StreamWriter("Log.txt", true);
-                stream.WriteLine(Environment.UserName + " -> " + Session.User.UserName + " -> " + DateTime.Now + ":>" + ex.Message + "\n" + (ex.InnerException == null ? "" : ex.InnerException.Message) + "\n\n");
-                stream.Close();
-                Close();
-                var processlist = Process.GetProcesses();
-                //Process.Start(new ProcessStartInfo("Reload.bat") { CreateNoWindow = true }).Start();
-                var proc = processlist.Where(p => p.ProcessName == "Qx.Client.exe" && GetUserName(p.ProcessName + ".exe").Equals(Environment.UserName)).FirstOrDefault();
-                if (proc != null)
-                    proc.Kill();
-            }
+            //try
+            //{
+            //    if (!isAnamnesisOpen && !isPhysicalExOpen)
+            //    {
+            //        isPhysicalExOpen = true;
+            //        //if (Session.LastModule == null)
+            //        new ModuleSelectWindow('E', caseId).ShowDialog();
+            //        //else
+            //        //    new LastModuleWindow().ShowDialog();
+            //        isPhysicalExOpen = false;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    //System.Windows.MessageBox.Show("DocQx נתקל בבעיה, נא פנה לתמיכה" + "\n\n" + Environment.UserName + "--" + DateTime.Now + ":>" + ex.Message + "\n" + (ex.InnerException == null ? "" : ex.InnerException.Message));
+            //    var stream = new StreamWriter("Log.txt", true);
+            //    stream.WriteLine(Environment.UserName + " -> " + Session.User.UserName + " -> " + DateTime.Now + ":>" + ex.Message + "\n" + (ex.InnerException == null ? "" : ex.InnerException.Message) + "\n\n");
+            //    stream.Close();
+            //    Close();
+            //    var processlist = Process.GetProcesses();
+            //    //Process.Start(new ProcessStartInfo("Reload.bat") { CreateNoWindow = true }).Start();
+            //    var proc = processlist.Where(p => p.ProcessName == "Qx.Client.exe" && GetUserName(p.ProcessName + ".exe").Equals(Environment.UserName)).FirstOrDefault();
+            //    if (proc != null)
+            //        proc.Kill();
+            //}
         }
 
         protected override void WndProc(ref Message m)

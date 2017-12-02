@@ -22,56 +22,53 @@
             <StackPanel Name="FinalStackPanel" Visibility="Hidden" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="1" Margin="25,15,0,0" Height="538">
 
                 <Label Name="HelloLabel" FontWeight="Bold"/>
+                <Label Height="30"/>
+                <Label Content="Para utilizar o ©Qx:" FontWeight="Bold"/>
+                <Label Content="• Clique na seta verde na parte de baixo da tela." FontWeight="Bold"/>
+                <Label Content="• A janela será fechada porém o programa continuará ativo" FontWeight="Bold"/>
+                <Label Content="• Para abrir a sessão de Anamnese, use as teclas Ctrl+Q" FontWeight="Bold"/>
+                <Label Content="•	Para abrir a sessão de Exame Físico, use as teclas Ctrl+E" FontWeight="Bold"/>
                 <Label/>
-
-                <Label Content="• ניתן לבחור שאלון אנמנזה על ידי לחיצה כפולה עליו עם העכבר."/>
-                
-                <Label Content="• ניתן כעת להשתמש במקלדת ב ©Qx. הסבר על תפעול"/>
-                <Label Content="  התוכנה באופן זה נמצא במצגת הממוקמת על שולחן העבודה,"/>
-                <Label Content="  בפרק 'טיפים חשובים לשימוש ב Qx'."/>
-                <Label Content="____________________________________________________________________________________________________________________________________"/>
-                <Label/>
-                <Label Content="להפעלת ©Qx:" FontWeight="Bold"/>
-                <Label Content="• לחץ על החץ הירוק שבחלק התחתון של המסך." FontWeight="Bold"/>
-                <Label Content="• החלון יעלם אך התוכנה ממשיכה לפעול ברקע." FontWeight="Bold"/>
-                <Label Content="• להפעלת האנמנזה לחץ   Ctrl + Q" FontWeight="Bold"/>
-                <Label Content="• להפעלת הבדיקה גופנית לחץ   Ctrl + E" FontWeight="Bold"/>
-                <Label/>
-                <Label Content="בכל שאלה ניתן לפנות לצוות התמיכה דרך מנהלת המרפאה," FontWeight="Bold"/>
-                <Label Content="עבודה נעימה," FontWeight="Bold"/>
-                <Label Content="צוות MaveriQx" FontWeight="Bold"/>
+                <Label Content="No caso de dúvida, entre em contato com o serviço ao cliente." FontWeight="Bold"/>
+                <Label Content="Bom trabalho" FontWeight="Bold"/>
+                <Label Content="Equipe MaveriQx" FontWeight="Bold"/>
             </StackPanel>
 
             <StackPanel Name="AfterLoginPanel" Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Margin="10,0,5,30">
                 <TextBlock FontWeight="Bold" Style="{StaticResource Underlined}" Margin="3,0,0,0">
-                    הצהרת משתמש
+                    Termos de uso                
                 </TextBlock>
-                <Label FontSize="11" Content="©Qx היא תוכנה חדשנית המסייעת לתיעוד רפואי. התוכנה מציגה"/>
-                <Label FontSize="11" Content="שאלות רלוונטיות לפי תלונה עיקרית הנבחרת על ידי הרופא ובאמצעות"/>
-                <Label FontSize="11" Content="כך מאפשרת סקירה רחבה ככל שניתן למקרה הנדון."/>
-                <Label FontSize="8"/>
-                <Label FontSize="11" Content="• אני מבין/ה שיתכנו מקרים בהם תידרש התייחסותי לנושאים נוספים"/>
-                <Label FontSize="11" Content="  במפגש הרפואי, אך לא מופיעים בתוכנה וכי האחריות המלאה לתשאול"></Label>
-                <Label FontSize="11" Content="  מפורט, בדיקה גופנית מדוקדקת ומתן אבחנה מתאימה מוטלת עלי בלבד." ></Label>
-                <Label FontSize="11" Content="• אני מבין/ה שהתוכנה לא מהווה תחליף לשיקול דעתי כרופא/ה."></Label>
-                <Label FontSize="11" Content="• אני מבין/ה שהטיפול ותוצאות המפגש הרפואי הינם באחריותי המלאה."></Label>
-                <Label FontSize="11" Content="• אני מבין/ה שהתוכנה אינה 'תומכת החלטות' ולא ממליצה על מתן"></Label>
-                <Label FontSize="11" Content="  אבחנה טיפול או תרופה כלשהם."></Label>
-                <Label FontSize="11" Content="• אני מבין/ה שחובה עלי לערוך את הטקסט המופק על ידי התוכנה"></Label>
-                <Label FontSize="11" Content="  ולהתאימו כך שישקף את הממצאים הרפואיים הספציפיים למטופל/ת."></Label>
-                <Label FontSize="11" Content="• אני מבין/ה שלמרות ש ©Qx מספקת לעיתים התראה הממליצה"></Label>
-                <Label FontSize="11" Content="  להפנות את המטופל למיון יתכנו בהחלט מקרים בהם לא תסופק התראה"></Label>
-                <Label FontSize="11" Content="  מסוג זה ומצבו של המטופל יחייב הפניה דחופה למיון."></Label>
-                <Label FontSize="11" Content="• אני מבין/ה שהתוכנה מיועדת עבור מטופלים שגילם תואם למצוין"/>
-                <Label FontSize="11" Content="  בכותרת השאלון. תינוקות עד גיל חודשיים יופנו למיון "></Label>
-                <Label FontSize="11" Content="  ללא קשר לממצאים באנמנזה או בבדיקה הגופנית."></Label>
-                <Label FontSize="11" Content="• אני מבין/ה שהתוכנה מוגנת בזכויות יוצרים ואין להעתיקה או לשכפלה."></Label>
-                <Label/>
+                <TextBlock  Margin="3,0,0,0" FontSize="11">
+                    QX é um aplicativo moderno que auxilia no diagnóstico médico. O programa <LineBreak/>
+                    apresenta perguntas relevantes de acordo com a principal queixa do paciente, <LineBreak/>
+                    e por esse meio é realizada uma anamnese tão abrangente quanto possível <LineBreak/>
+                    sobre o caso. <LineBreak/>
+                    <LineBreak/>
+                        •	Eu entendo que, em casos específicos, podem ser necessárias abordagens <LineBreak/>
+    <TextBlock Width="5"/>  adicionais no momento da avaliação que não estão contidas no programa, <LineBreak/>
+    <TextBlock Width="5"/>  e que são de minha responsabilidade fazer as perguntas pertinentes. <LineBreak/>
+    <TextBlock Width="5"/>  Avalição física e diagnóstico são de minha única responsabilidade.<LineBreak/>
+                        •	Eu entendo que o programa não substitui a minha opinião como médico (a). <LineBreak/>
+                        •	Eu entendo que o tratamento ou resultado da consulta médica são de <LineBreak/>
+    <TextBlock Width="5"/>  minha responsabilidade.<LineBreak/>
+                        •	Eu entendo que o programa não atende a necessidade de tomada de <LineBreak/>
+    <TextBlock Width="5"/>  decisões e não recomenda qualquer diagnóstico, tratamento ou <LineBreak/>
+    <TextBlock Width="5"/>  medicamento.<LineBreak/>
+                        •	Eu entendo que é meu dever editar o texto sugerido pelo programa de <LineBreak/>
+    <TextBlock Width="5"/>  forma a adaptá-lo a condição apresentada pelo paciente.<LineBreak/>
+                        •	Eu entendo que apesar de para casos específicos o programa sugere <LineBreak/>
+    <TextBlock Width="5"/>  encaminhamento para a emergência, poderão haver casos que não <LineBreak/>
+    <TextBlock Width="5"/>  consta tal sugestão mas que mesmo assim necessitam de tal procedimento.<LineBreak/>
+                        •	Eu entendo que o programa é adaptado para pacientes os quais se <LineBreak/>
+    <TextBlock Width="5"/>  encontram na faixa etária sugerida. Bebês de até dois anos deverão ser <LineBreak/>
+    <TextBlock Width="5"/>  encaminhados para a emergência independente da anamnese e exame físico.<LineBreak/>
+                        •	Eu entendo que o programa é protegido e não se pode copiar ou reproduzir.<LineBreak/>
+                </TextBlock>
                 <CheckBox Name="approveCheckBox" FontStyle="Italic" Margin="10,0,0,0">
-                    <Label Content="קראתי ואני מאשר את הצהרת המשתמש" Name="approveLabel"/>
+                    <Label Content="Li e concordo com os termos de uso" Name="approveLabel"/>
                 </CheckBox>
             </StackPanel>
-            <Grid Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" Width="250" Height="75" Margin="0,170,40,0" Name="LoginGrid" Visibility="Visible">
+            <Grid Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" Width="250" Height="75" Margin="0,170,40,0" Name="LoginGrid" Visibility="Hidden">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>

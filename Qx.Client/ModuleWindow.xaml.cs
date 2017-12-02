@@ -154,7 +154,7 @@ namespace Qx.Client
             }
             Questions.Add(new QuestionInModule(new Question(), 101, false));
             if(PhysicalEx.Count == 1)
-                HeaderLabelEnmnesia.Content = HeaderLabelPhysicalEx.Content = (PhysicalEx[0].ModuleType.ID == 1 ? "אנמנזה" : "בדיקה גופנית") + " | " + heb.Substring(2);
+                HeaderLabelEnmnesia.Content = HeaderLabelPhysicalEx.Content = (PhysicalEx[0].ModuleType.ID == 1 ? "Anamnese" : "בדיקה גופנית") + " | " + heb.Substring(2);
             else
                 HeaderLabelEnmnesia.Content = HeaderLabelPhysicalEx.Content = (PhysicalEx[0].ModuleType.ID == 1 ? "אנמנזות" : "בדיקות גופניות") + " | " + heb.Substring(2) ;
             //if (Session.LastModule != null && PhysicalEx[0].ModuleType.ID == 2)

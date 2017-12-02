@@ -14,8 +14,8 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Label Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" Name="FinishLabel" Content="לסיום יש למקם את סמן העכבר בשדה ה"/>
-        <Label Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Content="ולאחר מכן לחזור ולבחור את מין הנבדק."/>
+        <Label Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" Name="FinishLabel" Content="Para finalizar, posicione a seta no campo "/>
+        <Label Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Content="Volte a essa tela e selecione o gênero do paciente"/>
         <Image Source="Grphics/FinishMale.png" Name="FinishMale" MouseDown="FinishMale_MouseDown" MouseEnter="FinishMale_MouseEnter" MouseLeave="FinishMale_MouseLeave" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="2" Height="40" Margin="5" />
         <Image Source="Grphics/FinishFemale.png" Name="FinishFemale" MouseDown="FinishMale_MouseDown" MouseEnter="FinishFemale_MouseEnter" MouseLeave="FinishFemale_MouseLeave" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="2" Height="40" Margin="5" />
     </Grid>

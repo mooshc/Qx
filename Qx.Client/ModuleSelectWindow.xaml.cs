@@ -37,12 +37,12 @@ namespace Qx.Client
             ModulesType = modulesType;
             switch (modulesType)
             {
-                case 'Q': HeaderLabelEnmnesia.Content = "בחירת תלונה עיקרית";
+                case 'Q': HeaderLabelEnmnesia.Content = "Selecione a queixa principal";
                           EnmnesiaHeader.Visibility = System.Windows.Visibility.Visible;
                           SetModulesInPages(Session.User.Modules/*.Where(m => m.IsAuthorized).Select(m => m.Module)*/.Where(m => m.ModuleType.ID == 1 && m.ID != 1).ToList());
                           break;
 
-                case 'E': HeaderLabelPhysicalEx.Content = "בחירת בדיקת גופנית";
+                case 'E': HeaderLabelPhysicalEx.Content = "Selecione o exame físico";
                           PhysicalExHeader.Visibility = System.Windows.Visibility.Visible;
                           //var physicalEx = new List<Module>();
                           foreach (var mod in Session.User.Modules/*.Where(m => m.IsAuthorized).Select(m => m.Module)*/)

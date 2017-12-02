@@ -77,12 +77,12 @@ namespace Qx.Client
             {
                 if (answer.Name.ToLower().EndsWith("#false"))
                 {
-                    l = new Label() { Content = "אין", FontWeight = FontWeights.Bold, Margin = new Thickness(-8,0,0,0) };
+                    l = new Label() { Content = "Não", FontWeight = FontWeights.Bold, Margin = new Thickness(-8,0,0,0) };
                     pic = new Image() { Source = new BitmapImage(new Uri(CommonFunctions.GraphicsNativePath + "X.png")), HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center, Height = 10 };
                 }
                 else if (answer.Name.ToLower().EndsWith("#true"))
                 {
-                    l = new Label() { Content = "יש", FontWeight = FontWeights.Bold, Margin = new Thickness(-8, 0, 0, 0) };
+                    l = new Label() { Content = "Sim", FontWeight = FontWeights.Bold, Margin = new Thickness(-8, 0, 0, 0) };
                     pic = new Image() { Source = new BitmapImage(new Uri(CommonFunctions.GraphicsNativePath + "V.png")), HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center, Height = 10 };
                 }
             }
@@ -184,7 +184,7 @@ namespace Qx.Client
                     Foreground = new SolidColorBrush(Colors.Red),
                     FontStyle = FontStyles.Italic,
                     Margin = new Thickness(0, -3, 0, -3),
-                    Content = answer.IsTextBoxDigitsOnly ? "מספרים בלבד" : null,
+                    Content = answer.IsTextBoxDigitsOnly ? "Somente números" : null,
                     Visibility = System.Windows.Visibility.Hidden
                 };
                 AnswerPanel.Children.Add(DigitsLabel);

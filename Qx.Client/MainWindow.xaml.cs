@@ -177,7 +177,7 @@ namespace Qx.Client
 
         private void MoveToInVisibleFunc()
         {
-            HelloLabel.Content = "התחברת בהצלחה";
+            HelloLabel.Content = "Conexão realizada com sucesso";
             LoginGrid.Visibility = System.Windows.Visibility.Hidden;
             AfterLoginPanel.Visibility = System.Windows.Visibility.Visible;
             WrongUserNameOrPass.Visibility = System.Windows.Visibility.Hidden;

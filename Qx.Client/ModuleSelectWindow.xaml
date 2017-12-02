@@ -39,8 +39,8 @@
             </StackPanel>
 
             <StackPanel Name="ModulesArea" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="1" Margin="10,10,10,40" />
-            <Label Name="NextLabel" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="הבא" Grid.Row="1"  Margin="5,0,21,10" Width="170" Padding="70,5,0,5" Background="#FFB3D9DE" FontSize="12" FontWeight="Bold" Focusable="True" MouseDown="NextLabel_MouseDown"/>
-            <Label Name="PrevLabel" HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="הקודם" Grid.Row="1" Margin="20,0,5,10" Width="170" Padding="65,5,0,5" Background="#FFB3D9DE" FontSize="12" FontWeight="Bold" Focusable="True" MouseDown="PrevLabel_MouseDown"/>
+            <Label Name="NextLabel" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Próximo" Grid.Row="1"  Margin="5,0,21,10" Width="170" Padding="70,5,0,5" Background="#FFB3D9DE" FontSize="12" FontWeight="Bold" Focusable="True" MouseDown="NextLabel_MouseDown"/>
+            <Label Name="PrevLabel" HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="Anterior" Grid.Row="1" Margin="20,0,5,10" Width="170" Padding="65,5,0,5" Background="#FFB3D9DE" FontSize="12" FontWeight="Bold" Focusable="True" MouseDown="PrevLabel_MouseDown"/>
             <Image Source="Grphics/Next.png" Name="OKButton" MouseDown="OKButton_Click" MouseEnter="OKButton_MouseEnter" MouseLeave="OKButton_MouseLeave" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="2" Height="31" Margin="0,0,15,23" />
         </Grid>
     </Border>
