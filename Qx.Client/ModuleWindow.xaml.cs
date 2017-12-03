@@ -365,10 +365,11 @@ namespace Qx.Client
                 try
                 {
                     bool shouldWorkLocally = ConfigurationManager.AppSettings["WorkLocally"].Equals(true.ToString(), StringComparison.InvariantCultureIgnoreCase);
+                    bool shouldSaveHistory = ConfigurationManager.AppSettings["SaveHistory"].Equals(true.ToString(), StringComparison.InvariantCultureIgnoreCase);
                     string filePath = ConfigurationManager.AppSettings["HistoryFilePath"];
                     string fileName = Environment.MachineName + "_" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
                     string fileAddress = System.IO.Path.Combine(filePath, fileName);
-                    if (shouldWorkLocally)
+                    if (shouldWorkLocally && shouldSaveHistory)
                     {
                         string historyJson = JsonConvert.SerializeObject(history, Formatting.None,
                             new JsonSerializerSettings

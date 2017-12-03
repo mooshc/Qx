@@ -30,7 +30,7 @@ namespace Qx.Client
             var processlist = Process.GetProcesses();
             if (processlist.Where(p => p.ProcessName == "Qx.Client" && GetUserName(p.ProcessName + ".exe").Equals(Environment.UserName)).Count() > 1)
             {
-                var pi = new ProcessStartInfo("Reload.bat");
+                var pi = new ProcessStartInfo("start.bat");
                 pi.CreateNoWindow = true;
                 pi.WindowStyle = ProcessWindowStyle.Hidden;
                 Process.Start(pi);
@@ -51,7 +51,7 @@ namespace Qx.Client
 
         void MoveToInVisibleFunc()
         {
-            Thread.Sleep(1500);
+            Thread.Sleep(4000);
             try
             {
                 var x = new MainWindow();
