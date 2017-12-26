@@ -292,8 +292,13 @@ namespace Qx.Client
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            if (--currentPage == 0)
-                BackButton.Visibility = System.Windows.Visibility.Hidden;
+            //if (--currentPage == 0)
+            //    BackButton.Visibility = System.Windows.Visibility.Hidden;
+            if (currentPage == 0)
+            {
+                DialogResult = true;
+                Close();
+            }
             if (currentPage + 1 != Pages.Count)
             {
                 NextButton.Visibility = System.Windows.Visibility.Visible;

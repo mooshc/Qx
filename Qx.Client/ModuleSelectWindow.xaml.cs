@@ -250,9 +250,11 @@ namespace Qx.Client
                           Session.LastModule = modules[0];
                           Hide();
                           Session.RecomendedPhysicalEx.Clear();
-                          new ModuleWindow(modules, caseId).ShowDialog();
-                          Close();
-                        break;
+                          if (!new ModuleWindow(modules, caseId).ShowDialog().Value)
+                            Close();
+                          else
+                            Show();
+                          break;
 
                 case 'E': modules = physicalEx.Where(m => selected.Contains(m.ID) && !ModulesByLastEnmnesia.Select(mia => mia.PhysicalExaminationModule).Contains(m)).ToList();
                           Session.RecomendedPhysicalEx.Clear();
@@ -263,10 +265,11 @@ namespace Qx.Client
                           //    new ModuleWindow(mods[0]).ShowDialog();
                           //else
                           Hide();
-                          new ModuleWindow(mods, caseId).ShowDialog();
-                              
-                          Close();
-                        break;
+                          if(!new ModuleWindow(mods, caseId).ShowDialog().Value)
+                            Close();
+                          else
+                            Show();
+                          break;
 
                 default: break;
             }
