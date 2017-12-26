@@ -52,7 +52,7 @@ namespace Qx.Client
                 return;
             }
             InitializeComponent();
-            //OKButton_MouseDown(null, null);
+            
             Session.windowPosition.X = Left;
             Session.windowPosition.Y = Top;
             Loaded += new RoutedEventHandler(MainWindow_Loaded);
@@ -246,6 +246,7 @@ namespace Qx.Client
             {
                 TranslatedObject.UseOnlineContentDictionary = true;
                 CallContextLight.Current = new CallContextLight(Guid.Empty);
+                // User = RemoteObjectProvider.GetLiteUserAccess().IsLoginCorrect("moosh", "thirnzho");
                 User = RemoteObjectProvider.GetLiteUserAccess().IsLoginCorrect(userName, password);
                 if (User == null)
                 {
