@@ -40,7 +40,7 @@
             
             <StackPanel Name="QuestionsArea" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Margin="10" />
             <Image Source="Grphics/Next.png" Name="NextButton" MouseDown="NextButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="2" Height="31" Margin="0,0,266,23" MouseEnter="NextButton_MouseEnter" MouseLeave="NextButton_MouseLeave"/>
-            <Image Source="Grphics/Back.png" Name="BackButton" MouseDown="BackButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="2" Visibility="Hidden" Height="31" Margin="0,0,331,23" MouseEnter="BackButton_MouseEnter" MouseLeave="BackButton_MouseLeave" />
+            <Image Source="Grphics/Back.png" Name="BackButton" MouseDown="BackButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="2" Visibility="Visible" Height="31" Margin="0,0,331,23" MouseEnter="BackButton_MouseEnter" MouseLeave="BackButton_MouseLeave" />
             <!--<StackPanel Name="MaleButton" MouseDown="FinishButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="2" Visibility="Hidden" Height="60" Width="42" Margin="0,0,70,10">
                 <Label Content="גברים" Height="25" />
                 <Image Source="Grphics/FinishMale.png" Height="32" Width="37" />
