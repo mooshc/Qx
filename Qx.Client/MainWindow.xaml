@@ -68,7 +68,7 @@
                     <Label Content="Li e concordo com os termos de uso" Name="approveLabel"/>
                 </CheckBox>
             </StackPanel>
-            <Grid Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" Width="250" Height="75" Margin="0,170,40,0" Name="LoginGrid" Visibility="Hidden">
+            <Grid Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" Width="250" Height="75" Margin="0,170,40,0" Name="LoginGrid" Visibility="Visible">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>

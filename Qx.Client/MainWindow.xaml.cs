@@ -246,8 +246,8 @@ namespace Qx.Client
             {
                 TranslatedObject.UseOnlineContentDictionary = true;
                 CallContextLight.Current = new CallContextLight(Guid.Empty);
-                User = RemoteObjectProvider.GetLiteUserAccess().IsLoginCorrect("moosh", "thirnzho");
-                // User = RemoteObjectProvider.GetLiteUserAccess().IsLoginCorrect(userName, password);
+                // User = RemoteObjectProvider.GetLiteUserAccess().IsLoginCorrect("moosh", "thirnzho");
+                User = RemoteObjectProvider.GetLiteUserAccess().IsLoginCorrect(userName, password);
                 if (User == null)
                 {
                     var returnToNormal = new ReturnToNormal(ReturnToNormalFunc);
