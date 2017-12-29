@@ -111,6 +111,9 @@
     <Compile Include="FinishUserControl.xaml.cs">
       <DependentUpon>FinishUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FollowingWindow.xaml.cs">
+      <DependentUpon>FollowingWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GifImage.cs" />
     <Compile Include="GlobalHotkey.cs" />
     <Compile Include="InvisibleForm.cs">
@@ -153,6 +156,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FinishUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FollowingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -307,6 +314,12 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Grphics\OnHold.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Grphics\OnHoldClick.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Grphics\SmallNext.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

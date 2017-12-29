@@ -25,10 +25,9 @@ namespace Qx.Client
             InitializeComponent();
             ghkA = new Hotkeys.GlobalHotkey(Constants.CTRL, Keys.Q, this);
             ghkPE = new Hotkeys.GlobalHotkey(Constants.CTRL, Keys.E, this);
-            Hide();
         }
 
-        private void Anamnesis(string caseId)
+        public void Anamnesis(string caseId)
         {
             try
             {
@@ -128,6 +127,10 @@ namespace Qx.Client
         {
             if (!ghkA.Register() || !ghkPE.Register())
                 throw new Exception("Unable to register hotkey.");
+
+            Hide();
+            new FollowingWindow(this).ShowDialog();
+            Close();
         }
     }
 }

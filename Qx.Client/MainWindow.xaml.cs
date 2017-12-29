@@ -43,7 +43,6 @@ namespace Qx.Client
 
         public MainWindow()
         {
-            
             var processlist = Process.GetProcesses();
             if (processlist.Where(p => p.ProcessName == "Qx.Client" && GetUserName(p.ProcessName + ".exe").Equals(Environment.UserName)).Count() > 1)
             {
@@ -152,7 +151,7 @@ namespace Qx.Client
                 stream.Close();
                 Close();
                 var processlist = Process.GetProcesses();
-                //Process.Start(new ProcessStartInfo("Reload.bat") { CreateNoWindow = true }).Start();
+                //Process.Start(new ProcessStartInfo("kill.bat") { CreateNoWindow = true }).Start();
                 var proc = processlist.Where(p => p.ProcessName == "Qx.Client.exe" && GetUserName(p.ProcessName + ".exe").Equals(Environment.UserName)).FirstOrDefault();
                 if (proc != null)
                     proc.Kill();
@@ -210,7 +209,9 @@ namespace Qx.Client
                 listenThread.Start();
                 listenThread.Join();*/
                 new InvisibleForm().ShowDialog();
-                
+                Close();
+
+                Process.Start(new ProcessStartInfo("kill.bat") { CreateNoWindow = true }).Start();
             }
             if (loginState == 2)
             {
