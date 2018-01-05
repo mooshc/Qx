@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace Qx.EntitySerialization
 {
-    class EntityFileMetaData
+    public class EntityFileMetaData
     {
         private string _description;
         private string _type;
         private DateTime _creationTime;
 
         private const int DESCRIPTION_MAX_LENGTH = 20;
-        private const string CREATION_DATE_FORMAT = "yyyyMMddHHmm";
+        public const string CREATION_DATE_FORMAT = "yyyyMMddHHmm";
         internal const string FILE_EXT_NAME = ".qxdb";
         private const string NEXT_VERSION_SETTINGS_KEY = "NextVersion";
         
@@ -31,6 +31,8 @@ namespace Qx.EntitySerialization
         }
 
         public int Version { get; set; }
+
+        public DateTime CreationTime { get { return _creationTime; } }
 
         private int GetNextVersion()
         {
