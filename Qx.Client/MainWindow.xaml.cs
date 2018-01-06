@@ -362,15 +362,15 @@ namespace Qx.Client
 
             if (exception != "NoException")
             {
-                var files = Directory.GetFiles(".", "1_RemoteFile_RemoteFile_*.qxdb");
-                if (files.Length > 0)
+                List<string> files = Directory.GetFiles(".", "1_RemoteFile_RemoteFile_*.qxdb").Select(f => System.IO.Path.GetFileName(f)).ToList();
+                if (files.Count > 0)
                 {
                     DateTime dateOfNewestFile = files.Max(f => EntityFileMetaData.FromFileName(f).CreationTime);
                     string newestFile = files.First(f => f.Contains(dateOfNewestFile.ToString(EntityFileMetaData.CREATION_DATE_FORMAT)));
 
                     if (dateOfNewestFile.AddDays(3) < DateTime.Now)
                     {
-                        string errorMessage = string.Format("Failed to download remote file from {0}, no valid files to use. Error is {1}", fileUri, exception);
+                        string errorMessage = string.Format("No valid files to use!        Failed to download remote file from {0}. Error is {1}", fileUri, exception);
                         System.Windows.MessageBox.Show(errorMessage);
                         DeleteAllQxdbFiles();
                         throw new Exception(errorMessage);
@@ -378,7 +378,7 @@ namespace Qx.Client
                     else
                     {
                         DeleteAllQxdbFiles(newestFile);
-                        System.Windows.MessageBox.Show(string.Format("Failed to download remote file from {0}, using file from {1}. Error is {2}", fileUri, dateOfNewestFile.ToShortDateString(), exception));
+                        System.Windows.MessageBox.Show(string.Format("Using file from {1}!      Failed to download remote file from {0}. Error is {2}", fileUri, dateOfNewestFile.ToShortDateString(), exception));
                     }
                 }
             }
