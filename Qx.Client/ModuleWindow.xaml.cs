@@ -294,10 +294,11 @@ namespace Qx.Client
         {
             //if (--currentPage == 0)
             //    BackButton.Visibility = System.Windows.Visibility.Hidden;
-            if (currentPage == 0)
+            if (--currentPage == -1)
             {
                 DialogResult = true;
                 Close();
+                return;
             }
             if (currentPage + 1 != Pages.Count)
             {

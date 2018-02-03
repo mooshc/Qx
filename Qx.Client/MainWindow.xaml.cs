@@ -351,6 +351,7 @@ namespace Qx.Client
             try
             {
                 WebClient webClient = new WebClient();
+                webClient.UseDefaultCredentials = true;
                 webClient.DownloadFile(fileUri, localFileName);
 
                 DeleteAllQxdbFiles(localFileName);
