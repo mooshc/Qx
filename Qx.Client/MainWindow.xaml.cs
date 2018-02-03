@@ -22,6 +22,7 @@ using System.Runtime.InteropServices;
 using System.Configuration;
 using Qx.EntitySerialization;
 using Qx.Common.Objects;
+using System.Net;
 
 namespace Qx.Client
 {
@@ -57,12 +58,24 @@ namespace Qx.Client
             Loaded += new RoutedEventHandler(MainWindow_Loaded);
             KeyDown += new System.Windows.Input.KeyEventHandler(MainWindow_KeyDown);
 
+            string fileUri = ConfigurationManager.AppSettings["FileUri"];
+            string dbFileType = ConfigurationManager.AppSettings["DbFileType"];
+            string dbFileFolder = ConfigurationManager.AppSettings["DbFileFolder"];
+            
+            if (!string.IsNullOrWhiteSpace(fileUri))
+            {
+                CopyFileLocallyFromUri(fileUri);
+
+                dbFileType = "RemoteFile";
+                dbFileFolder = ".";
+            }
+
             shouldWorkLocally = ConfigurationManager.AppSettings["WorkLocally"].Equals(true.ToString(), StringComparison.InvariantCultureIgnoreCase);
             if(shouldWorkLocally)
             {
                 CommonFunctions.HebLang = new Language() { Name = "עברית", IsDeleted = false };
                 string fileName;
-                var liteSession = EntitySerializer.DeserializeFromFile<LiteSession>(ConfigurationManager.AppSettings["DbFileType"], ConfigurationManager.AppSettings["DbFileFolder"], out fileName);
+                var liteSession = EntitySerializer.DeserializeFromFile<LiteSession>(dbFileType, dbFileFolder, out fileName);
                 Session.User = liteSession.User;
                 Session.permanentQuestions = liteSession.PermanentQuestions;
                 Session.fileName = fileName;
@@ -313,6 +326,63 @@ namespace Qx.Client
         private void OKButton_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
             OKButton.Source = next;
+        }
+
+        private void DeleteAllQxdbFiles(string except = "...")
+        {
+            try
+            {
+                foreach (var oldFile in Directory.GetFiles(".", "1_RemoteFile_RemoteFile_*.qxdb").Where(f => !f.Contains(except)))
+                {
+                    File.Delete(oldFile);
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void CopyFileLocallyFromUri(string fileUri)
+        {
+            string exception = "NoException";
+            string localFileName = string.Format("1_RemoteFile_RemoteFile_{0}.qxdb", DateTime.Now.ToString(EntityFileMetaData.CREATION_DATE_FORMAT));
+
+            try
+            {
+                WebClient webClient = new WebClient();
+                webClient.UseDefaultCredentials = true;
+                webClient.DownloadFile(fileUri, localFileName);
+
+                DeleteAllQxdbFiles(localFileName);
+            }
+            catch (Exception e)
+            {
+                exception = e.ToString();
+            }
+
+            if (exception != "NoException")
+            {
+                List<string> files = Directory.GetFiles(".", "1_RemoteFile_RemoteFile_*.qxdb").Select(f => System.IO.Path.GetFileName(f)).ToList();
+                if (files.Count > 0)
+                {
+                    DateTime dateOfNewestFile = files.Max(f => EntityFileMetaData.FromFileName(f).CreationTime);
+                    string newestFile = files.First(f => f.Contains(dateOfNewestFile.ToString(EntityFileMetaData.CREATION_DATE_FORMAT)));
+
+                    if (dateOfNewestFile.AddDays(3) < DateTime.Now)
+                    {
+                        string errorMessage = string.Format("No valid files to use!        Failed to download remote file from {0}. Error is {1}", fileUri, exception);
+                        System.Windows.MessageBox.Show(errorMessage);
+                        DeleteAllQxdbFiles();
+                        throw new Exception(errorMessage);
+                    }
+                    else
+                    {
+                        DeleteAllQxdbFiles(newestFile);
+                        System.Windows.MessageBox.Show(string.Format("Using file from {1}!      Failed to download remote file from {0}. Error is {2}", fileUri, dateOfNewestFile.ToShortDateString(), exception));
+                    }
+                }
+            }
         }
     }
 }

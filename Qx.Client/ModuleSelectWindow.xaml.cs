@@ -135,20 +135,15 @@ namespace Qx.Client
                             from peim in Session.LastModule.PhysicalExaminations
                             select peim.PhysicalExaminationModule).Contains<Module>(module) || Session.RecomendedPhysicalEx.Contains(module))
                         {
-                            goto Label1;
+                            b.Background = (this.EnmnesiaHeader.Visibility == Visibility.Visible ? (Brush)(new BrushConverter()).ConvertFrom("#e6f1f2") : (Brush)(new BrushConverter()).ConvertFrom("#dcdae6"));
+                            this.selected.Add(module.ID);
+                            b.FontWeight = FontWeights.Bold;
+                            b.BorderBrush = new SolidColorBrush(Colors.Black);
                         }
                     }
                     b.Background = (Brush)(new BrushConverter()).ConvertFrom("#ebebeb");
-                    goto Label0;
+                    this.ModulesArea.Children.Add(b);
                 }
-            Label1:
-                Label label = b;
-                label.Background = (this.EnmnesiaHeader.Visibility == Visibility.Visible ? (Brush)(new BrushConverter()).ConvertFrom("#e6f1f2") : (Brush)(new BrushConverter()).ConvertFrom("#dcdae6"));
-                this.selected.Add(module.ID);
-                b.FontWeight = FontWeights.Bold;
-                b.BorderBrush = new SolidColorBrush(Colors.Black);
-            Label0:
-                this.ModulesArea.Children.Add(b);
             }
             this.SetNextPrevButtons();
             if (this.ModulesArea.Children.Count > 0)

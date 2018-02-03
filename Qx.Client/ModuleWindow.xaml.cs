@@ -154,7 +154,7 @@ namespace Qx.Client
             }
             Questions.Add(new QuestionInModule(new Question(), 101, false));
             if(PhysicalEx.Count == 1)
-                HeaderLabelEnmnesia.Content = HeaderLabelPhysicalEx.Content = (PhysicalEx[0].ModuleType.ID == 1 ? "Anamnese" : "בדיקה גופנית") + " | " + heb.Substring(2);
+                HeaderLabelEnmnesia.Content = HeaderLabelPhysicalEx.Content = (PhysicalEx[0].ModuleType.ID == 1 ? "אנמנזה" : "בדיקה גופנית") + " | " + heb.Substring(2);
             else
                 HeaderLabelEnmnesia.Content = HeaderLabelPhysicalEx.Content = (PhysicalEx[0].ModuleType.ID == 1 ? "אנמנזות" : "בדיקות גופניות") + " | " + heb.Substring(2) ;
             //if (Session.LastModule != null && PhysicalEx[0].ModuleType.ID == 2)
@@ -294,10 +294,11 @@ namespace Qx.Client
         {
             //if (--currentPage == 0)
             //    BackButton.Visibility = System.Windows.Visibility.Hidden;
-            if (currentPage == 0)
+            if (--currentPage == -1)
             {
                 DialogResult = true;
                 Close();
+                return;
             }
             if (currentPage + 1 != Pages.Count)
             {
@@ -536,7 +537,7 @@ namespace Qx.Client
                                 {
                                     if (a.Answer.RecomendedPhysicalEx != null) Session.RecomendedPhysicalEx.Add(a.Answer.RecomendedPhysicalEx);
                                     if (checkedExtraAnswers.Count >= 2 && checkedExtraAnswers[checkedExtraAnswers.Count - 2] == a)
-                                        output += " " + GetText(IsMale, a) + ((a.Answer.Question.QuestionType.ID ==1 || a.Answer.Question.QuestionType.ID ==5) ? " e" : "");
+                                        output += " " + GetText(IsMale, a) + ((a.Answer.Question.QuestionType.ID ==1 || a.Answer.Question.QuestionType.ID ==5) ? " ו" : "");
                                     else
                                         output += " " + GetText(IsMale, a) + ((a.Answer.Question.QuestionType.ID == 1 || a.Answer.Question.QuestionType.ID == 5) ? "," : "");
                                 }
@@ -556,7 +557,7 @@ namespace Qx.Client
                             }
 
                             if (questionAnswers.Count >= 2 && questionAnswers[questionAnswers.Count - 2] == ans && (ans.Answer.Question.QuestionType.ID == 1 || ans.Answer.Question.QuestionType.ID == 5))
-                                output += " e";
+                                output += " ו";
                             else
                                 output += ", ";
                         }
@@ -564,7 +565,7 @@ namespace Qx.Client
                         else //if (GetText(IsMale, ans) != "")
                         {
                             if (questionAnswers.Count >= 2 && questionAnswers[questionAnswers.Count - 2] == ans)
-                                output += " " + GetText(IsMale, ans) + ((ans.Answer.Question.QuestionType.ID == 1 || ans.Answer.Question.QuestionType.ID == 5) ? " e" : "");
+                                output += " " + GetText(IsMale, ans) + ((ans.Answer.Question.QuestionType.ID == 1 || ans.Answer.Question.QuestionType.ID == 5) ? " ו" : "");
                             else
                                 output += " " + GetText(IsMale, ans) + ((ans.Answer.Question.QuestionType.ID ==1 || ans.Answer.Question.QuestionType.ID ==5) ? "," : "");
 
@@ -591,9 +592,9 @@ namespace Qx.Client
                 Session.LastModule = null;
             for (int i = 0; i < 3; i++)
             {
-                output = output.Trim().Replace("\r\n,", "\r\n").Replace("\r\n.", ".").Replace("\r\n,", "\r\n").
+                output = output.Trim().Replace(" ו  ", " ו").Replace(" ו ", " ו").Replace(" ב  ", " ב").Replace("\r\n,", "\r\n").Replace("\r\n.", ".").Replace("\r\n,", "\r\n").
                     Replace("..", ".").Replace(",.", ".").Replace(". .", ".").Replace("  ", " ").Replace(" ,", ",").Replace(" .", ".").Replace(".,", ".").
-                    Replace(",  ", ", ").Replace("\r\n ", "\r\n").Replace(",,",",").Replace("'","");
+                    Replace(",  ", ", ").Replace("\r\n ", "\r\n").Replace(",,",",").Replace("'","").Replace(" ל "," ל");
             }
             return output;
         }
