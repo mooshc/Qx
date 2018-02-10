@@ -251,7 +251,7 @@ namespace Qx.Client
                             Show();
                           break;
 
-                case 'E': modules = physicalEx.Where(m => selected.Contains(m.ID) && !ModulesByLastEnmnesia.Select(mia => mia.PhysicalExaminationModule).Contains(m)).ToList();
+                case 'E': modules = physicalEx.Where(m => selected.Contains(m.ID) && !ModulesByLastEnmnesia.Select(mia => mia.PhysicalExaminationModule.ID).Contains(m.ID)).ToList();
                           Session.RecomendedPhysicalEx.Clear();
                           
                           var mods = ModulesByLastEnmnesia.OrderBy(mi => mi.Ordering).Select(mm => mm.PhysicalExaminationModule).ToList();
