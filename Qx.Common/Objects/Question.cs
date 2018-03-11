@@ -20,6 +20,8 @@ namespace Qx.Common
 
         public virtual QuestionType QuestionType { set; get; }
 
+        public virtual bool IsMandatory { set; get; }
+
         public virtual bool IsDeleted { set; get; }
 
         public virtual IList<Answer> Answers { set; get; }
@@ -62,6 +64,19 @@ namespace Qx.Common
             get
             {
                 return ContentDictionary.GetContent("Pre_" + Name + "-Female", CommonFunctions.HebLang);
+            }
+        }
+
+        public virtual string ToolTipHebText
+        {
+            set
+            {
+                var lang = CommonFunctions.HebLang;
+                SaveOrUpdateByName(Name + "_ToolTip", value, lang);
+            }
+            get
+            {
+                return ContentDictionary.GetContent(Name + "_ToolTip", CommonFunctions.HebLang);
             }
         }
 

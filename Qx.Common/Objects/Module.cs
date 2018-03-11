@@ -42,7 +42,20 @@ namespace Qx.Common
                 return ContentDictionary.GetContent(Name, CommonFunctions.HebLang);
             }
         }
-        
+
+        public virtual string ToolTipHebText
+        {
+            set
+            {
+                var lang = CommonFunctions.HebLang;
+                SaveOrUpdateByName(Name + "_ToolTip", value, lang);
+            }
+            get
+            {
+                return ContentDictionary.GetContent(Name + "_ToolTip", CommonFunctions.HebLang);
+            }
+        }
+
         public Module()
         {
             Questions = new List<QuestionInModule>();

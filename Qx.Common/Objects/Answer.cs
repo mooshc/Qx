@@ -25,6 +25,12 @@ namespace Qx.Common
 
         public virtual Module RecomendedPhysicalEx { set; get; }
 
+        public virtual bool IsAnd { set; get; }
+
+        public virtual string SingularOnCsv { set; get; }
+
+        public virtual Question ExtraQuestionInFlow { set; get; }
+
         public virtual bool IsDeleted { set; get; }
 
         public virtual IList<Condition> WarningConditions { set; get; }
@@ -67,6 +73,32 @@ namespace Qx.Common
             get
             {
                 return ContentDictionary.GetContent(Name + "_Female", CommonFunctions.HebLang);
+            }
+        }
+
+        public virtual string ToolTipHebText
+        {
+            set
+            {
+                var lang = CommonFunctions.HebLang;
+                SaveOrUpdateByName(Name + "_ToolTip", value, lang);
+            }
+            get
+            {
+                return ContentDictionary.GetContent(Name + "_ToolTip", CommonFunctions.HebLang);
+            }
+        }
+
+        public virtual string ActiveNegationLabelHebText
+        {
+            set
+            {
+                var lang = CommonFunctions.HebLang;
+                SaveOrUpdateByName(Name + "_ActiveNegationLabel", value, lang);
+            }
+            get
+            {
+                return ContentDictionary.GetContent(Name + "_ActiveNegationLabel", CommonFunctions.HebLang);
             }
         }
 

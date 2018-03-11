@@ -11,10 +11,13 @@
     <property name="IsContainsTextBox" />
     <property name="IsTextBoxDigitsOnly" />
     <property name="IsSingular" />
+    <property name="IsAnd" />
+    <property name="SingularOnCsv" />
     <property name="IsDeleted" />
 
     <many-to-one name="Question" column="QuestionID" lazy="false" />
     <many-to-one name="ExtraQuestion" column="ExtraQuestionID" lazy="false" />
+    <many-to-one name="ExtraQuestionInFlow" column="ExtraQuestionInFlowID" lazy="false" />
     <many-to-one name="RecomendedPhysicalEx" column="RecomendedPhysicalExID" lazy="false" />
 
     <bag name="WarningConditions" table="Relation_Answer_Condition" lazy="false">
