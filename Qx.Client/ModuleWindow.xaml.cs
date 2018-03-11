@@ -536,7 +536,7 @@ namespace Qx.Client
                                 foreach (var a in checkedExtraAnswers)
                                 {
                                     if (a.Answer.RecomendedPhysicalEx != null) Session.RecomendedPhysicalEx.Add(a.Answer.RecomendedPhysicalEx);
-                                    if (checkedExtraAnswers.Count >= 2 && checkedExtraAnswers[checkedExtraAnswers.Count - 2] == a)
+                                    if (checkedExtraAnswers.Count >= 2 && checkedExtraAnswers[checkedExtraAnswers.Count - 2] == a && a.Answer.IsAnd)
                                         output += " " + GetText(IsMale, a) + ((a.Answer.Question.QuestionType.ID ==1 || a.Answer.Question.QuestionType.ID ==5) ? " ו" : "");
                                     else
                                         output += " " + GetText(IsMale, a) + ((a.Answer.Question.QuestionType.ID == 1 || a.Answer.Question.QuestionType.ID == 5) ? "," : "");
@@ -556,7 +556,10 @@ namespace Qx.Client
                                 #endregion
                             }
 
-                            if (questionAnswers.Count >= 2 && questionAnswers[questionAnswers.Count - 2] == ans && (ans.Answer.Question.QuestionType.ID == 1 || ans.Answer.Question.QuestionType.ID == 5))
+                            if (questionAnswers.Count >= 2 && 
+                                questionAnswers[questionAnswers.Count - 2] == ans && 
+                                (ans.Answer.Question.QuestionType.ID == 1 || ans.Answer.Question.QuestionType.ID == 5) &&
+                                ans.Answer.IsAnd)
                                 output += " ו";
                             else
                                 output += ", ";
@@ -564,10 +567,10 @@ namespace Qx.Client
                         #endregion
                         else //if (GetText(IsMale, ans) != "")
                         {
-                            if (questionAnswers.Count >= 2 && questionAnswers[questionAnswers.Count - 2] == ans)
+                            if (questionAnswers.Count >= 2 && questionAnswers[questionAnswers.Count - 2] == ans && ans.Answer.IsAnd)
                                 output += " " + GetText(IsMale, ans) + ((ans.Answer.Question.QuestionType.ID == 1 || ans.Answer.Question.QuestionType.ID == 5) ? " ו" : "");
                             else
-                                output += " " + GetText(IsMale, ans) + ((ans.Answer.Question.QuestionType.ID ==1 || ans.Answer.Question.QuestionType.ID ==5) ? "," : "");
+                                output += " " + GetText(IsMale, ans) + ((ans.Answer.Question.QuestionType.ID == 1 || ans.Answer.Question.QuestionType.ID == 5) ? "," : "");
 
                         }
                     }

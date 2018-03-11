@@ -18,6 +18,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="145*" />
@@ -37,19 +38,21 @@
         <TextBox Name="ResultFemaleNameTextBox" Grid.Column="1" Grid.Row="3" Text="{Binding ResultFemaleHebText, Mode=OneTime}" GotFocus="TextBox_GotFocus"/>
         
         <Label Content="שאלת אקסטרה" Grid.Row="4"/>
-        <ComboBox Name="ExtraQuestionComboBox" Grid.Column="1" Grid.Row="4" SelectedItem="{Binding ExtraQuestion, Path=ExtraQuestion.Name, Mode=OneTime}"/>
+        <ComboBox Name="ExtraQuestionComboBox" Grid.Column="1" Grid.Row="4" SelectedItem="{Binding Path=ExtraQuestion.Name, Mode=OneTime}"/>
         
         <Label Content="תמונה" Grid.Row="5"/>
         <TextBox Name="ImageFileNameTextBox" Grid.Column="1" Grid.Row="5" Text="{Binding ImageFileName}"/>
 
         <Label Content="מודול מומלץ" Grid.Row="6"/>
-        <ComboBox Name="RecomendedModuleComboBox" Grid.Column="1" Grid.Row="6" SelectedItem="{Binding RecomendedPhysicalEx, Path=RecomendedPhysicalEx.Name, Mode=OneTime}"/>
+        <ComboBox Name="RecomendedModuleComboBox" Grid.Column="1" Grid.Row="6" SelectedItem="{Binding Path=RecomendedPhysicalEx.Name, Mode=OneTime}"/>
         
         <CheckBox Name="IsContainsTextBoxCheckBox" Grid.Row="7" Content="תיבת טקסט" IsChecked="{Binding IsContainsTextBox}" Checked="IsContainsTextBoxCheckBox_Checked" />
 
         <CheckBox Name="IsTextBoxDigitsOnlyCheckBox" Grid.Row="8" Content="רק מספרים" IsChecked="{Binding IsTextBoxDigitsOnly}" Margin="20,-45,0,0" Visibility="Hidden" />
 
         <CheckBox Name="IsSingularCheckBox" Grid.Row="9" Content="דומיננטי" IsChecked="{Binding IsSingular}"/>
+
+        <CheckBox Name="IsAndCheckBox" Grid.Row="10" Content="ו החיבור" IsChecked="{Binding IsAnd}"/>
 
         <GroupBox Name="ConditionsGroupBox" Header="אזהרות והתראות" Grid.Column="1" Grid.Row="7" Grid.RowSpan="3">
             <Grid>
@@ -60,7 +63,7 @@
             </Grid>
         </GroupBox>
         
-        <Button Name="OKButton" Content="אישור" Grid.Column="1" Grid.Row="10" Click="OKButton_Click" Margin="5" HorizontalAlignment="Right" Width="80" />
-        <Button Name="CancelButton" Content="ביטול" Grid.Column="1" Grid.Row="10" Click="CancelButton_Click" Margin="5" HorizontalAlignment="Left" Width="80" />
+        <Button Name="OKButton" Content="אישור" Grid.Column="1" Grid.Row="11" Click="OKButton_Click" Margin="5" HorizontalAlignment="Right" Width="80" />
+        <Button Name="CancelButton" Content="ביטול" Grid.Column="1" Grid.Row="11" Click="CancelButton_Click" Margin="5" HorizontalAlignment="Left" Width="80" />
     </Grid>
 </Window>

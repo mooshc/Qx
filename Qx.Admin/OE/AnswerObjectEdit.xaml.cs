@@ -42,6 +42,8 @@ namespace Qx.Admin
             RecomendedModuleComboBox.ItemsSource = temp;
             WarningsComboBox.ItemsSource = RemoteObjectProvider.GetConditionAccess().LoadAll().Where(c => !(DataContext as Answer).WarningConditions.Contains(c)).ToList();
             WarningsListBox.ItemsSource = Conditions;
+            if (Answer.Question.QuestionType.ID != 1 && Answer.Question.QuestionType.ID != 5)
+                IsAndCheckBox.Visibility = Visibility.Hidden;
             if(Answer.Question.QuestionType.ID == 2)
                 IsSingularCheckBox.Visibility = System.Windows.Visibility.Hidden;
             if(Answer.Question.QuestionType.ID == 3)

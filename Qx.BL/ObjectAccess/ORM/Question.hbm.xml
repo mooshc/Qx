@@ -10,6 +10,7 @@
     <property name="EndingChar" />
     <property name="IsWithoutEndingChar" />
     <property name="IsEnter" />
+    <property name="IsMandatory" />
     <property name="IsDeleted" />
 
     <many-to-one name="QuestionType" column="QuestionTypeID" lazy="false" />
