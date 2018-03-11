@@ -34,6 +34,7 @@ namespace Qx.Client
         List<List<QuestionInModule>> Pages = new List<List<QuestionInModule>>();
         private FinishUserControl finsihControl;
         LocalHistory history;
+        History oldHistory;
         int currentPage = 0;
         public bool ShowErrors = false;
         public int mainOrder = 0;
@@ -133,6 +134,7 @@ namespace Qx.Client
             var Questions = new List<QuestionInModule>();
             var specialPhysEx = new List<int>() {34,35,40};
             history = new LocalHistory() { ModuleId = PhysicalEx.Select(m => m.ID).ToList(), MedicalCaseId = caseId, FileName = Session.fileName };
+            oldHistory = new History() { Module = Module, User = new User() { ID = Session.User.ID }, MedicalCaseId = caseId };
             if (PhysicalEx[0].ModuleType.ID == 2 && PhysicalEx.Exists(m => !specialPhysEx.Contains(m.ID)))
                 Questions.AddRange(Session.permanentQuestions.Where(p => p.Ordering == 0));
             Module = new Module(PhysicalEx[0].ModuleType.ID) { ModuleType = PhysicalEx[0].ModuleType, Name = "" };
@@ -387,6 +389,16 @@ namespace Qx.Client
                         historyJson = historyJson.Replace(")\\/", "").Replace("\\/Date(", "");
 
                         File.AppendAllLines(fileAddress, new[] { historyJson });
+                        return;
+                    }
+                    else
+                    {
+                        oldHistory.PatientGender = history.PatientGender;
+                        foreach (LocalDoctorAnswer localDocAns in history.DoctorAnswers)
+                        {
+                            oldHistory.DoctorAnswers.Add(new DoctorAnswer(DateTime.MinValue, localDocAns.AnswerID, localDocAns.Text, localDocAns.RelatedAnswerID));
+                        }
+                        RemoteObjectProvider.GetHistoryAccess().SaveHistory(oldHistory);
                         return;
                     }
                 }
