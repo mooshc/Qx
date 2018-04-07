@@ -34,12 +34,16 @@ namespace Qx.Admin
             DataContext = Answer;
             InitializeComponent();
             Title = "תשובה לשאלה: " + Answer.Question.QuestionHebText;
-            var temp = RemoteObjectProvider.GetQuestionAccess().GetAllQuestionsNames().Where(n => n.Contains("Extra_") || n.Contains("Extra-")).OrderByDescending(n => n).ToList();
-            temp.Add("ללא");
-            ExtraQuestionComboBox.ItemsSource = temp;
-            temp = RemoteObjectProvider.GetModuleAccess().GetModulesNames().Where(n => n.Contains("E_") || n.Contains("e_")).OrderByDescending(n => n).ToList();
-            temp.Add("ללא");
-            RecomendedModuleComboBox.ItemsSource = temp;
+            var questionsNames = RemoteObjectProvider.GetQuestionAccess().GetAllQuestionsNames();
+            var ExtraQuestionNames = questionsNames.Where(n => n.Contains("Extra_") || n.Contains("Extra-")).OrderByDescending(n => n).ToList();
+            ExtraQuestionNames.Add("ללא");
+            ExtraQuestionComboBox.ItemsSource = ExtraQuestionNames;
+            var additionalQuestionNames = questionsNames.Where(q => !ExtraQuestionNames.Contains(q)).OrderBy(n => n).ToList();
+            additionalQuestionNames.Add("ללא");
+            AdditionalQuestionComboBox.ItemsSource = additionalQuestionNames;
+            var moduleNames = RemoteObjectProvider.GetModuleAccess().GetModulesNames().Where(n => n.Contains("E_") || n.Contains("e_")).OrderByDescending(n => n).ToList();
+            moduleNames.Add("ללא");
+            RecomendedModuleComboBox.ItemsSource = moduleNames;
             WarningsComboBox.ItemsSource = RemoteObjectProvider.GetConditionAccess().LoadAll().Where(c => !(DataContext as Answer).WarningConditions.Contains(c)).ToList();
             WarningsListBox.ItemsSource = Conditions;
             if (Answer.Question.QuestionType.ID != 1 && Answer.Question.QuestionType.ID != 5)
@@ -48,6 +52,14 @@ namespace Qx.Admin
                 IsSingularCheckBox.Visibility = System.Windows.Visibility.Hidden;
             if(Answer.Question.QuestionType.ID == 3)
                 IsContainsTextBoxCheckBox.Visibility = IsTextBoxDigitsOnlyCheckBox.Visibility = IsSingularCheckBox.Visibility = System.Windows.Visibility.Hidden;
+            if(Answer.Question.QuestionType.ID == 5)
+                ActiveNegationLabelLabel.Visibility = ActiveNegationLabelTextBox.Visibility = Visibility.Visible;
+
+            foreach (Answer ans in Answer.Question.Answers)
+                SingularToListBox.Items.Add(new CheckBox() { Content = ans.Name, IsChecked = (Answer.SingularOnCsv ?? "").Contains(ans.Name) });
+
+            if (!Answer.IsSingular)
+                SingularToListBox.Visibility = Visibility.Hidden;
         }
 
         private void OKButton_Click(object sender, RoutedEventArgs e)
@@ -65,6 +77,13 @@ namespace Qx.Admin
                 else
                     answer.ExtraQuestion = null;
             }
+            if (AdditionalQuestionComboBox.SelectedItem != null)
+            {
+                if (AdditionalQuestionComboBox.SelectedItem.ToString() != "ללא")
+                    answer.ExtraQuestionInFlow = RemoteObjectProvider.GetQuestionAccess().LoadByName(AdditionalQuestionComboBox.SelectedItem.ToString());
+                else
+                    answer.ExtraQuestionInFlow = null;
+            }
             if (RecomendedModuleComboBox.SelectedItem != null)
             {
                 if (RecomendedModuleComboBox.SelectedItem.ToString() != "ללא")
@@ -75,6 +94,18 @@ namespace Qx.Admin
             answer.ResultFemaleHebText = ResultFemaleNameTextBox.Text;
             answer.ResultMaleHebText = ResultMaleNameTextBox.Text;
             answer.AnswerHebText = HebAnswerTextBox.Text;
+            answer.ToolTipHebText = TooltipTextBox.Text;
+            if (answer.Question.QuestionType.ID == 5)
+                answer.ActiveNegationLabelHebText = ActiveNegationLabelTextBox.Text;
+
+            if(IsSingularCheckBox.IsChecked.Value)
+            {
+                answer.SingularOnCsv = string.Join(",", SingularToListBox.Items.OfType<CheckBox>().Where(ch => ch.IsChecked.Value).Select(cb => cb.Content.ToString()));
+            }
+            else
+            {
+                answer.SingularOnCsv = string.Empty;
+            }
 
             Question.Answers = RemoteObjectProvider.GetQuestionAccess().SaveOrUpdate(Question).Answers;
             Close();
@@ -115,6 +146,13 @@ namespace Qx.Admin
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             (sender as TextBox).SelectAll();
+        }
+
+        private void IsSingularCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (SingularToListBox == null) return;
+
+            SingularToListBox.Visibility = IsSingularCheckBox.IsChecked.Value ? Visibility.Visible : Visibility.Hidden;
         }
     }
 }
