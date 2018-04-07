@@ -63,6 +63,7 @@ namespace Qx.Admin
             question.QuestionHebText = HebQuestionTextBox.Text;
             question.PreQuestionHebText = HebPreQuestionTextBox.Text;
             question.PreQuestionHebTextFemale = HebPreQuestionFemaleTextBox.Text;
+            question.ToolTipHebText = TooltipTextBox.Text;
             foreach (var ans in question.Answers)
             {
                 var text = ans.AnswerHebText;

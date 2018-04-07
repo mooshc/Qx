@@ -101,6 +101,7 @@ namespace Qx.Admin
         {
             var module = DataContext as Module;
             module.ModuleHebText = HebTextBox.Text;
+            module.ToolTipHebText = TooltipTextBox.Text;
             if (Bisexual.IsChecked ?? false)
                 module.IsMale = null;
             else if (Male.IsChecked ?? false)

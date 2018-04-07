@@ -14,6 +14,8 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
             <RowDefinition Height="1.25*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -42,13 +44,18 @@
         
         <CheckBox Grid.Row="6" IsChecked="{Binding IsEnter}" Content="אנטר בסוף שאלה?"/>
 
-        <Button Name="AnswersButton" Content="תשובות" Grid.Row="7" Click="AnswersButton_Click" VerticalAlignment="Top" />
-        <Button Name="CombinationButton" Content="קומבינציות" Grid.Row="7" VerticalAlignment="Bottom" Click="CombinationButton_Click"/>
+        <Label Content="טולטיפ" Grid.Row="7"/>
+        <TextBox Name="TooltipTextBox" Grid.Column="1" Grid.Row="7" Text="{Binding ToolTipHebText, Mode=OneTime}"/>
+
+        <CheckBox Grid.Row="8" IsChecked="{Binding IsMandatory}" Content="האם שאלת חובה?"/>
         
-        <Button Name="OKButton" Content="אישור" Grid.Column="1" Grid.Row="7" Click="OKButton_Click" HorizontalAlignment="Right" Width="70" VerticalAlignment="Top" />
-        <Button Name="CancelButton" Content="ביטול" Grid.Column="1" Grid.Row="7" Click="CancelButton_Click" HorizontalAlignment="Left" Width="70" VerticalAlignment="Top" />
+        <Button Name="AnswersButton" Content="תשובות" Grid.Row="9" Click="AnswersButton_Click" VerticalAlignment="Top" />
+        <Button Name="CombinationButton" Content="קומבינציות" Grid.Row="9" VerticalAlignment="Bottom" Click="CombinationButton_Click"/>
         
-        <Button Name="PreviewQuestionButton" Content="תצוגה מקדימה" Grid.Column="1" Grid.Row="7" VerticalAlignment="Bottom" Click="PreviewQuestionButton_Click" HorizontalAlignment="Center" />
+        <Button Name="OKButton" Content="אישור" Grid.Column="1" Grid.Row="9" Click="OKButton_Click" HorizontalAlignment="Right" Width="70" VerticalAlignment="Top" />
+        <Button Name="CancelButton" Content="ביטול" Grid.Column="1" Grid.Row="9" Click="CancelButton_Click" HorizontalAlignment="Left" Width="70" VerticalAlignment="Top" />
+        
+        <Button Name="PreviewQuestionButton" Content="תצוגה מקדימה" Grid.Column="1" Grid.Row="9" VerticalAlignment="Bottom" Click="PreviewQuestionButton_Click" HorizontalAlignment="Center" />
 
     </Grid>
 </Window>

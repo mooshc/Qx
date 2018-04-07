@@ -14,6 +14,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="80*" />
@@ -39,9 +40,12 @@
         <Label Content="סדר" Grid.Row="5"/>
         <TextBox Name="SeverityLevelTextBox" Grid.Row="5" Grid.Column="1" Text="{Binding SeverityLevel}"/>
 
-        <RadioButton Name="Bisexual" Content="דו מיני" VerticalAlignment="Center" Grid.Row="6" Margin="10" GroupName="Gender"/>
-        <RadioButton Name="Male" Content="זכר" VerticalAlignment="Center" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" Margin="10" GroupName="Gender"/>
-        <RadioButton Name="Female" Content="נקבה" VerticalAlignment="Center" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Right" Margin="0,14,57,14" GroupName="Gender"/>
+        <Label Content="טולטיפ" Grid.Row="6"/>
+        <TextBox Name="TooltipTextBox" Grid.Column="1" Grid.Row="6" Text="{Binding ToolTipHebText, Mode=OneTime}"/>
+
+        <RadioButton Name="Bisexual" Content="דו מיני" VerticalAlignment="Center" Grid.Row="7" Margin="10" GroupName="Gender"/>
+        <RadioButton Name="Male" Content="זכר" VerticalAlignment="Center" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left" Margin="10" GroupName="Gender"/>
+        <RadioButton Name="Female" Content="נקבה" VerticalAlignment="Center" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Right" Margin="0,14,57,14" GroupName="Gender"/>
 
         <GroupBox Name="PhysicalExGroupBox" Header="בדיקות גופניות" Grid.Column="2" Grid.RowSpan="6">
             <Grid>
@@ -72,11 +76,11 @@
             </Grid>
         </GroupBox>
 
-        <Button Name="QuestionButton" Content="שאלות" Grid.Row="6" Click="QuestionButton_Click" Margin="5" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-        <Button Name="CombinationButton" Content="קומבינציות" Grid.Row="6" Click="CombinationButton_Click" Margin="55,0,0,0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        <Button Name="QuestionButton" Content="שאלות" Grid.Row="7" Click="QuestionButton_Click" Margin="5" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        <Button Name="CombinationButton" Content="קומבינציות" Grid.Row="7" Click="CombinationButton_Click" Margin="55,0,0,0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left"/>
         
-        <Button Name="OKButton" Content="אישור" Grid.Column="2" Grid.Row="6" Click="OKButton_Click" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-        <Button Name="CancelButton" Content="ביטול" Grid.Column="2" Grid.Row="6" Click="CancelButton_Click" Margin="0,0,50,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <Button Name="OKButton" Content="אישור" Grid.Column="2" Grid.Row="7" Click="OKButton_Click" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <Button Name="CancelButton" Content="ביטול" Grid.Column="2" Grid.Row="7" Click="CancelButton_Click" Margin="0,0,50,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
 
     </Grid>
 </Window>
