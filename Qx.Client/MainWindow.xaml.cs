@@ -44,13 +44,13 @@ namespace Qx.Client
 
         public MainWindow()
         {
-            var processlist = Process.GetProcesses();
+            /*var processlist = Process.GetProcesses();
             if (processlist.Where(p => p.ProcessName == "Qx.Client" && GetUserName(p.ProcessName + ".exe").Equals(Environment.UserName)).Count() > 1)
             {
                 System.Windows.MessageBox.Show("Client is open, press ctrl + 0");
                 Close();
                 return;
-            }
+            }*/
             InitializeComponent();
             
             Session.windowPosition.X = Left;

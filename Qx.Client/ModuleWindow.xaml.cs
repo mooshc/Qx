@@ -134,11 +134,11 @@ namespace Qx.Client
             var Questions = new List<QuestionInModule>();
             var specialPhysEx = new List<int>() {34,35,40};
             history = new LocalHistory() { ModuleId = PhysicalEx.Select(m => m.ID).ToList(), MedicalCaseId = caseId, FileName = Session.fileName };
-            oldHistory = new History() { Module = Module, User = new User() { ID = Session.User.ID }, MedicalCaseId = caseId };
             if (PhysicalEx[0].ModuleType.ID == 2 && PhysicalEx.Exists(m => !specialPhysEx.Contains(m.ID)))
                 Questions.AddRange(Session.permanentQuestions.Where(p => p.Ordering == 0));
             Module = new Module(PhysicalEx[0].ModuleType.ID) { ModuleType = PhysicalEx[0].ModuleType, Name = "" };
-            var heb = "";
+            oldHistory = new History() { Module = Module, User = new User() { ID = Session.User.ID }, MedicalCaseId = caseId };
+			var heb = "";
             foreach (var mod in PhysicalEx)
             {
                 //mod.Questions[mod.Questions.Count - 1].IsPageBreak = true;
