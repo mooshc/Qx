@@ -24,6 +24,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="145*" />
@@ -67,8 +68,11 @@
         <Label Content="שאלה רלוונטית נוספת" Grid.Row="14"/>
         <ComboBox Name="AdditionalQuestionComboBox" Grid.Column="1" Grid.Row="14" SelectedItem="{Binding Path=ExtraQuestionInFlow.Name, Mode=OneTime}"/>
 
-        <Label Name="ActiveNegationLabelLabel" Content="תווית שלילה אקטיבית" Grid.Row="15" Visibility="Hidden"/>
-        <TextBox Name="ActiveNegationLabelTextBox" Grid.Column="1" Grid.Row="15" Text="{Binding ActiveNegationLabelHebText, Mode=OneTime}" GotFocus="TextBox_GotFocus" Visibility="Hidden"/>
+        <Label Content="מודול מקושר" Grid.Row="15"/>
+        <ComboBox Name="RelatedModuleComboBox" Grid.Column="1" Grid.Row="15" SelectedItem="{Binding Path=RelatedModuleName}"/>
+
+        <Label Name="ActiveNegationLabelLabel" Content="תווית שלילה אקטיבית" Grid.Row="16" Visibility="Hidden"/>
+        <TextBox Name="ActiveNegationLabelTextBox" Grid.Column="1" Grid.Row="16" Text="{Binding ActiveNegationLabelHebText, Mode=OneTime}" GotFocus="TextBox_GotFocus" Visibility="Hidden"/>
 
         <GroupBox Name="ConditionsGroupBox" Header="אזהרות והתראות" Grid.Column="1" Grid.Row="7" Grid.RowSpan="3">
             <Grid>
