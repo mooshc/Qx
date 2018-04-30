@@ -31,6 +31,8 @@ namespace Qx.Common
 
         public virtual Question ExtraQuestionInFlow { set; get; }
 
+		public virtual string RelatedModuleName { set; get; }
+		
         public virtual bool IsDeleted { set; get; }
 
         public virtual IList<Condition> WarningConditions { set; get; }

@@ -41,9 +41,13 @@ namespace Qx.Admin
             var additionalQuestionNames = questionsNames.Where(q => !ExtraQuestionNames.Contains(q)).OrderBy(n => n).ToList();
             additionalQuestionNames.Add("ללא");
             AdditionalQuestionComboBox.ItemsSource = additionalQuestionNames;
-            var moduleNames = RemoteObjectProvider.GetModuleAccess().GetModulesNames().Where(n => n.Contains("E_") || n.Contains("e_")).OrderByDescending(n => n).ToList();
-            moduleNames.Add("ללא");
-            RecomendedModuleComboBox.ItemsSource = moduleNames;
+            var moduleNames = RemoteObjectProvider.GetModuleAccess().GetModulesNames();
+            var phEx = moduleNames.Where(n => n.Contains("E_") || n.Contains("e_")).OrderByDescending(n => n).ToList();
+            phEx.Add("ללא");
+            RecomendedModuleComboBox.ItemsSource = phEx;
+            var anm = moduleNames.Where(n => !phEx.Contains(n)).OrderByDescending(n => n).ToList();
+            anm.Add("ללא");
+            RelatedModuleComboBox.ItemsSource = anm;
             WarningsComboBox.ItemsSource = RemoteObjectProvider.GetConditionAccess().LoadAll().Where(c => !(DataContext as Answer).WarningConditions.Contains(c)).ToList();
             WarningsListBox.ItemsSource = Conditions;
             if (Answer.Question.QuestionType.ID != 1 && Answer.Question.QuestionType.ID != 5)

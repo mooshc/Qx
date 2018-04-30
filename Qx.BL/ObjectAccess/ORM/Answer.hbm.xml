@@ -13,6 +13,7 @@
     <property name="IsSingular" />
     <property name="IsAnd" />
     <property name="SingularOnCsv" />
+    <property name="RelatedModuleName" />
     <property name="IsDeleted" />
 
     <many-to-one name="Question" column="QuestionID" lazy="false" />

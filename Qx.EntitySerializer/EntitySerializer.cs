@@ -36,6 +36,13 @@ namespace Qx.EntitySerialization
 
         public static T DeserializeFromFile<T>(string type, string location, out string fileName)
         {
+
+            string json = DeserializeFromFileToJson(type, location, out fileName);
+            return JsonConvert.DeserializeObject<T>(json, jsonSerializerSettings);
+        }
+
+        public static string DeserializeFromFileToJson(string type, string location, out string fileName)
+        {
             if (!Directory.Exists(location))
             {
                 throw new EntitySerializerException("Could not access location: " + location);
@@ -48,7 +55,7 @@ namespace Qx.EntitySerialization
             var selectedFilePath = GetLatestVersionFile(filePaths);
             fileName = Path.GetFileName(selectedFilePath);
             string json = DecryptAndDecompress(selectedFilePath);
-            return JsonConvert.DeserializeObject<T>(json, jsonSerializerSettings);
+            return json;
         }
 
         private static string GetLatestVersionFile(IEnumerable<string> filePaths)
