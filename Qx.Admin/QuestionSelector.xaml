@@ -4,7 +4,7 @@
         Title="QuestionSelector" FlowDirection="RightToLeft" 
         mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-        MinHeight="430" MinWidth="607" SizeToContent="WidthAndHeight">
+        MinHeight="430" MinWidth="680" SizeToContent="WidthAndHeight">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10*" />
@@ -16,7 +16,11 @@
             <ColumnDefinition Width="70"/>
             <ColumnDefinition Width="45*"/>
         </Grid.ColumnDefinitions>
-        
+
+        <TextBox Grid.Row="2" HorizontalAlignment="Center" Margin="0" Width="170" TextChanged="FilterTextbox_TextChanged" Name="FilterTextbox" />
+        <Label Grid.Row="2" Content="פילטר:" Width="45" HorizontalAlignment="Left" Margin="0,0,0,0" />
+        <Button Grid.Row="2" Content="נקה" HorizontalAlignment="Right" Width="30" Margin="1,7,10,7" Name="CleanButton" Click="CleanButton_Click" />
+
         <Label Content="שאלות לבחירה"/>
         <Label Content="שאלות קיימות" Grid.Column="2"/>
         

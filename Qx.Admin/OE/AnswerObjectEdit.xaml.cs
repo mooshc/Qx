@@ -38,7 +38,7 @@ namespace Qx.Admin
             var ExtraQuestionNames = questionsNames.Where(n => n.Contains("Extra_") || n.Contains("Extra-")).OrderByDescending(n => n).ToList();
             ExtraQuestionNames.Add("ללא");
             ExtraQuestionComboBox.ItemsSource = ExtraQuestionNames;
-            var additionalQuestionNames = questionsNames.Where(q => !ExtraQuestionNames.Contains(q)).OrderBy(n => n).ToList();
+            var additionalQuestionNames = questionsNames.Where(q => !ExtraQuestionNames.Contains(q)).OrderByDescending(n => n).ToList();
             additionalQuestionNames.Add("ללא");
             AdditionalQuestionComboBox.ItemsSource = additionalQuestionNames;
             var moduleNames = RemoteObjectProvider.GetModuleAccess().GetModulesNames();
@@ -59,7 +59,7 @@ namespace Qx.Admin
             if(Answer.Question.QuestionType.ID == 5)
                 ActiveNegationLabelLabel.Visibility = ActiveNegationLabelTextBox.Visibility = Visibility.Visible;
 
-            foreach (Answer ans in Answer.Question.Answers)
+            foreach (Answer ans in Answer.Question.Answers.Where(a => !a.IsDeleted && a.Name != Answer.Name))
                 SingularToListBox.Items.Add(new CheckBox() { Content = ans.Name, IsChecked = (Answer.SingularOnCsv ?? "").Contains(ans.Name) });
 
             if (!Answer.IsSingular)

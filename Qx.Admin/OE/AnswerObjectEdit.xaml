@@ -44,7 +44,7 @@
         <TextBox Name="ResultFemaleNameTextBox" Grid.Column="1" Grid.Row="3" Text="{Binding ResultFemaleHebText, Mode=OneTime}" GotFocus="TextBox_GotFocus"/>
         
         <Label Content="שאלת אקסטרה" Grid.Row="4"/>
-        <ComboBox Name="ExtraQuestionComboBox" Grid.Column="1" Grid.Row="4" SelectedItem="{Binding Path=ExtraQuestion.Name, Mode=OneTime}"/>
+        <ComboBox Name="ExtraQuestionComboBox" Grid.Column="1" Grid.Row="4" SelectedItem="{Binding Path=ExtraQuestion.Name, Mode=OneTime}" IsTextSearchEnabled="True" TextSearch.TextPath="" IsEditable="True"/>
 
         <Label Content="תמונה" Grid.Row="5"/>
         <TextBox Name="ImageFileNameTextBox" Grid.Column="1" Grid.Row="5" Text="{Binding ImageFileName}"/>

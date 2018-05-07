@@ -21,6 +21,8 @@ namespace Qx.Admin
     public partial class QuestionSelector : Window
     {
         public ObservableCollection<QuestionInModule> ExistingQuestions { get { return new ObservableCollection<QuestionInModule>((DataContext as IList<QuestionInModule>).OrderBy(qim => qim.Ordering)); } }
+
+        public IOrderedEnumerable<string> NotExistingQuestionsSource { get; }
         public ObservableCollection<string> NotExistingQuestions { get; set; }
 
         public QuestionSelector(IList<QuestionInModule> Questions)
@@ -28,7 +30,8 @@ namespace Qx.Admin
             DataContext = Questions;
             InitializeComponent();
             ExistingQuestionsListBox.ItemsSource = ExistingQuestions;
-            NotExistingQuestions = new ObservableCollection<string>(RemoteObjectProvider.GetQuestionAccess().GetAllQuestionsNames().Where(Q => !Q.Contains("ללא") && (DataContext as IList<QuestionInModule>).Count(q => q.Question.Name == Q) == 0));
+            NotExistingQuestionsSource = RemoteObjectProvider.GetQuestionAccess().GetAllQuestionsNames().Where(Q => !Q.Contains("ללא") && (DataContext as IList<QuestionInModule>).Count(q => q.Question.Name == Q) == 0).OrderByDescending(n => n);
+            NotExistingQuestions = new ObservableCollection<string>(NotExistingQuestionsSource);
             NotExistingQuestionsListBox.ItemsSource = NotExistingQuestions;
         }
 
@@ -84,6 +87,25 @@ namespace Qx.Admin
         private void FinishButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void CleanButton_Click(object sender, RoutedEventArgs e)
+        {
+            FilterTextbox.Text = "";
+        }
+
+        private void FilterTextbox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (FilterTextbox.Text == "")
+            {
+                NotExistingQuestions = new ObservableCollection<string>(NotExistingQuestionsSource);
+            }
+            else
+            {
+                string textToSearch = FilterTextbox.Text.ToLower();
+                NotExistingQuestions = new ObservableCollection<string>(NotExistingQuestionsSource.Where(n => n.ToLower().Contains(textToSearch)));
+            }
+            NotExistingQuestionsListBox.ItemsSource = NotExistingQuestions;
         }
     }
 }
