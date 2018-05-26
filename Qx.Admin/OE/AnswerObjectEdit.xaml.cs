@@ -111,7 +111,7 @@ namespace Qx.Admin
                 answer.SingularOnCsv = string.Empty;
             }
 
-            Question.Answers = RemoteObjectProvider.GetQuestionAccess().SaveOrUpdate(Question).Answers;
+            /*Question.Answers = */var x = RemoteObjectProvider.GetQuestionAccess().SaveOrUpdate(Question).Answers;
             Close();
         }
 
