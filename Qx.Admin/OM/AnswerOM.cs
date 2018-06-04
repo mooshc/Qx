@@ -45,7 +45,7 @@ namespace Qx.Admin
             if (GetSelectedItem() == null) return;
             var ans = (Answer)GetSelectedItem();
             var question = DataContext as Question;
-            var answers = question.Answers.ToArray<Answer>();
+            var answers = question.Answers.Where(a => !a.IsDeleted).ToArray<Answer>();
             var index = -1;
             for (int i = 0; i < answers.Length; i++)
                 if (answers[i].ID == ans.ID)
