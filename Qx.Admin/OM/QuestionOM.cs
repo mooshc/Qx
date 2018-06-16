@@ -6,6 +6,7 @@ using Qx.Common;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Windows;
+using System.IO;
 
 namespace Qx.Admin
 {
