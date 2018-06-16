@@ -54,8 +54,9 @@ namespace Qx.Admin
             catch (Exception ex)
             {
                 var stream = new StreamWriter("Log.txt", true);
-                stream.WriteLine(ex.Message + "\n" + (ex.InnerException == null ? "" : ex.InnerException.Message) + "\n\n");
+                stream.WriteLine(DateTime.Now.ToShortTimeString() + "  -  " + ex.ToString() + "\n\n");
                 stream.Close();
+                MessageBox.Show("ארעה שגיאה - סגור את כל חלונות העריכה ורענן את הרשימה" + "\n\n" + ex.ToString(), "Error occurred", MessageBoxButton.OK);
                 Close();
             }
         }

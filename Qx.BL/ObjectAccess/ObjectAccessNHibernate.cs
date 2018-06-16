@@ -46,6 +46,7 @@ namespace Qx.BL
             catch
             {
                 object identifier = currentSession.GetIdentifier(obj);
+                currentSession.Clear();
                 if (identifier != null && Load(identifier) != null)
                     currentSession.Update(obj);
                 else

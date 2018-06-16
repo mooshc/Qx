@@ -33,7 +33,7 @@ namespace Qx.Admin
 
         protected override object ItemSource()
         {
-            return RemoteObjectProvider.GetLiteQuestionAccess().LoadAll().ToList();
+            return RemoteObjectProvider.GetLiteQuestionAccess().LoadAll().Where(q => !q.IsDeleted).ToList();
         }
 
         public void New()
@@ -44,7 +44,20 @@ namespace Qx.Admin
         public void Edit()
         {
             if (GetSelectedItem() == null) return;
-            new QuestionObjectEdit(RemoteObjectProvider.GetQuestionAccess().Load((GetSelectedItem() as LiteQuestion).ID)).ShowDialog();
+
+            var win = new QuestionObjectEdit(RemoteObjectProvider.GetQuestionAccess().Load((GetSelectedItem() as LiteQuestion).ID));
+            try
+            {
+                win.ShowDialog();
+            }
+            catch (Exception exception)
+            {
+                win.Close();
+                var stream = new StreamWriter("Log.txt", true);
+                stream.WriteLine(DateTime.Now.ToShortTimeString() + "  -  " + exception.ToString() + "\n\n");
+                stream.Close();
+                MessageBox.Show("ארעה שגיאה - סגור את כל חלונות העריכה ורענן את הרשימה" + "\n\n" + exception.ToString(), "Error occurred", MessageBoxButton.OK);
+            }
         }
 
         public void Delete()

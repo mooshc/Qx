@@ -59,9 +59,30 @@ namespace Qx.Admin
 
         void Swap(Answer first, Answer second)
         {
+            var activeNegationLabelHebText = first.ActiveNegationLabelHebText;
+            first.ActiveNegationLabelHebText = second.ActiveNegationLabelHebText;
+            second.ActiveNegationLabelHebText = activeNegationLabelHebText;
+
+            var recomendedPhysicalEx = first.RecomendedPhysicalEx;
+            first.RecomendedPhysicalEx = second.RecomendedPhysicalEx;
+            second.RecomendedPhysicalEx = recomendedPhysicalEx;
+
+            var relatedModuleName = first.RelatedModuleName;
+            first.RelatedModuleName = second.RelatedModuleName;
+            second.RelatedModuleName = relatedModuleName;
+
+            var singularOnCsv = first.SingularOnCsv;
+            first.SingularOnCsv = second.SingularOnCsv;
+            second.SingularOnCsv = singularOnCsv;
+
+
             var tempExtraQuestion = first.ExtraQuestion;
             first.ExtraQuestion = second.ExtraQuestion;
             second.ExtraQuestion = tempExtraQuestion;
+
+            var extraQuestionInFlow = first.ExtraQuestionInFlow;
+            first.ExtraQuestionInFlow = second.ExtraQuestionInFlow;
+            second.ExtraQuestionInFlow = extraQuestionInFlow;
 
             var tempImage = first.ImageFileName;
             first.ImageFileName = second.ImageFileName;
@@ -79,12 +100,16 @@ namespace Qx.Admin
             first.IsTextBoxDigitsOnly = second.IsTextBoxDigitsOnly;
             second.IsTextBoxDigitsOnly = tempBool;
 
+            tempBool = first.IsAnd;
+            first.IsAnd = second.IsAnd;
+            second.IsAnd = tempBool;
+
             var tempWarnings = first.WarningConditions;
             first.WarningConditions = second.WarningConditions;
             second.WarningConditions = tempWarnings;
 
-            var tempName1 = first.Name;
-            var tempName2 = second.Name;
+            var tempName1 = (string) first.Name.Clone();
+            var tempName2 = (string) second.Name.Clone();
             first.Name = second.Name + "temp";
             RemoteObjectProvider.GetAnswerAccess().SaveOrUpdate(first);
             second.Name = tempName1;
